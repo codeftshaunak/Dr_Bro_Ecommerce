@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { Button } from "../styles/Button";
+// import { Button } from "../styles/Button";
 
 // banner images
 import img1 from "../../src/assets/home_slide_three_bg_2.jpg";
@@ -18,6 +18,7 @@ import "swiper/css/pagination";
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
+import Button from "./Button/Button";
 
 // slider data
 const data = [
@@ -101,7 +102,7 @@ const HeroSection = () => {
                       data-aos-delay="250"
                       data-aos-duration="1200"
                     >
-                      <Button>Explore now</Button>
+                      <Button data={"Explore now"} />
                     </a>
                   </div>
                 </div>

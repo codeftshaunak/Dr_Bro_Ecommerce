@@ -16,10 +16,9 @@ export const Button = styled.button `
   font-size:12px;
 
   &:hover {
-    background-color: transparent;
-    border: 1px solid #f94600;
-    color: #000;
-    transition: 0.1s;
+    background-color: #fff;
+    color: #f94600;
+    transition: 0.3s;
   }
 
   a {

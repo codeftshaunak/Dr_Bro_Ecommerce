@@ -48,6 +48,10 @@ const Wrapper = styled.section`
     justify-content: center;
   }
 
+  .tour__icons.flex {
+    margin-top: 10px;
+  }
+
   figure {
     position: relative;
     display: flex;
@@ -89,7 +93,7 @@ const Wrapper = styled.section`
       font-size: 20px;
       font-weight: 400;
       line-height: 1;
-      background-color: #537b8c;
+      background-color: #089dbd;
     }
     img {
       height: 100%;
