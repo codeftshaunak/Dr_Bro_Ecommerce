@@ -4,6 +4,7 @@ import PopularTours from "../../components/TourHomeComponents/PopularTours";
 import TourAd from "../../components/TourHomeComponents/TourAd";
 import TourBanner from "../../components/TourHomeComponents/TourBanner";
 import PopularTravel from "../../components/TourHomeComponents/PopularTravel";
+import CounterUp from "../../components/CounterUp/CounterUp";
 
 const Tour = () => {
   return (
@@ -11,6 +12,7 @@ const Tour = () => {
       {<TourBanner />}
       {<TourAd />}
       {<PopularTours />}
+      <CounterUp />
 
       {<PopularDestination />}
 
