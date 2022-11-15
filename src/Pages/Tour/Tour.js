@@ -3,6 +3,7 @@ import PopularDestination from "../../components/TourHomeComponents/PopularDesti
 import PopularTours from "../../components/TourHomeComponents/PopularTours";
 import TourAd from "../../components/TourHomeComponents/TourAd";
 import TourBanner from "../../components/TourHomeComponents/TourBanner";
+import PopularTravel from "../../components/TourHomeComponents/PopularTravel";
 
 const Tour = () => {
   return (
@@ -12,6 +13,8 @@ const Tour = () => {
       {<PopularTours />}
 
       {<PopularDestination />}
+
+      <PopularTravel />
     </>
   );
 };

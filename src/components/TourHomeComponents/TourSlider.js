@@ -1,8 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { GoLocation } from "react-icons/go";
-import Titles from "./Titles";
-import Button from "../Button/Button";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -13,61 +10,19 @@ import { Pagination } from "swiper";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
+import Button from "../Button/Button";
+import { GoLocation } from "react-icons/go";
 
-const PopularDestination = () => {
-  const popularTourData = [
-    {
-      id: 1,
-      package_titile: "Dubai",
-      package_num: "8 Tours",
-      Package_thumble:
-        "https://webredox.net/demo/wp/travol/wp-content/uploads/2022/08/dubai1.jpg",
-    },
-    {
-      id: 1,
-      package_titile: "Grecee",
-      package_num: "8 Tours",
-      Package_thumble:
-        "https://webredox.net/demo/wp/travol/wp-content/uploads/2022/08/greece1.jpg",
-    },
-    {
-      id: 3,
-      package_titile: "France",
-      package_num: "8 Tours",
-      Package_thumble:
-        "https://i.picsum.photos/id/57/2448/3264.jpg?hmac=ewraXYesC6HuSEAJsg3Q80bXd1GyJTxekI05Xt9YjfQ",
-    },
-    {
-      id: 4,
-      package_titile: "Italy",
-      package_num: "7 Tours",
-      Package_thumble:
-        "https://i.picsum.photos/id/74/4288/2848.jpg?hmac=q02MzzHG23nkhJYRXR-_RgKTr6fpfwRgcXgE0EKvNB8",
-    },
-    {
-      id: 5,
-      package_titile: "Maldivs",
-      package_num: "6 Tours",
-      Package_thumble:
-        "https://i.picsum.photos/id/84/1280/848.jpg?hmac=YFRYDI4UsfbeTzI8ZakNOR98wVU7a-9a2tGF542539s",
-    },
-  ];
-
+const TourSlider = ({ data }) => {
   return (
-    <Wrapper className="container pb-36">
-      <Titles
-        toursubtitle="TOP DESTINATION"
-        tourtitlestart="Popular"
-        tourspan="Destination"
-      />
-
+    <Wrapper className="container">
       <Swiper
         breakpoints={{
           1500: {
-            slidesPerView: 3,
+            slidesPerView: 2,
           },
           922: {
-            slidesPerView: 3,
+            slidesPerView: 2,
           },
           728: {
             slidesPerView: 1,
@@ -80,7 +35,7 @@ const PopularDestination = () => {
         modules={[Pagination]}
         className="mySwiper"
       >
-        {popularTourData?.map((product) => {
+        {data?.map((product) => {
           return (
             <SwiperSlide>
               <div className="tour__card py-5 mb-10">
@@ -112,21 +67,6 @@ const PopularDestination = () => {
 };
 
 const Wrapper = styled.section`
-  .swiper-pagination-bullet {
-    width: var(
-      --swiper-pagination-bullet-width,
-      var(--swiper-pagination-bullet-size, 20px)
-    );
-    height: var(
-      --swiper-pagination-bullet-height,
-      var(--swiper-pagination-bullet-size, 20px)
-    );
-    background: var(
-      --swiper-pagination-bullet-inactive-color,
-      rgb(110, 193, 228)
-    );
-  }
-
   .swiper {
     width: 100%;
     height: 100%;
@@ -244,4 +184,4 @@ const Wrapper = styled.section`
   }
 `;
 
-export default PopularDestination;
+export default TourSlider;
