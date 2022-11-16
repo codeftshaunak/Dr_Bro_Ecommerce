@@ -4,66 +4,62 @@ import styled from "styled-components";
 const TourVideo = () => {
   return (
     <Wrapper>
-      <div class="row-hero">
+      <div className="tourvideo mb-36">
         <video
-          class="video"
-          poster="https://imelgrat.me/demo/images/moth.jpg"
-          autoplay
-          playsinline
-          muted
+          src="https://css-tricks-post-videos.s3.us-east-1.amazonaws.com/708209935.mp4"
+          autoPlay
           loop
-        >
-          <source
-            src="https://imelgrat.me/demo/videos/moth.webm"
-            type="video/webm"
-          />
-        </video>
-        <div class="video-quote">
-          <p>Fridolaben rasi fusi grasibader ingemeinheit zumtgewankt.</p>
-        </div>
+          playSinline
+          muted
+        ></video>
+
+        <header class="viewport-header">
+          <h1>
+            Explore
+            <span>Montana</span>
+          </h1>
+        </header>
       </div>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.section`
-  .row-hero {
-    height: 20rem;
-    width: 100%;
+  .tourvideo {
+    height: 600px;
     position: relative;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-  }
-  @media (min-width: 480px) {
-    .row-hero {
-      height: 25rem;
-    }
-  }
-  @media (min-width: 720px) {
-    .row-hero {
-      height: 35rem;
-    }
+    background-color: black;
   }
 
-  .video {
+  video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+  }
+
+  .viewport-header {
     position: absolute;
     top: 50%;
     left: 50%;
-    height: auto;
-    width: auto;
-    z-index: -1;
-    transform: translateX(-50%) translateY(-50%);
-    min-width: 100%;
-    min-height: 100%;
+    transform: translate(-50%, -50%);
   }
 
-  .video-quote {
-    z-index: 1;
-    padding: 0.5rem 1rem;
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.6);
+  .viewport-header h1 {
+    font-family: "Syncopate", sans-serif;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 3vw;
+    line-height: 1.2;
+    font-size: 3vw;
+    text-align: center;
+    span {
+      display: block;
+      font-size: 10vw;
+      letter-spacing: -1.3vw;
+    }
   }
 `;
 

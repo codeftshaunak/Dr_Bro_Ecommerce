@@ -27,12 +27,13 @@ const Star = ({ stars, reviews }) => {
 
   return (
     <Wrapper>
-      <div className="icon-style">
-        {ratingStar}
+      <div className="icon-style flex">
         <p>
           ({reviews}
           customer reviews)
         </p>
+
+        <div className="flex">{ratingStar}</div>
       </div>
     </Wrapper>
   );
@@ -41,6 +42,7 @@ const Star = ({ stars, reviews }) => {
 const Wrapper = styled.section`
   .icon-style {
     display: flex;
+    flex-direction: column;
     gap: 0.2rem;
     align-items: center;
     justify-content: flex-start;
@@ -54,7 +56,7 @@ const Wrapper = styled.section`
     p {
       margin: 0;
       padding-left: 1.2rem;
-      font-size: 15px;
+      font-size: 12px;
     }
   }
 `;

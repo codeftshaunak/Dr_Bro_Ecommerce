@@ -69,7 +69,7 @@ const Wrapper = styled.section`
       display: flex;
       flex-direction: column;
       align-items: center;
-
+      padding: 20px;
       h3 {
         font-size: 30px;
         font-weight: 600;

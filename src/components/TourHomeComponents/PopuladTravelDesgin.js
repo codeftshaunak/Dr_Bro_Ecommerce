@@ -1,5 +1,6 @@
 import React from "react";
 import { GoLocation } from "react-icons/go";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../Button/Button";
 
@@ -47,7 +48,9 @@ const PopuladTravelDesgin = ({ data }) => {
             </div>
           </div>
         </div>
-        <Button data={"All Tour"} />
+        <NavLink to="alltour">
+          <Button data={"All Tour"} />
+        </NavLink>
       </div>
     </Wrapper>
   );

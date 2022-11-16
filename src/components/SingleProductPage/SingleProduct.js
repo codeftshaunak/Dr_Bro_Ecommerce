@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { useProductContext } from "../../context/productContext";
 import AddCartButton from "../AddCartButton/AddCartButton";
 import AddToCart from "../AddToCart/AddToCart";
-import BestSelling from "../BestSelling/BestSelling";
+//import BestSelling from "../BestSelling/BestSelling";
 import CartAmountToggle from "../CartAmountToggle/CartAmountToggle";
 import FeatureProduct from "../FeatureProduct/FeatureProduct";
 import FormatPrice from "../Helpers/FormatPrice";
@@ -30,7 +30,6 @@ const SingleProduct = () => {
     company,
     price,
     description,
-    category,
     stock,
     stars,
     reviews,

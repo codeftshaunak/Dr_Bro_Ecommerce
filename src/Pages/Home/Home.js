@@ -2,13 +2,12 @@ import React from "react";
 import HeroSection from "../../components/HeroSection";
 // import HeroImg from "./assets/hero-img.png";
 // import FeatureProducts from "../../components/FeatureProducts";
-import TourCard from "../../components/TourCard";
 import BlogCard from "../../components/BlogCard";
 import ShopSample from "../../components/ShopSample/ShopSample";
 import GoogleMap from "../../components/GoogleMap/GoogleMap";
 import DiscountBanner from "../../components/Banner/DiscountBanner";
 import TravelBanner from "../../components/Banner/TravelBanner";
-import TripCards from "../../components/SingleTourCard/SingleTourCard";
+import PopularTours from "../../components/TourHomeComponents/PopularTours";
 
 const Home = () => {
   // const data = {
@@ -26,7 +25,7 @@ const Home = () => {
       <HeroSection />
       {/* <FeatureProduct /> */}
       {/* <BestSelling /> */}
-      <TourCard />
+      <PopularTours />
       <ShopSample />
 
       <DiscountBanner />

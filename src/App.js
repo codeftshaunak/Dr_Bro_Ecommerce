@@ -18,6 +18,7 @@ import Shop from "./Pages/Shop/Shop";
 import SingleProduct from "./components/SingleProductPage/SingleProduct";
 import Blog from "./Pages/Blog/Blog";
 import Tour from "./Pages/Tour/Tour";
+import TourTotalData from "./TourTotalData/TourTotalData";
 
 const App = () => {
   const theme = {
@@ -57,6 +58,7 @@ const App = () => {
           <Route path="/tour" element={<Tour />}></Route>
           <Route path="/contact" element={<Contact />}></Route>
           <Route path="/singleproduct/:id" element={<SingleProduct />}></Route>
+          <Route path="/tour/alltour" element={<TourTotalData />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/blog" element={<Blog />}></Route>
           <Route path="*" element={<ErrorPage />}></Route>
