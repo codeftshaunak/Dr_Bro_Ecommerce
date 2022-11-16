@@ -21,7 +21,7 @@ const TourTotalData = () => {
         </div>
       </div>
 
-      <div className="all__destinations">
+      <div className="all__destinations container">
         <DestinationCards />
       </div>
     </div>
