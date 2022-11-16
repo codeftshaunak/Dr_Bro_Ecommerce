@@ -11,8 +11,9 @@ const TourTotalData = () => {
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
+          height: "400px",
         }}
-        className="h-96 flex items-center justify-center  "
+        className="flex items-center justify-center  "
       >
         <div className=" ">
           <h1 className=" text-5xl font-bold text-white">

@@ -12,7 +12,7 @@ import FeatureProduct from "../FeatureProduct/FeatureProduct";
 import FormatPrice from "../Helpers/FormatPrice";
 import MyImage from "../Helpers/MyImage";
 import Star from "../Helpers/Star";
-import PageNavigation from "../PageNavigation";
+import PageNavigation from "../PageNavigations/PageNavigation";
 
 const API = "https://api.pujakaitem.com/api/products";
 

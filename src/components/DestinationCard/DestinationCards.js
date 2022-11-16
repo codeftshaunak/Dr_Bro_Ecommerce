@@ -190,7 +190,7 @@ function DestinationCards() {
 
   return (
     <Wrapper>
-      <div className="demo__blog pt-36 pb-36 mx-auto relative">
+      <div className="demo__blog pt-36 pb-36 mx-auto relative flex flex-wrap justify-evenly">
         {tourData?.map((data) => {
           return (
             <div className="all__card flex justify-evenly flex-wrap">
