@@ -1,6 +1,7 @@
 import React from "react";
 import aboutBanner from "../assets/tour-banner-3.jpg";
 import DestinationCards from "../components/DestinationCard/DestinationCards";
+import TourPageNavigation from "../components/PageNavigations/TourPageNavigation";
 
 const TourTotalData = () => {
   return (
@@ -21,8 +22,9 @@ const TourTotalData = () => {
           </h1>
         </div>
       </div>
+      <TourPageNavigation title={"All Destination"} />
 
-      <div className="all__destinations container">
+      <div className="all__destinations">
         <DestinationCards />
       </div>
     </div>

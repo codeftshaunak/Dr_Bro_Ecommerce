@@ -6,6 +6,7 @@ import TourBanner from "../../components/TourHomeComponents/TourBanner";
 import PopularTravel from "../../components/TourHomeComponents/PopularTravel";
 import CounterUp from "../../components/CounterUp/CounterUp";
 import TourVideo from "../../components/TourVideo/TourVideo";
+import TourTestimonial from "../../components/TourTestimonial/TourTestimonial";
 
 const Tour = () => {
   return (
@@ -20,6 +21,8 @@ const Tour = () => {
       <TourVideo />
 
       <PopularTravel />
+
+      <TourTestimonial />
     </>
   );
 };

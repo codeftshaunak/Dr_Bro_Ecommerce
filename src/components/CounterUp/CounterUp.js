@@ -19,7 +19,13 @@ const CounterUp = () => {
     >
       <Wrapper>
         <div className="counter__main mb-36">
-          <div className="container flex flex-wrap justify-between">
+          <div
+            className="container flex flex-wrap justify-between"
+            style={{
+              backgroundColor: "rgba(1, 1, 1, 0.63)",
+              borderRadius: "22px",
+            }}
+          >
             <div className="booking">
               <TbPlaneInflight />
               <h3>

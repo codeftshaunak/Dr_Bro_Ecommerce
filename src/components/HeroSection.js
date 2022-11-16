@@ -47,7 +47,7 @@ const HeroSection = () => {
     // <Wrapper style={{ backgroundColor: "aliceblue" }}>
     // </Wrapper>
 
-    <div className="hero_Banner">
+    <div className="hero_Banner pb-36">
       <Swiper
         navigation={false}
         loop={true}

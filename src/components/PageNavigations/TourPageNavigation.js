@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-const PageNavigation = ({ title }) => {
+const TourPageNavigation = ({ title }) => {
   return (
     <Wrapper>
       <NavLink to="/tour">Tour</NavLink>/{title}
@@ -23,4 +23,4 @@ const Wrapper = styled.section`
   }
 `;
 
-export default PageNavigation;
+export default TourPageNavigation;

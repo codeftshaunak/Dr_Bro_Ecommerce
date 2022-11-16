@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Titles = ({ toursubtitle, tourtitlestart, tourspan, tourtitleend }) => {
   return (
-    <Wrapper>
+    <Wrapper className="titles">
       <p className="tour-home-subtitle">{toursubtitle}</p>
       <h1 className="tour-home-title">
         {tourtitlestart}
@@ -35,6 +35,12 @@ const Wrapper = styled.section`
     text-transform: uppercase;
     margin-bottom: 5px;
     letter-spacing: 5px;
+  }
+
+  @media (max-width: ${({ theme }) => theme.media.mobile}) {
+    .titles {
+      text-align: center;
+    }
   }
 `;
 

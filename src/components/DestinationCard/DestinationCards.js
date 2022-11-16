@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Button } from "../../styles/Button";
 import FormatPrice from "../Helpers/FormatPrice";
 import Star from "../Helpers/Star";
+import TourPageNavigation from "../PageNavigations/TourPageNavigation";
 
 function DestinationCards() {
   const tourData = [
@@ -190,7 +191,7 @@ function DestinationCards() {
 
   return (
     <Wrapper>
-      <div className="demo__blog pt-36 pb-36 mx-auto relative flex flex-wrap justify-evenly">
+      <div className="demo__blog pb-36 mx-auto relative flex flex-wrap justify-evenly">
         {tourData?.map((data) => {
           return (
             <div className="all__card flex justify-evenly flex-wrap">
