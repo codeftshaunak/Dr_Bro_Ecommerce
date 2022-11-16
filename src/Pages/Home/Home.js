@@ -7,7 +7,7 @@ import ShopSample from "../../components/ShopSample/ShopSample";
 import GoogleMap from "../../components/GoogleMap/GoogleMap";
 import DiscountBanner from "../../components/Banner/DiscountBanner";
 import TravelBanner from "../../components/Banner/TravelBanner";
-import PopularTours from "../../components/TourHomeComponents/PopularTours";
+import PopularDestination from "../../components/TourHomeComponents/PopularDestination";
 
 const Home = () => {
   // const data = {
@@ -25,7 +25,7 @@ const Home = () => {
       <HeroSection />
       {/* <FeatureProduct /> */}
       {/* <BestSelling /> */}
-      <PopularTours />
+      <PopularDestination />
       <ShopSample />
 
       <DiscountBanner />

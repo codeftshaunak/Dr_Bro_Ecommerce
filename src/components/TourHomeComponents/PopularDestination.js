@@ -13,6 +13,7 @@ import { Pagination } from "swiper";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
+import { NavLink } from "react-router-dom";
 
 const PopularDestination = () => {
   const popularTourData = [
@@ -99,7 +100,9 @@ const PopularDestination = () => {
                     <span className="text-3xl">
                       {product.package_num} Package
                     </span>
-                    <Button data={"explore"} />
+                    <NavLink to="alltour">
+                      <Button data={"explore"} />
+                    </NavLink>
                   </figcaption>
                 </figure>
               </div>
