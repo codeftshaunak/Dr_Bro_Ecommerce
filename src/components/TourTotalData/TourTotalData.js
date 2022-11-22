@@ -1,7 +1,7 @@
 import React from "react";
-import aboutBanner from "../assets/tour-banner-3.jpg";
-import DestinationCards from "../components/DestinationCard/DestinationCards";
-import TourPageNavigation from "../components/PageNavigations/TourPageNavigation";
+import aboutBanner from "../../assets/tour-banner-3.jpg";
+import DestinationCards from "../DestinationCard/DestinationCards";
+import TourPageNavigation from "../PageNavigations/TourPageNavigation";
 
 const TourTotalData = () => {
   return (
@@ -14,7 +14,7 @@ const TourTotalData = () => {
           backgroundRepeat: "no-repeat",
           height: "400px",
         }}
-        className="flex items-center justify-center  "
+        className="flex items-center justify-center"
       >
         <div className=" ">
           <h1 className=" text-5xl font-bold text-white">

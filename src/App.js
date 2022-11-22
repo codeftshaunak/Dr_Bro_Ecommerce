@@ -18,7 +18,7 @@ import Shop from "./Pages/Shop/Shop";
 import SingleProduct from "./components/SingleProductPage/SingleProduct";
 import Blog from "./Pages/Blog/Blog";
 import Tour from "./Pages/Tour/Tour";
-import TourTotalData from "./TourTotalData/TourTotalData";
+import TourTotalData from "./components/TourTotalData/TourTotalData";
 
 const App = () => {
   const theme = {

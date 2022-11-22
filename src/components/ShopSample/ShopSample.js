@@ -1,14 +1,7 @@
 import React from "react";
-// import { useEffect } from "react";
-// import { useState } from "react";
 import AddCartButton from "../AddCartButton/AddCartButton";
-// import { FaHeart, FaEye, FaShoppingCart, FaRegEye } from "react-icons/fa";
-import { AiFillStar } from "react-icons/ai";
-import { BsStar } from "react-icons/bs";
 import { BsArrowLeftShort, BsArrowRightShort } from "react-icons/bs";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";

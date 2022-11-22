@@ -228,7 +228,7 @@ const Wrapper = styled.section`
 .all__card{
 
 .button{
-   background: rgba(27, 26, 26, 0.3);
+    background: rgba(27, 26, 26, 0.3);
     transition: all 0.3s ease-out;
     transform: translateX(-100%);
     position: absolute;
@@ -243,13 +243,12 @@ const Wrapper = styled.section`
     top: 0;
 
     button{
-        position: absolute;
+      position: absolute;
       top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-      
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
-}
+  }
 
   .tour__card {
     width: 450px;
@@ -259,10 +258,9 @@ const Wrapper = styled.section`
     position: relative;
 
     figure{
-            height: 400px;
-    overflow: hidden;
-        position: relative;
-
+      height: 400px;
+      overflow: hidden;
+      position: relative;
     }
 
      img {
@@ -284,12 +282,11 @@ const Wrapper = styled.section`
         0 10px 10px rgba(0, 0, 0, 0.22);
       img {
         transform: scale(1.25);
-      }
-.button{transform: translateX(0);}
-  }
+    }
 
- 
-
+    .button{
+      transform: translateX(0);}
+    }
 
   .card-body {
     padding: 20px;

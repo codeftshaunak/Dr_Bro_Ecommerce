@@ -1,12 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import { FaRegEye } from 'react-icons/fa'
+import { FaRegEye } from "react-icons/fa";
 const QuickViewButton = () => {
-    return (
-        <button for="quick-view" className=" hover:text-primary duration-500 ">
-    <FaRegEye /> 
-  </button>
-    );
+  return (
+    <div>
+      <button for="quick-view" className=" hover:text-primary duration-500 ">
+        <FaRegEye />
+      </button>
+    </div>
+  );
 };
 
 export default QuickViewButton;
