@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import FilterSection from "../../components/ProductComponents/FilterSection";
 import ProductList from "../../components/ProductComponents/ProductList";
-import SortFilter from "../../components/ProductComponents/SortFilter";
+import Sort from "../../components/ProductComponents/Sort";
 import { useFilterContext } from "../../context/filterContext";
 
 const Shop = () => {
@@ -16,7 +16,7 @@ const Shop = () => {
         </div>
         <div className="product-view--sort">
           <div className="sort-filter">
-            <SortFilter />
+            <Sort />
           </div>
           <div className="main-product">
             <ProductList />
@@ -28,6 +28,7 @@ const Shop = () => {
 };
 
 const Wrapper = styled.section`
+  transition: 0.5s ease-in-out;
   .grid-filter-column {
     grid-template-columns: 0.2fr 1fr;
   }

@@ -48,11 +48,8 @@ const Wrapper = styled.section`
   .product {
     overflow: hidden;
     position: relative;
-    width: 260px;
-    padding: 20px 10px;
     border-radius: 5px;
-    background-color: #e8e4e4;
-    padding: 0px 0px 10px 0px;
+    background-color: #f9f9f9;;
     margin-bottom: 20px;
 
     .product__image__data {

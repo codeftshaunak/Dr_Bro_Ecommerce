@@ -21,6 +21,10 @@ const Wrapper = styled.section`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+
+    .product {
+      width: 260px;
+    }
   }
 `;
 
