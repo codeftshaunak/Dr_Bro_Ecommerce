@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Button = styled.button `
+export const Button = styled.button`
   align-content: center;
   align-items: center;
   border: none;
@@ -13,12 +13,13 @@ export const Button = styled.button `
   padding: 10px 15px;
   margin-top: 9px;
   justify-content: space-evenly;
-  font-size:12px;
+  font-size: 12px;
 
   &:hover {
     background-color: #fff;
     color: #f94600;
     transition: 0.3s;
+    border: 1px solid #f94600;
   }
 
   a {

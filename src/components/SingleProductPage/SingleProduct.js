@@ -4,23 +4,28 @@ import { useEffect } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useProductContext } from "../../context/productContext";
-import AddCartButton from "../AddCartButton/AddCartButton";
 import AddToCart from "../AddToCart/AddToCart";
+// import AddCartButton from "../AddCartButton/AddCartButton";
+// import AddToCart from "../SelectColors/SelectColors";
 //import BestSelling from "../BestSelling/BestSelling";
-import CartAmountToggle from "../CartAmountToggle/CartAmountToggle";
-import FeatureProduct from "../FeatureProduct/FeatureProduct";
+// import CartAmountToggle from "../CartAmountToggle/CartAmountToggle";
+// import FeatureProduct from "../FeatureProduct/FeatureProduct";
 import FormatPrice from "../Helpers/FormatPrice";
 import MyImage from "../Helpers/MyImage";
 import Star from "../Helpers/Star";
 import PageNavigation from "../PageNavigations/PageNavigation";
+import SelectColors from "../SelectColors/SelectColors";
 
 const API = "https://api.pujakaitem.com/api/products";
 
 const SingleProduct = () => {
-  const [amount, setAmount] = useState(1);
+  // const [amount, setAmount] = useState(1);
 
-  const { getSingleProduct, isSingleLoading, singleProduct } =
-    useProductContext();
+  const {
+    getSingleProduct,
+    isSingleLoading,
+    singleProduct,
+  } = useProductContext();
 
   const { id } = useParams();
 
@@ -40,13 +45,13 @@ const SingleProduct = () => {
     getSingleProduct(`${API}?id=${id}`);
   }, []);
 
-  const setDecrase = () => {
-    amount > 1 ? setAmount(amount - 1) : setAmount(1);
-  };
+  // const setDecrase = () => {
+  //   amount > 1 ? setAmount(amount - 1) : setAmount(1);
+  // };
 
-  const setIncrase = () => {
-    amount < stock ? setAmount(amount + 1) : setAmount(stock);
-  };
+  // const setIncrase = () => {
+  //   amount < stock ? setAmount(amount + 1) : setAmount(stock);
+  // };
 
   if (isSingleLoading) {
     return (
@@ -117,25 +122,10 @@ const SingleProduct = () => {
               </p>
             </div>
             <hr />
-            {stock > 0 && <AddToCart product={singleProduct} />}
-            <div className="flex justify-between w-9/12 flex-wrap">
-              {
-                <CartAmountToggle
-                  amount={amount}
-                  setDecrase={setDecrase}
-                  setIncrase={setIncrase}
-                />
-              }
-
-              {
-                <NavLink to="/cart">
-                  <AddCartButton />
-                </NavLink>
-              }
-            </div>
+            {stock > 0 && <SelectColors product={singleProduct} />}
+            <AddToCart product={singleProduct} />
           </div>
         </div>
-        {<FeatureProduct />}
       </div>
     </Wrapper>
   );
