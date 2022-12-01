@@ -5,16 +5,10 @@ import { NavLink, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useProductContext } from "../../context/productContext";
 import AddToCart from "../AddToCart/AddToCart";
-// import AddCartButton from "../AddCartButton/AddCartButton";
-// import AddToCart from "../SelectColors/SelectColors";
-//import BestSelling from "../BestSelling/BestSelling";
-// import CartAmountToggle from "../CartAmountToggle/CartAmountToggle";
-// import FeatureProduct from "../FeatureProduct/FeatureProduct";
 import FormatPrice from "../Helpers/FormatPrice";
 import MyImage from "../Helpers/MyImage";
 import Star from "../Helpers/Star";
 import PageNavigation from "../PageNavigations/PageNavigation";
-import SelectColors from "../SelectColors/SelectColors";
 
 const API = "https://api.pujakaitem.com/api/products";
 
@@ -122,8 +116,7 @@ const SingleProduct = () => {
               </p>
             </div>
             <hr />
-            {stock > 0 && <SelectColors product={singleProduct} />}
-            <AddToCart product={singleProduct} />
+            {stock > 0 && <AddToCart product={singleProduct} />}
           </div>
         </div>
       </div>

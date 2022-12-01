@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import styled from "styled-components";
+import AddToCart from "../AddToCart/AddToCart";
 
 const SelectColors = ({ product }) => {
   const { colors } = product;
