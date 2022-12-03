@@ -37,13 +37,13 @@ const Sort = () => {
           <form action="#">
             <label htmlFor="sort"></label>
             <select name="sort" id="sort" onClick={sorting}>
-              <option value="lowest">price(lowest)</option>
+              <option value="lowest">Price(lowest)</option>
               <br />
-              <option value="highest">price(highest)</option>
+              <option value="highest">Price(highest)</option>
               <br />
-              <option value="a-z">price(a-z)</option>
+              <option value="a-z">Name(A-Z)</option>
               <br />
-              <option value="z-a">price(z-a)</option>
+              <option value="z-a">Name(Z-A)</option>
             </select>
           </form>
         </div>

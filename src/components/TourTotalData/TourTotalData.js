@@ -3,7 +3,9 @@ import aboutBanner from "../../assets/tour-banner-3.jpg";
 import DestinationCards from "../DestinationCard/DestinationCards";
 import TourPageNavigation from "../PageNavigations/TourPageNavigation";
 
-const TourTotalData = () => {
+const TourTotalData = (props) => {
+  props.funNav(true);
+
   return (
     <div>
       <div

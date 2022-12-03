@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import aboutBanner from "../../assets/banner.jpg";
 
-const Blog = () => {
+const Blog = (props) => {
+  props.funNav(true);
+
   return (
     <Wrapper>
       <div className="about-cl">

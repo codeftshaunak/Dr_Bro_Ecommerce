@@ -1,10 +1,66 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import CartItem from "./components/CartItem/CartItem";
+import FormatPrice from "./components/Helpers/FormatPrice";
 import { useCartContext } from "./context/cartContext";
+import { Button } from "./styles/Button";
 
-const Cart = () => {
+const Cart = (props) => {
+  props.funNav(true);
+
   const { cart } = useCartContext();
   console.log(cart);
-  return <Wrapper></Wrapper>;
+  return (
+    <Wrapper>
+      <div className="container">
+        <div className="cart_heading grid grid-five-column">
+          <p>Item</p>
+          <p className="cart-hide">Price</p>
+          <p>Quantity</p>
+          <p className="cart-hide">Subtotal</p>
+          <p>Remove</p>
+        </div>
+        <hr />
+        <div className="cart-item">
+          {cart.map((curElem) => {
+            return <CartItem key={curElem.id} {...curElem} />;
+          })}
+        </div>
+        <hr />
+        <div className="cart-two-button">
+          <NavLink to="/shop">
+            <Button> continue Shopping </Button>
+          </NavLink>
+          <Button className="btn btn-clear">clear cart</Button>
+        </div>
+
+        {/* order total_amount */}
+        <div className="order-total--amount">
+          <div className="order-total--subdata">
+            <div>
+              <p>subtotal:</p>
+              <p>
+                <FormatPrice />
+              </p>
+            </div>
+            <div>
+              <p>shipping fee:</p>
+              <p>
+                <FormatPrice />
+              </p>
+            </div>
+            <hr />
+            <div>
+              <p>order total:</p>
+              <p>
+                <FormatPrice />
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.section`
@@ -101,14 +157,13 @@ const Wrapper = styled.section`
 
     button {
       border: none;
-      background-color: #fff;
       cursor: pointer;
     }
 
-    .amount-style {
-      font-size: 2.4rem;
-      color: ${({ theme }) => theme.colors.btn};
-    }
+    // .amount-style {
+    //   font-size: 2.4rem;
+    //   color: ${({ theme }) => theme.colors.btn};
+    // }
   }
 
   .remove_icon {

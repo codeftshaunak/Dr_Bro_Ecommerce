@@ -9,7 +9,9 @@ import DiscountBanner from "../../components/Banner/DiscountBanner";
 import TravelBanner from "../../components/Banner/TravelBanner";
 import PopularDestination from "../../components/TourHomeComponents/PopularDestination";
 
-const Home = () => {
+const Home = (props) => {
+  props.funNav(true);
+
   // const data = {
   //   welcome_msg: `Welcome to`,
   //   title: "DR.BRO SHOP",

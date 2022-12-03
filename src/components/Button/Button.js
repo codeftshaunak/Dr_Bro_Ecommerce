@@ -26,6 +26,7 @@ const Wrapper = styled.section`
     padding: 10px 21px;
     margin-top: 9px;
     justify-content: space-evenly;
+    border: 1px solid black;
 
     &:hover {
       background: black;

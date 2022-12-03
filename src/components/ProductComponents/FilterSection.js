@@ -1,19 +1,19 @@
-import React from "react";
+import { useState, React } from "react";
 import styled from "styled-components";
 import { useFilterContext } from "../../context/filterContext";
 import { BsFillPatchCheckFill } from "react-icons/bs";
 import FormatPrice from "../Helpers/FormatPrice";
 import { Button } from "../../styles/Button";
+import { FcExpand } from "react-icons/fc";
 
 const FilterSection = () => {
   const {
     updateFilterValue,
     clearFilters,
     all_products,
-    filters: { text, color, category, price, minPrice, maxPrice, company },
+    filters: { color, category, price, minPrice, maxPrice, company },
   } = useFilterContext();
 
-  console.log(company);
   //get unique data for everyone
   const getUniqueData = (data, prop) => {
     let newValue = data.map((currEle) => {
@@ -29,123 +29,150 @@ const FilterSection = () => {
   let union = colorsData.flat(2);
   const newColorsData = [...new Set(union)];
 
+  const [expend, setExpend] = useState(false);
+  const [expendCompany, setExpendCompany] = useState(false);
+  const [expendColor, setExpendColor] = useState(false);
+  const [expendPrice, setExpendPrice] = useState(false);
+  // const [expend, setExpend] = useState();
+
   return (
     <Wrapper>
       <div className="left__filters">
-        <div className="filter__search style__middle">
-          <form onSubmit={(e) => e.preventDefault()}>
-            <input
-              type="text"
-              name="text"
-              value={text}
-              onChange={updateFilterValue}
-              placeholder="Search..."
-            />
-          </form>
-        </div>
-
         <div className="category__filter style__middle">
-          <h3>Category</h3>
-          {categoryData.map((currEle, index) => {
-            return (
-              <>
-                <button
-                  key={index}
-                  type="button"
-                  name="category"
-                  value={currEle}
-                  className={category === currEle ? "active" : ""}
-                  onClick={updateFilterValue}
-                >
-                  {currEle}
-                </button>
-                <br />
-              </>
-            );
-          })}
-        </div>
-
-        <div className="company__filter style__middle">
-          <h3>Company</h3>
-
-          <form action="#">
-            <label htmlFor="sort"></label>
-            <select name="company" id="company" onClick={updateFilterValue}>
-              {companyData.map((currEle, index) => {
-                return (
-                  <>
-                    <option
-                      value={currEle}
-                      name="company"
-                      key={index}
-                      onClick={updateFilterValue}
-                    >
-                      {company == "all" ? "All" : currEle}
-                    </option>
-                    <br />
-                  </>
-                );
-              })}
-            </select>
-          </form>
-        </div>
-
-        <div className="colors__filters style__middle">
-          <h3>Colors</h3>
-          <div className="colors__btns">
-            {newColorsData.map((currEle, index) => {
-              if (currEle === "All") {
-                return (
+          <h3 onClick={() => setExpend(!expend)}>
+            Category <FcExpand />
+          </h3>
+          <div
+            className={
+              expend ? "expend__filter__items__active" : "expend__filter__items"
+            }
+          >
+            {categoryData.map((currEle, index) => {
+              return (
+                <>
                   <button
-                    type="button"
-                    name="color"
-                    value={currEle}
-                    className="btn__fiter__colors"
-                    style={{ backgroundColor: currEle }}
                     key={index}
+                    type="button"
+                    name="category"
+                    value={currEle}
+                    className={category === currEle ? "active" : ""}
                     onClick={updateFilterValue}
                   >
-                    {currEle === "All" ? "All" : null}
+                    {currEle}
                   </button>
-                );
-              }
-
-              if (currEle !== "All") {
-                return (
-                  <button
-                    type="button"
-                    name="color"
-                    value={currEle}
-                    className="btn__fiter__colors"
-                    style={{ backgroundColor: currEle }}
-                    key={index}
-                    onClick={updateFilterValue}
-                  >
-                    {color === currEle ? (
-                      <BsFillPatchCheckFill className="active__icon" />
-                    ) : null}
-                  </button>
-                );
-              }
+                  <br />
+                </>
+              );
             })}
           </div>
         </div>
 
-        <div className="price__fiters style__middle">
-          <h3>Price</h3>
-          <p>
-            <FormatPrice price={price} />
-          </p>
-          <input
-            type="range"
-            name="price"
-            max={maxPrice}
-            min={minPrice}
-            value={price}
-            onChange={updateFilterValue}
-          />
+        <div className="company__filter style__middle">
+          <h3 onClick={() => setExpendCompany(!expendCompany)}>
+            Company <FcExpand />
+          </h3>
+          <div
+            className={
+              expendCompany
+                ? "expend__filter__items__active"
+                : "expend__filter__items"
+            }
+          >
+            {companyData.map((currEle, index) => {
+              return (
+                <>
+                  <button
+                    key={index}
+                    type="button"
+                    name="company"
+                    value={currEle}
+                    className={company === currEle ? "active" : ""}
+                    onClick={updateFilterValue}
+                  >
+                    {currEle}
+                  </button>
+                  <br />
+                </>
+              );
+            })}
+          </div>
         </div>
 
+        <div className="colors__filters style__middle">
+          <h3 onClick={() => setExpendColor(!expendColor)}>
+            Colors <FcExpand />
+          </h3>
+          <div
+            className={
+              expendColor
+                ? "expend__filter__items__active"
+                : "expend__filter__items"
+            }
+          >
+            <div className="colors__btns">
+              {newColorsData.map((currEle, index) => {
+                if (currEle === "All") {
+                  return (
+                    <button
+                      type="button"
+                      name="color"
+                      value={currEle}
+                      className="btn__fiter__colors"
+                      style={{ backgroundColor: currEle }}
+                      key={index}
+                      onClick={updateFilterValue}
+                    >
+                      {currEle === "All" ? "All" : null}
+                    </button>
+                  );
+                }
+
+                if (currEle !== "All") {
+                  return (
+                    <button
+                      type="button"
+                      name="color"
+                      value={currEle}
+                      className="btn__fiter__colors"
+                      style={{ backgroundColor: currEle }}
+                      key={index}
+                      onClick={updateFilterValue}
+                    >
+                      {color === currEle ? (
+                        <BsFillPatchCheckFill className="active__icon" />
+                      ) : null}
+                    </button>
+                  );
+                }
+              })}
+            </div>
+          </div>
+        </div>
+
+        <div className="price__fiters style__middle">
+          <h3 onClick={() => setExpendPrice(!expendPrice)}>
+            Price <FcExpand />
+          </h3>
+          <div
+            className={
+              expendPrice
+                ? "expend__filter__items__active"
+                : "expend__filter__items"
+            }
+          >
+            <p>
+              <FormatPrice price={price} />
+            </p>
+            <input
+              type="range"
+              name="price"
+              max={maxPrice}
+              min={minPrice}
+              value={price}
+              onChange={updateFilterValue}
+            />
+          </div>
+        </div>
         <div className="clear__filter text-center style__middle">
           <Button onClick={clearFilters}>Clear Filters</Button>
         </div>
@@ -157,48 +184,40 @@ const FilterSection = () => {
 const Wrapper = styled.section`
   .left__filters {
     display: flex;
-    width: 300px;
+    width: 200px;
     margin: auto;
     flex-direction: column;
 
     .style__middle {
-      width: 250px;
+      width: 200px;
       margin: 10px auto;
+    }
+
+    button {
+      font-size: 14px;
+      line-height: 1.5;
+      margin-top: 5px;
+      text-transform: capitalize;
+    }
+
+    .active {
+      border-bottom: 2px solid gray;
+      padding: 1px 10px;
+      background: gray;
+      color: white;
+      font-weight: 500;
     }
 
     h3 {
-      font-weight: 600;
-      width: 30px;
-      border-bottom: 2px solid black;
+      font-weight: 400;
+      width: 186px;
+      border-bottom: 1px solid black;
       padding-top: 1rem;
-    }
-
-    .filter__search {
-      border: 1px solid gray;
-      margin-top: 10px;
-      width: 280px;
-      margin: 10px auto;
-
-      input {
-        padding: 15px 60px 15px 10px;
-        font-weight: bold;
-      }
-    }
-
-    .category__filter {
-      button {
-        font-size: 14px;
-        line-height: 1.5;
-        margin-top: 5px;
-        text-transform: capitalize;
-      }
-      .active {
-        border-bottom: 2px solid gray;
-        padding: 1px 10px;
-        background: gray;
-        color: white;
-        font-weight: 500;
-      }
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      cursor: pointer;
     }
 
     .company__filter {
@@ -234,6 +253,13 @@ const Wrapper = styled.section`
         padding: 0px 12px;
         border-radius: 50px;
       }
+    }
+
+    .expend__filter__items {
+      display: none;
+    }
+    .expend__filter__items__active {
+      display: block;
     }
   }
 `;

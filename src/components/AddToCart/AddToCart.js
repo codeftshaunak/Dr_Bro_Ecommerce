@@ -6,6 +6,7 @@ import { useCartContext } from "../../context/cartContext";
 import AddCartButton from "../AddCartButton/AddCartButton";
 import CartAmountToggle from "../CartAmountToggle/CartAmountToggle";
 import { FaCheck } from "react-icons/fa";
+import Button from "../Button/Button";
 
 const AddToCart = ({ product }) => {
   const { addToCart } = useCartContext();
@@ -15,13 +16,13 @@ const AddToCart = ({ product }) => {
   const [color, setColor] = useState(colors[0]);
   const [amount, setAmount] = useState(1);
 
-  const setDecrase = () => {
-    amount > 1 ? setAmount(amount - 1) : setAmount(1);
-  };
+  // const setDecrase = () => {
+  //   amount > 1 ? setAmount(amount - 1) : setAmount(1);
+  // };
 
-  const setIncrase = () => {
-    amount < stock ? setAmount(amount + 1) : setAmount(stock);
-  };
+  // const setIncrase = () => {
+  //   amount < stock ? setAmount(amount + 1) : setAmount(stock);
+  // };
 
   return (
     <div>
@@ -49,24 +50,24 @@ const AddToCart = ({ product }) => {
         </div>
       </Wrapper>
       <br />
-      <div className="flex justify-between flex-wrap">
+      <div className="">
         {stock > 0 ? (
           <>
-            <CartAmountToggle
+            {/* <CartAmountToggle
               amount={amount}
               setDecrase={setDecrase}
               setIncrase={setIncrase}
               className="w-36"
-            />
+            /> */}
 
             <NavLink
               to="/cart"
               className="ml-5"
               onClick={() => {
-                addToCart(id, amount, product);
+                addToCart(id, color, amount, product);
               }}
             >
-              <AddCartButton />
+              <Button data={"ADD TO CART"} />
             </NavLink>
           </>
         ) : (
@@ -86,8 +87,8 @@ const Wrapper = styled.section`
   .btnStyle {
     width: 2rem;
     height: 2rem;
-    background-color: #000;
-    border-radius: 50%;
+    // background-color: #000;
+    // border-radius: 50%;
     margin-left: 1rem;
     border: none;
     outline: none;

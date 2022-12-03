@@ -1,6 +1,8 @@
 import React from "react";
 
-const ErrorPage = () => {
+const ErrorPage = (props) => {
+  props.funNav(true);
+
   return <div>ErrorPage</div>;
 };
 

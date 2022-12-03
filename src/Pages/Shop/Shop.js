@@ -2,15 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import FilterSection from "../../components/ProductComponents/FilterSection";
 import ProductList from "../../components/ProductComponents/ProductList";
+import ShopNav from "../../components/ProductComponents/ShopNav";
+import ShopTop from "../../components/ProductComponents/ShopTop";
 import Sort from "../../components/ProductComponents/Sort";
-import { useFilterContext } from "../../context/filterContext";
 
-const Shop = () => {
-  const { filter_products } = useFilterContext();
-
+const Shop = (props) => {
+  props.funNav(false);
   return (
     <Wrapper>
-      <div className="container grid grid-filter-column">
+      <ShopNav />
+      <ShopTop />
+      <div className="container grid grid-filter-column pt-20">
         <div>
           <FilterSection />
         </div>

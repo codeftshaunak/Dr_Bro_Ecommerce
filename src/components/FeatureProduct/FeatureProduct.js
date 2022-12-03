@@ -25,7 +25,6 @@ const FeatureProduct = () => {
   const nextRef = useRef(null);
 
   const { isLoading, featureProducts } = useProductContext();
-  console.log(featureProducts);
   if (isLoading) {
     return <div> ......Loading </div>;
   }
@@ -38,7 +37,7 @@ const FeatureProduct = () => {
     <div className="bg-white section_pacing">
       <div className="container mx-auto relative">
         <div className=" flex justify-between items-center">
-          <h1 className="text-[30px] lg:text-[40px] font-bold text-[#000] section_title">
+          <h1 className="text-[30px] lg:text-[40px] font-bold text-[#000] section_title text-center">
             Feature Products
           </h1>
           {/* swiper slider */}
@@ -91,23 +90,17 @@ const FeatureProduct = () => {
                     {product.discount > 0 && (
                       <span className="offer_badge">-{product.discount}% </span>
                     )}
-                    <Link
-                      // onClick={refreshPage}
-                      to={`../singleproduct/${product?.id}`}
-                    >
+                    <Link to={`../singleproduct/${product?.id}`}>
                       <img src={product.image} alt="" />
                     </Link>
-                    <div className="product_action">
+                    {/* <div className="product_action">
                       <WishListButton></WishListButton>
                       <QuickViewButton></QuickViewButton>
                       <CartButton className=""></CartButton>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="product_meta pl-8">
-                    <Link
-                      // onClick={refreshPage}
-                      to={`../singleproduct/${product?.id}`}
-                    >
+                    <Link to={`../singleproduct/${product?.id}`}>
                       <h4 className="product_name">{product.name}</h4>
                     </Link>
 
@@ -148,7 +141,7 @@ const FeatureProduct = () => {
                                             </span> */}
                       <p>₹{product.price}.00</p>
                     </div>
-                    <AddCartButton />
+                    {/* <AddCartButton /> */}
                   </div>
                 </div>
               </SwiperSlide>

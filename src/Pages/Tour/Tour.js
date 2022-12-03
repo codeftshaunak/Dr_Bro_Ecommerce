@@ -8,7 +8,9 @@ import CounterUp from "../../components/CounterUp/CounterUp";
 import TourVideo from "../../components/TourVideo/TourVideo";
 import TourTestimonial from "../../components/TourTestimonial/TourTestimonial";
 
-const Tour = () => {
+const Tour = (props) => {
+  props.funNav(true);
+
   return (
     <>
       <TourBanner />

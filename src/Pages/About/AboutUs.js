@@ -5,7 +5,9 @@ import misson from "../../assets/Business mission-pana.png";
 import vision from "../../assets/vision.png";
 import sliderBanner from "../../assets/slider__bag.png";
 import "./AboutUs.css";
-const AboutUs = () => {
+const AboutUs = (props) => {
+  props.funNav(true);
+
   return (
     <div className="about-cl">
       <div

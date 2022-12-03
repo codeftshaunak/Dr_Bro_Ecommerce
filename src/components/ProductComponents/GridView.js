@@ -23,7 +23,7 @@ const Wrapper = styled.section`
     justify-content: space-around;
 
     .product {
-      width: 260px;
+      width: 270px;
     }
   }
 `;

@@ -4,11 +4,12 @@ import styled from "styled-components";
 import AddCartButton from "../AddCartButton/AddCartButton";
 import CartButton from "../CartButton/CartButton";
 import FormatPrice from "../Helpers/FormatPrice";
+import Star from "../Helpers/Star";
 import QuickViewButton from "../QuickViewButton/QuickViewButton";
 import WishListButton from "../WishListButton/WishListButton";
 
 const Product = ({ products }) => {
-  const { id, name, image, price, category } = products;
+  const { id, name, image, price, category, stars } = products;
   return (
     <Wrapper>
       <NavLink to={`/singleproduct/${id}`}>
@@ -33,10 +34,13 @@ const Product = ({ products }) => {
               <p className="card-data--price">
                 {<FormatPrice price={price} />}
               </p>
+              <div className="star">
+                <Star stars={stars} />
+              </div>
             </div>
-            <div className="add__to__cart">
+            {/* <div className="add__to__cart">
               <AddCartButton />
-            </div>
+            </div> */}
           </div>
         </div>
       </NavLink>
@@ -48,7 +52,6 @@ const Wrapper = styled.section`
   .product {
     overflow: hidden;
     position: relative;
-    border-radius: 5px;
     background-color: #f9f9f9;;
     margin-bottom: 20px;
 
@@ -67,9 +70,15 @@ const Wrapper = styled.section`
 
       img {
         width: 100%;
-        height: 200px;
+        height: 300px;
         object-fit: cover;
         transition: 2s all ease-in-out;
+      }
+
+      .caption{
+    font-size: 1.3rem;
+    font-weight:600;
+    border-radius: 0;
       }
     
     }
@@ -77,30 +86,31 @@ const Wrapper = styled.section`
     figcaption {
         top: 10px;
         left: 0;
-        color: white;
-        background-color: #282828;
+        color: #333;
+        background: #ffdc00;
         width: 130px;
         text-align: center;
+box-shadow: 3px 5px 4px -1px rgba(0,0,0,1);
     }
 
      h3 {
-        font-size: 14px;
-        font-weight: 400;
+        font-size: 20px;
+        font-weight: 500;
         
       }
 
       p {
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 400;
-              color:#d60d45;
-
       }
 
       .product__text__details{
         padding:10px;
         overflow:hidden;
       }
-
+.star{
+  width:80px;
+}
 
     .buttons {
       background: rgba(27, 26, 26, 0.3);

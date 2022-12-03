@@ -28,10 +28,14 @@ const Star = ({ stars, reviews }) => {
   return (
     <Wrapper>
       <div className="icon-style flex">
-        <p>
-          ({reviews}
-          customer reviews)
-        </p>
+        {reviews ? (
+          <p>
+            ({reviews}
+            customer reviews)
+          </p>
+        ) : (
+          ""
+        )}
 
         <div className="flex">{ratingStar}</div>
       </div>

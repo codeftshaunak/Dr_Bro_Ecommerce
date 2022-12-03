@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Routers,
@@ -45,23 +45,26 @@ const App = () => {
       tab: "998px",
     },
   };
+  const [showHearder, setShowHeader] = useState(true);
 
   return (
     <ThemeProvider theme={theme}>
       <Router>
         <GlobalStyle />
-        <Header />
+
+        {showHearder && <Header />}
+
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/about" element={<AboutUs />}></Route>
-          <Route path="/shop" element={<Shop />}></Route>
-          <Route path="/tour" element={<Tour />}></Route>
-          <Route path="/contact" element={<Contact />}></Route>
-          <Route path="/singleproduct/:id" element={<SingleProduct />}></Route>
-          <Route path="/tour/alltour" element={<TourTotalData />}></Route>
-          <Route path="/cart" element={<Cart />}></Route>
-          <Route path="/blog" element={<Blog />}></Route>
-          <Route path="*" element={<ErrorPage />}></Route>
+          <Route path="/" element={<Home funNav={setShowHeader}/>}></Route>
+          <Route path="/shop" element={<Shop funNav={setShowHeader} />}></Route>
+          <Route path="/about" element={<AboutUs funNav={setShowHeader}/>}></Route>
+          <Route path="/tour" element={<Tour funNav={setShowHeader}/>}></Route>
+          <Route path="/contact" element={<Contact funNav={setShowHeader}/>}></Route>
+          <Route path="/singleproduct/:id" element={<SingleProduct funNav={setShowHeader}/>}></Route>
+          <Route path="/tour/alltour" element={<TourTotalData funNav={setShowHeader}/>}></Route>
+          <Route path="/cart" element={<Cart funNav={setShowHeader}/>}></Route>
+          <Route path="/blog" element={<Blog funNav={setShowHeader}/>}></Route>
+          <Route path="*" element={<ErrorPage funNav={setShowHeader}/>}></Route>
         </Routes>
         <Footer />
       </Router>
