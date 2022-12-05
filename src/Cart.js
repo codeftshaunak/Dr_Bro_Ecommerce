@@ -8,7 +8,7 @@ import { Button } from "./styles/Button";
 const Cart = (props) => {
   props.funNav(true);
 
-  const { cart } = useCartContext();
+  const { cart, clearCart } = useCartContext();
   console.log(cart);
   return (
     <Wrapper>
@@ -22,7 +22,7 @@ const Cart = (props) => {
         </div>
         <hr />
         <div className="cart-item">
-          {cart.map((curElem) => {
+          {cart?.map((curElem) => {
             return <CartItem key={curElem.id} {...curElem} />;
           })}
         </div>
@@ -31,7 +31,9 @@ const Cart = (props) => {
           <NavLink to="/shop">
             <Button> continue Shopping </Button>
           </NavLink>
-          <Button className="btn btn-clear">clear cart</Button>
+          <Button className="btn" onClick={clearCart}>
+            Clear Cart
+          </Button>
         </div>
 
         {/* order total_amount */}
@@ -142,10 +144,6 @@ const Wrapper = styled.section`
     margin-top: 2rem;
     display: flex;
     justify-content: space-between;
-
-    .btn-clear {
-      background-color: #e74c3c;
-    }
   }
 
   .amount-toggle {
