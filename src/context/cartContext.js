@@ -7,7 +7,7 @@ const CartContext = createContext();
 const getCartDataLocalStorage = () => {
   let newCartData = localStorage.getItem("CartData");
 
-  if (undefined || null) {
+  if (newCartData === undefined || newCartData === null || newCartData === "") {
     return localStorage.setItem("CartData", []);
   } else {
     return JSON.parse(newCartData);
