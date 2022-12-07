@@ -6,15 +6,7 @@ import CartAmountToggle from "../CartAmountToggle/CartAmountToggle";
 import FormatPrice from "../Helpers/FormatPrice";
 
 const CartItem = ({ id, name, color, image, price, amount }) => {
-  const { removeItemCart } = useCartContext();
-
-  const setDecrase = () => {
-    //     amount > 1 ? setAmount(amount - 1) : setAmount(1);
-  };
-
-  const setIncrase = () => {
-    //     amount < stock ? setAmount(amount + 1) : setAmount(stock);
-  };
+  const { removeItemCart, setDecrase, setIncrase, } = useCartContext();
 
   return (
     <Wrapper>
@@ -47,8 +39,8 @@ const CartItem = ({ id, name, color, image, price, amount }) => {
         {/* Quantity */}
         <CartAmountToggle
           amount={amount}
-          setDecrase={setDecrase}
-          setIncrase={setIncrase}
+          setDecrase={() => setDecrase(id)}
+          setIncrase={() => setIncrase(id)}
           className="w-36"
         />
 

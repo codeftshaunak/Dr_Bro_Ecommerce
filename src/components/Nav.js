@@ -3,9 +3,11 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { CgMenu, CgClose } from "react-icons/cg";
+import { useCartContext } from "../context/cartContext";
 const Nav = () => {
   const [menuIcon, setmenuIcon] = useState();
-
+  const { total_item } = useCartContext();
+  console.log(total_item);
   const Nav = styled.nav`
     .navbar-lists {
       display: flex;
@@ -203,7 +205,7 @@ const Nav = () => {
               onClick={() => setmenuIcon(false)}
             >
               <AiOutlineShoppingCart className="cart-trolley"></AiOutlineShoppingCart>
-              <span className="cart-total--item">10</span>
+              <span className="cart-total--item">{total_item}</span>
             </NavLink>
           </li>
         </ul>

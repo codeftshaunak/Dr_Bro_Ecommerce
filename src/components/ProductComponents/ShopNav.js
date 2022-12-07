@@ -6,10 +6,11 @@ import { CgClose, CgMenu } from "react-icons/cg";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../../assets/logo/logo.png";
+import { useCartContext } from "../../context/cartContext";
 
 const ShopNav = () => {
   const [menuIcon, setmenuIcon] = useState();
-
+  const { total_item } = useCartContext();
   const {
     updateFilterValue,
     filters: { text },
@@ -131,7 +132,7 @@ const ShopNav = () => {
                   onClick={() => setmenuIcon(false)}
                 >
                   <AiOutlineShoppingCart className="cart-trolley"></AiOutlineShoppingCart>
-                  <span className="cart-total--item">10</span>
+                  <span className="cart-total--item">{total_item}</span>
                 </NavLink>
               </li>
             </ul>

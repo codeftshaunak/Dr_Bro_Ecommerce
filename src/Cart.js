@@ -8,8 +8,8 @@ import { Button } from "./styles/Button";
 const Cart = (props) => {
   props.funNav(true);
 
-  const { cart, clearCart } = useCartContext();
-  console.log(cart);
+  const { cart, clearCart, total_price, shipping_fee } = useCartContext();
+
   return (
     <Wrapper>
       <div className="container">
@@ -23,7 +23,7 @@ const Cart = (props) => {
         <hr />
         <div className="cart-item">
           {cart?.map((curElem) => {
-            return <CartItem key={curElem.id} {...curElem} />;
+            return <CartItem key={curElem?.id} {...curElem} />;
           })}
         </div>
         <hr />
@@ -42,20 +42,20 @@ const Cart = (props) => {
             <div>
               <p>subtotal:</p>
               <p>
-                <FormatPrice />
+                <FormatPrice price={total_price} />
               </p>
             </div>
             <div>
               <p>shipping fee:</p>
               <p>
-                <FormatPrice />
+                <FormatPrice price={shipping_fee} />
               </p>
             </div>
             <hr />
             <div>
               <p>order total:</p>
               <p>
-                <FormatPrice />
+                <FormatPrice price={total_price + shipping_fee} />
               </p>
             </div>
           </div>
