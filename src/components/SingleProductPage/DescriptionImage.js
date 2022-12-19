@@ -25,7 +25,6 @@ const DescriptionImage = ({ imgs = [{ url: "" }] }) => {
         className="mySwiper"
       >
         {imgs?.map((product) => {
-          console.log(product.url);
           return (
             <SwiperSlide>
               <div className="tour__card py-5 mb-10">

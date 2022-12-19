@@ -24,7 +24,6 @@ const Wrapper = styled.section`
     font-family: "poppins";
     font-weight: 600;
     padding: 10px 21px;
-    margin-top: 9px;
     justify-content: space-evenly;
     border: 1px solid black;
 

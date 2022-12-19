@@ -6,13 +6,14 @@ const CartContext = createContext();
 
 const getCartDataLocalStorage = () => {
   let newCartData = localStorage.getItem("CartData");
-
-  if (newCartData === undefined || newCartData === null || newCartData === "") {
-    return localStorage.setItem("CartData", []);
-  } else {
-    return JSON.parse(newCartData);
-  }
+  return JSON.parse(newCartData);
 };
+
+const locaStorage = localStorage.getItem("CartData");
+if (locaStorage === "undefined" || localStorage === "null") {
+  localStorage.setItem("CartData", "[]");
+}
+
 const initialState = {
   cart: getCartDataLocalStorage(),
   total_item: "",
@@ -47,9 +48,6 @@ const CartProvider = ({ children }) => {
   const setDecrase = (id) => {
     dispatch({ type: "SET_DECRASE", payload: id });
   };
-
-  //Total Cart
-  const cartTotal = () => {};
 
   useEffect(() => {
     dispatch({ type: "CART_TOTAL_ITEM" });

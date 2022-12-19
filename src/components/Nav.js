@@ -7,7 +7,7 @@ import { useCartContext } from "../context/cartContext";
 const Nav = () => {
   const [menuIcon, setmenuIcon] = useState();
   const { total_item } = useCartContext();
-  console.log(total_item);
+
   const Nav = styled.nav`
     .navbar-lists {
       display: flex;

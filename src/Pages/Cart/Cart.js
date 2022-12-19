@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import CartItem from "./components/CartItem/CartItem";
-import FormatPrice from "./components/Helpers/FormatPrice";
-import { useCartContext } from "./context/cartContext";
-import { Button } from "./styles/Button";
+import CartItem from "../../components/CartItem/CartItem";
+import FormatPrice from "../../components/Helpers/FormatPrice";
+import { useCartContext } from "../../context/cartContext";
+import { Button } from "../../styles/Button";
 
 const Cart = (props) => {
   props.funNav(true);
@@ -29,7 +29,7 @@ const Cart = (props) => {
         <hr />
         <div className="cart-two-button">
           <NavLink to="/shop">
-            <Button> continue Shopping </Button>
+            <Button> Continue Shopping </Button>
           </NavLink>
           <Button className="btn" onClick={clearCart}>
             Clear Cart

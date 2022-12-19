@@ -5,8 +5,9 @@ import { useCartContext } from "../../context/cartContext";
 import CartAmountToggle from "../CartAmountToggle/CartAmountToggle";
 import FormatPrice from "../Helpers/FormatPrice";
 
-const CartItem = ({ id, name, color, image, price, amount }) => {
-  const { removeItemCart, setDecrase, setIncrase, } = useCartContext();
+const CartItem = (curElem) => {
+  const { id, name, color, image, price, amount } = curElem;
+  const { removeItemCart, setDecrase, setIncrase } = useCartContext();
 
   return (
     <Wrapper>

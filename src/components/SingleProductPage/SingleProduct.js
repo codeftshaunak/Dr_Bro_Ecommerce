@@ -6,6 +6,7 @@ import { useProductContext } from "../../context/productContext";
 import AddToCart from "../AddToCart/AddToCart";
 import FeatureProduct from "../FeatureProduct/FeatureProduct";
 import FormatPrice from "../Helpers/FormatPrice";
+import Loading from "../Loading/Loading";
 import PageNavigation from "../PageNavigations/PageNavigation";
 import SliderProduct from "../SliderProduct/SliderProduct";
 import TourSlider from "../TourHomeComponents/TourSlider";
@@ -54,7 +55,9 @@ const SingleProduct = (props) => {
   if (isSingleLoading) {
     return (
       <>
-        <div className="page__loading">....</div>
+        <div className="page__loading">
+          <Loading />
+        </div>
       </>
     );
   }

@@ -102,6 +102,7 @@ const HeroSection = () => {
                       data-aos-delay="250"
                       data-aos-duration="1200"
                     >
+                      <br />
                       <Button data={"Explore now"} />
                     </a>
                   </div>

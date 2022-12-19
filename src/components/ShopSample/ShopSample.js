@@ -1,18 +1,19 @@
 import React from "react";
-import AddCartButton from "../AddCartButton/AddCartButton";
+// import AddCartButton from "../AddCartButton/AddCartButton";
 import { BsArrowLeftShort, BsArrowRightShort } from "react-icons/bs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation, Autoplay, Grid } from "swiper";
-import CartButton from "../CartButton/CartButton";
-import WishListButton from "../WishListButton/WishListButton";
-import QuickViewButton from "../QuickViewButton/QuickViewButton";
+// import CartButton from "../CartButton/CartButton";
+// import WishListButton from "../WishListButton/WishListButton";
+// import QuickViewButton from "../QuickViewButton/QuickViewButton";
 
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { useProductContext } from "../../context/productContext";
+import Product from "../ProductComponents/Product";
 
 const ShopSample = () => {
   const prevRef = useRef(null);
@@ -68,47 +69,7 @@ const ShopSample = () => {
           >
             {products?.map((product) => (
               <SwiperSlide key={product.id}>
-                <div className="product_widget26">
-                  <div className="product_thumb_upper position-relative">
-                    {product.discount > 0 && (
-                      <span className="offer_badge">-{product.discount}% </span>
-                    )}
-                    <Link
-                      to={`/singleproduct/${product?.id}`}
-                      className="thumb text-center"
-                    >
-                      <img src={product.image} alt="" />
-                    </Link>
-                    <div className="product_action">
-                      <WishListButton></WishListButton>
-                      <QuickViewButton></QuickViewButton>
-                      <CartButton></CartButton>
-                    </div>
-                  </div>
-                  <div className="product_meta">
-                    <Link to={`/singleproduct/${product?.id}`}>
-                      {" "}
-                      <h4 className="product_name">{product.name}</h4>
-                    </Link>
-
-                    <div>
-                      <p className="text-justify product_description">
-                        {product.description.length > 300
-                          ? product.description.slice(0, 200)
-                          : product.description}
-                      </p>
-                    </div>
-                    <div className="product_prise flex items-center gap-2 justify-between">
-                      <span className="text-lg product__stock">
-                        {/* {product.discount > 0 &&
-                                                    `₹${product.discount + product.book_price}.00`} */}
-                        Stock: 2000
-                      </span>
-                      <p>₹{product.price}.00</p>
-                    </div>
-                    <AddCartButton />
-                  </div>
-                </div>
+                <Product products={product} />
               </SwiperSlide>
             ))}
             <div className="flex pt-3">

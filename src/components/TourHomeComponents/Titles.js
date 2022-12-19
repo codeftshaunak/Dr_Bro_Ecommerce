@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Titles = ({ toursubtitle, tourtitlestart, tourspan, tourtitleend }) => {
   return (
-    <Wrapper className="titles">
+    <Wrapper className="titles text-center">
       <p className="tour-home-subtitle">{toursubtitle}</p>
       <h1 className="tour-home-title">
         {tourtitlestart}

@@ -13,7 +13,7 @@ const Banner = (data) => {
       className="container shadow-lg  rounded-lg"
       style={{ backgroundColor: bg__color }}
     >
-      <div className="flex items-center justify-around p-2">
+      <div className="flex items-center justify-around">
         <div>
           <h2 className="text-white">{hadding__text}</h2>
           <h1 className="text-white" style={{ color: text__color }}>
