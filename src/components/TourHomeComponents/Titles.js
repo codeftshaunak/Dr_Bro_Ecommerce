@@ -24,7 +24,7 @@ const Wrapper = styled.section`
     color: #0f2454;
     position: relative;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
   }
 
   .tour-home-subtitle {

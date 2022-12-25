@@ -7,17 +7,20 @@ import reportWebVitals from "./reportWebVitals";
 import { AppProvider } from "./context/productContext";
 import { FilterContextProvider } from "./context/filterContext";
 import { CartProvider } from "./context/cartContext";
-
+import { Provider } from "react-redux";
+import { store } from "./app/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <AppProvider>
-    <FilterContextProvider>
-      <CartProvider>
-        <App />
-      </CartProvider>
-    </FilterContextProvider>
-  </AppProvider>
+  <Provider store={store}>
+    <AppProvider>
+      <FilterContextProvider>
+        <CartProvider>
+          <App />
+        </CartProvider>
+      </FilterContextProvider>
+    </AppProvider>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

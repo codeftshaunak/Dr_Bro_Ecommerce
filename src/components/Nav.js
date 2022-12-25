@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { CgMenu, CgClose } from "react-icons/cg";
+import { CgMenu, CgClose, CgProfile } from "react-icons/cg";
 import { useCartContext } from "../context/cartContext";
 const Nav = () => {
   const [menuIcon, setmenuIcon] = useState();
@@ -13,6 +13,10 @@ const Nav = () => {
       display: flex;
       gap: 4.8rem;
       align-items: center;
+
+      .cart__login {
+        display: flex;
+      }
       .navbar-link {
         &:link,
         &:visited {
@@ -46,11 +50,11 @@ const Nav = () => {
       position: relative;
       .cart-trolley {
         position: relative;
-        font-size: 3.2rem;
+        font-size: 2.5rem;
       }
       .cart-total--item {
-        width: 2.4rem;
-        height: 2.4rem;
+        width: 1.8rem;
+        height: 1.8rem;
         position: absolute;
         background-color: #000;
         color: #000;
@@ -59,6 +63,7 @@ const Nav = () => {
         place-items: center;
         top: -20%;
         left: 70%;
+        font-size: 10px;
         background-color: ${({ theme }) => theme.colors.helper};
       }
     }
@@ -94,13 +99,13 @@ const Nav = () => {
       }
       .navbar-lists {
         width: 100vw;
-        height: 100vh;
+        height: 200vh;
         position: absolute;
         top: 0;
         left: 0;
         background-color: #fff;
         display: flex;
-        justify-content: center;
+        // justify-content: center;
         align-items: center;
         flex-direction: column;
         visibility: hidden;
@@ -198,16 +203,27 @@ const Nav = () => {
               Contact
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/cart"
-              className="navbar-link cart-trolley--link"
-              onClick={() => setmenuIcon(false)}
-            >
-              <AiOutlineShoppingCart className="cart-trolley"></AiOutlineShoppingCart>
-              <span className="cart-total--item">{total_item}</span>
-            </NavLink>
-          </li>
+          <div className="cart__login">
+            <li>
+              <NavLink
+                to="/signin"
+                className="navbar-link cart-trolley--link"
+                onClick={() => setmenuIcon(false)}
+              >
+                <CgProfile className="cart-trolley"></CgProfile>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/cart"
+                className="navbar-link cart-trolley--link"
+                onClick={() => setmenuIcon(false)}
+              >
+                <AiOutlineShoppingCart className="cart-trolley"></AiOutlineShoppingCart>
+                <span className="cart-total--item">{total_item}</span>
+              </NavLink>
+            </li>
+          </div>
         </ul>
 
         {/* Buttons for responsive */}

@@ -9,13 +9,8 @@ const getCartDataLocalStorage = () => {
   return JSON.parse(newCartData);
 };
 
-const locaStorage = localStorage.getItem("CartData");
-if (locaStorage === "undefined" || localStorage === "null") {
-  localStorage.setItem("CartData", "[]");
-}
-
 const initialState = {
-  cart: getCartDataLocalStorage(),
+  cart: getCartDataLocalStorage() || [],
   total_item: "",
   total_price: "",
   shipping_fee: 5000,
