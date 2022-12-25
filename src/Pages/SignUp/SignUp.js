@@ -8,9 +8,10 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Titles from "../../components/TourHomeComponents/Titles";
+import { storeToken } from "../../services/localStorageService";
 import { useRegisterUserMutation } from "../../services/userAuthApi";
 // import { storeToken } from '../../services/LocalStorageService';
 
@@ -38,8 +39,8 @@ const SignUp = () => {
     }
     if (res.data) {
       // console.log(typeof res.data);
-      // console.log(res.data);
-      // storeToken(res.data.token)
+      console.log(res.data);
+      storeToken(res.data.token)
       navigate("/");
     }
   };
@@ -162,11 +163,7 @@ const SignUp = () => {
           ""
         )}
         <Box textAlign="center">
-          <Button
-            type="submit"
-            variant="contained"
-            sx={{ mt: 3, mb: 2, px: 5 }}
-          >
+          <Button type="submit" variant="contained">
             Join
           </Button>
         </Box>
@@ -176,14 +173,27 @@ const SignUp = () => {
           ""
         )}
       </Box>
+      <br />
+      <Box textAlign="center" className="top__border">
+        <Button variant="contained">
+          <NavLink to="/signin">Already Have An Account</NavLink>
+        </Button>
+      </Box>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.section`
-  width: 300px;
-  margin: auto;
-  padding: 50px 0;
+  width: 350px;
+  margin: 50px auto;
+  padding: 10px 20px;
+  border: 1px solid #1976d226;
+  border-radius: 15px;
+
+  .top__border {
+    border-top: 1px solid black;
+    padding-top: 10px;
+  }
 `;
 
 export default SignUp;
