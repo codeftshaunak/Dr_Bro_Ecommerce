@@ -3,31 +3,35 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { useCartContext } from "../../context/cartContext";
-import AddCartButton from "../AddCartButton/AddCartButton";
+// import AddCartButton from "../AddCartButton/AddCartButton";
 import CartAmountToggle from "../CartAmountToggle/CartAmountToggle";
-import { FaCheck } from "react-icons/fa";
+// import { FaCheck } from "react-icons/fa";
 import Button from "../Button/Button";
+import { getToken } from "../../services/localStorageService";
 
+const { access_token } = getToken();
+console.log(access_token);
 const AddToCart = ({ product }) => {
   const { addToCart } = useCartContext();
 
-  const { id, stock, colors } = product;
+  // const { id, stock, colors } = product;
+  // const [color, setColor] = useState(colors[0]);
 
-  const [color, setColor] = useState(colors[0]);
   const [amount, setAmount] = useState(1);
+  const { id, availiability } = product;
 
-  // const setDecrase = () => {
-  //   amount > 1 ? setAmount(amount - 1) : setAmount(1);
-  // };
+  const setDecrase = () => {
+    amount > 1 ? setAmount(amount - 1) : setAmount(1);
+  };
 
-  // const setIncrase = () => {
-  //   amount < stock ? setAmount(amount + 1) : setAmount(stock);
-  // };
+  const setIncrase = () => {
+    amount < availiability ? setAmount(amount + 1) : setAmount(availiability);
+  };
 
   return (
     <div>
       <Wrapper>
-        <div className="colors">
+        {/* <div className="colors">
           <p>
             Color:
             {colors.map((curColor, index) => {
@@ -47,28 +51,41 @@ const AddToCart = ({ product }) => {
               );
             })}
           </p>
-        </div>
+        </div> */}
       </Wrapper>
       <br />
       <div className="">
-        {stock > 0 ? (
+        {availiability > 0 ? (
           <>
-            {/* <CartAmountToggle
+            <CartAmountToggle
               amount={amount}
               setDecrase={setDecrase}
               setIncrase={setIncrase}
               className="w-36"
-            /> */}
+            />
 
-            <NavLink
+            {/* <NavLink
               to="/cart"
               className="ml-5"
               onClick={() => {
                 addToCart(id, color, amount, product);
               }}
-            >
-              <Button data={"ADD TO CART"} />
-            </NavLink>
+            > */}
+            {access_token ? (
+              <NavLink
+                to="/cart"
+                className="ml-5"
+                onClick={() => {
+                  addToCart(id, amount, product);
+                }}
+              >
+                <Button data={"ADD TO CART"} />
+              </NavLink>
+            ) : (
+              <NavLink to="/signin" className="ml-5">
+                <Button data={"ADD TO CART"} />
+              </NavLink>
+            )}
           </>
         ) : (
           <h3>Stock Is Not Available😥</h3>

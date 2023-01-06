@@ -45,27 +45,27 @@ const filterReducer = (state, action) => {
 
       const {
         filter_products,
-        sorting_value
+        // sorting_value
       } = state;
       let temp_sortproduct = [...filter_products];
 
       const sortingProducts = (a, b) => {
-        switch (sorting_value) {
-          case "a-z":
-            return a.name.localeCompare(b.name);
+        // switch (sorting_value) {
+        //   case "a-z":
+        //     return a.name.localeCompare(b.name);
 
-          case "z-a":
-            return b.name.localeCompare(a.name);
+        //   case "z-a":
+        //     return b.name.localeCompare(a.name);
 
-          case "highest":
-            return b.price - a.price;
+        //   case "highest":
+        //     return b.price - a.price;
 
-          case "lowest":
-            return a.price - b.price;
+        //   case "lowest":
+        //     return a.price - b.price;
 
-          default:
-            break;
-        }
+        //   default:
+        //     break;
+        // }
       };
 
       newSortData = temp_sortproduct.sort(sortingProducts);
@@ -98,7 +98,7 @@ const filterReducer = (state, action) => {
 
         const {
           text,
-          category,
+          // category,
           company,
           color,
           price
@@ -110,11 +110,11 @@ const filterReducer = (state, action) => {
           })
         }
 
-        if (category.toLowerCase() !== "all") {
-          tempFilterProduct = tempFilterProduct.filter((currEle) => {
-            return currEle.category === category;
-          })
-        }
+        // if (category.toLowerCase() !== "all") {
+        //   tempFilterProduct = tempFilterProduct.filter((currEle) => {
+        //     return currEle.category === category;
+        //   })
+        // }
 
         if (company.toLowerCase() !== "all") {
           tempFilterProduct = tempFilterProduct.filter((currEle) => {

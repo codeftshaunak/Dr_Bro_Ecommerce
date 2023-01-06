@@ -8,10 +8,18 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 // import required modules
-import { Pagination, Navigation } from "swiper";
+import { Pagination } from "swiper";
 import styled from "styled-components";
 
-const DescriptionImage = ({ imgs = [{ url: "" }] }) => {
+// {
+//   imgs = [{
+//     url: ""
+//   }]
+// }
+
+const DescriptionImage = (imgs) => {
+  const url = `http://127.0.0.1:8000/${imgs.imgs}`;
+
   return (
     <Wrapper>
       <Swiper
@@ -24,7 +32,7 @@ const DescriptionImage = ({ imgs = [{ url: "" }] }) => {
         modules={[Pagination]}
         className="mySwiper"
       >
-        {imgs?.map((product) => {
+        {/* {imgs?.map((product) => {
           return (
             <SwiperSlide>
               <div className="tour__card py-5 mb-10">
@@ -34,7 +42,15 @@ const DescriptionImage = ({ imgs = [{ url: "" }] }) => {
               </div>
             </SwiperSlide>
           );
-        })}
+        })} */}
+
+        <SwiperSlide>
+          <div className="tour__card py-5 mb-10">
+            <figure class="image-block">
+              <img src={url} alt="" />
+            </figure>
+          </div>
+        </SwiperSlide>
       </Swiper>
     </Wrapper>
   );

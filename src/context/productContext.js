@@ -4,7 +4,8 @@ import axios from "axios";
 
 const AppContext = createContext();
 
-const API = "https://api.pujakaitem.com/api/products";
+// const API = "https://api.pujakaitem.com/api/products";
+const API = "http://127.0.0.1:8000/ecommerce/";
 
 const initialState = {
   isLoading: false,

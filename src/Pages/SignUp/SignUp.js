@@ -26,9 +26,10 @@ const SignUp = () => {
       username: data.get("username"),
       email: data.get("email"),
       password: data.get("password"),
-      mobile_number: data.get("mobile_number"),
+      Phone_number: data.get("phone"),
       is_active: data.get("is_active"),
     };
+    console.log(actualData);
     const res = await registerUser(actualData);
     // console.log(actualData);
     if (res.error) {
@@ -39,9 +40,9 @@ const SignUp = () => {
     }
     if (res.data) {
       // console.log(typeof res.data);
-      console.log(res.data);
-      storeToken(res.data.token)
-      navigate("/");
+      // console.log(res.data);
+      storeToken(res.data.token);
+      navigate("/signin");
     }
   };
   return (
@@ -86,13 +87,13 @@ const SignUp = () => {
           margin="normal"
           required
           fullWidth
-          id="mobile_number"
-          name="mobile_number"
-          label="Mobile"
+          id="phone"
+          name="phone"
+          label="Phone"
         />
-        {server_error.mobile_number ? (
+        {server_error.Phone_number ? (
           <Typography style={{ fontSize: 12, color: "red", paddingLeft: 10 }}>
-            {server_error.mobile_number[0]}
+            {server_error.Phone_number[0]}
           </Typography>
         ) : (
           ""

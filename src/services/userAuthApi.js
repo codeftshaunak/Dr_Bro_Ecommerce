@@ -1,20 +1,19 @@
-// Need to use the React-specific entry point to import createApi
 import {
         createApi,
         fetchBaseQuery
-} from '@reduxjs/toolkit/query/react'
+} from '@reduxjs/toolkit/query/react';
 
-// Define a service using a base URL and expected endpoints
+
 export const userAuthApi = createApi({
         reducerPath: 'userAuthApi',
         baseQuery: fetchBaseQuery({
-                baseUrl: 'http://127.0.0.1:8000/accounts/'
+                baseUrl: "http://127.0.0.1:8000/"
         }),
         endpoints: (builder) => ({
                 registerUser: builder.mutation({
                         query: (user) => {
                                 return {
-                                        url: "register/",
+                                        url: "accounts/register/",
                                         method: "POST",
                                         body: user,
                                         headers: {
@@ -27,11 +26,23 @@ export const userAuthApi = createApi({
                 loginUser: builder.mutation({
                         query: (user) => {
                                 return {
-                                        url: "token/login/",
+                                        url: "accounts/token/login/",
                                         method: "POST",
                                         body: user,
                                         headers: {
                                                 'Content-Type': 'application/json'
+                                        },
+
+                                }
+                        }
+                }),
+                getUser: builder.query({
+                        query: (access_token) => {
+                                return {
+                                        url: "admin/accounts/user/",
+                                        method: "GET",
+                                        headers: {
+                                                'authorization': `Bearer ${access_token}`
                                         },
 
                                 }
@@ -44,5 +55,6 @@ export const userAuthApi = createApi({
 // auto-generated based on the defined endpoints
 export const {
         useRegisterUserMutation,
-        useLoginUserMutation
+        useLoginUserMutation,
+        useGetUserQuery
 } = userAuthApi;

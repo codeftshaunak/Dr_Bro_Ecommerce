@@ -11,7 +11,7 @@ const initialState = {
   sorting_value: "a-z",
   filters: {
     text: "",
-    category: "all",
+    // category: "all",
     company: "all",
     color: "all",
     minPrice: 0,

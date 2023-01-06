@@ -9,7 +9,7 @@ import QuickViewButton from "../QuickViewButton/QuickViewButton";
 import WishListButton from "../WishListButton/WishListButton";
 
 const Product = ({ products }) => {
-  const { id, name, image, price, category, stars } = products;
+  const { id, product_name, thumbnail, price, availiability } = products;
   return (
     <Wrapper>
       <NavLink to={`/singleproduct/${id}`}>
@@ -23,19 +23,19 @@ const Product = ({ products }) => {
               </div>
             </div>
             <figure>
-              <img src={image} alt={name} />
-              <figcaption className="caption">{category}</figcaption>
+              <img src={thumbnail} alt={product_name} />
+              <figcaption className="caption"> {product_name} </figcaption>
             </figure>
           </div>
 
           <div className="product__text__details">
             <div className="card-data-flex">
-              <h3>{name}</h3>
+              <h3>{product_name}</h3>
               <p className="card-data--price">
                 {<FormatPrice price={price} />}
               </p>
               <div className="star">
-                <Star stars={stars} />
+                <Star stars={availiability} />
               </div>
             </div>
             {/* <div className="add__to__cart">

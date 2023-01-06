@@ -13,7 +13,8 @@ import TourSlider from "../TourHomeComponents/TourSlider";
 import DescriptionImage from "./DescriptionImage";
 import SingleProdutDescription from "./SingleProdutDescription";
 
-const API = "https://api.pujakaitem.com/api/products";
+// const API = "https://api.pujakaitem.com/api/products";
+const API = "http://127.0.0.1:8000/ecommerce/Products/";
 
 const SingleProduct = (props) => {
   props.funNav(true);
@@ -27,21 +28,18 @@ const SingleProduct = (props) => {
   } = useProductContext();
 
   const { id } = useParams();
-
   const {
     id: drbro,
-    name,
-    company,
+    product_name,
     price,
     description,
-    stock,
-    stars,
-    reviews,
-    image,
+    thumbnail,
+    availiability,
   } = singleProduct;
 
+  console.log();
   useEffect(() => {
-    getSingleProduct(`${API}?id=${id}`);
+    getSingleProduct(`${API}${id}`);
   }, [id]);
 
   // const setDecrase = () => {
@@ -64,21 +62,21 @@ const SingleProduct = (props) => {
 
   return (
     <Wrapper>
-      <PageNavigation title={name} />
+      <PageNavigation title={product_name} />
       <div className="single__products__front">
         <div className="left__side__single">
-          <SliderProduct imgs={image} />
+          <SliderProduct imgs={thumbnail} />
         </div>
         <div className="right__side__single">
-          <h2>{name}</h2>
+          <h2>{product_name}</h2>
           <h3>
             <FormatPrice price={price} />
           </h3>
-          {stock > 0 && <AddToCart product={singleProduct} />}
+          {availiability > 0 && <AddToCart product={singleProduct} />}
         </div>
       </div>
       <SingleProdutDescription product={description} />
-      <DescriptionImage imgs={image} />
+      <DescriptionImage imgs={thumbnail} />
       <FeatureProduct />
     </Wrapper>
   );

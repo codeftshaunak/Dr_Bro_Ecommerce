@@ -11,7 +11,8 @@ import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Titles from "../../components/TourHomeComponents/Titles";
-import { storeToken } from "../../services/localStorageService";
+import { setUserToken } from "../../features/authSlice";
+import { getToken, storeToken } from "../../services/localStorageService";
 import { useLoginUserMutation } from "../../services/userAuthApi";
 // import { setUserToken } from "../../features/authSlice";
 // import { getToken, storeToken } from "../../services/LocalStorageService";
@@ -39,15 +40,16 @@ const Login = () => {
     if (res.data) {
       // console.log(res.data);
       storeToken(res.data);
-      // let { access_token } = getToken();
-      // dispatch(setUserToken({ access_token: access_token }));
+      let { access_token } = getToken();
+      dispatch(setUserToken({ access_token: access_token }));
       navigate("/");
     }
   };
-  // let { access_token } = getToken();
-  // useEffect(() => {
-  //   dispatch(setUserToken({ access_token: access_token }));
-  // }, [access_token, dispatch]);
+
+  let { access_token } = getToken();
+  useEffect(() => {
+    dispatch(setUserToken({ access_token: access_token }));
+  }, [access_token, dispatch]);
 
   return (
     <Wrapper>

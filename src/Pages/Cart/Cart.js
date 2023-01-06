@@ -7,9 +7,7 @@ import { Button } from "../../styles/Button";
 
 const Cart = (props) => {
   props.funNav(true);
-
   const { cart, clearCart, total_price, shipping_fee } = useCartContext();
-
   return (
     <Wrapper>
       <div className="container">

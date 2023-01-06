@@ -6,27 +6,29 @@ import CartAmountToggle from "../CartAmountToggle/CartAmountToggle";
 import FormatPrice from "../Helpers/FormatPrice";
 
 const CartItem = (curElem) => {
-  const { id, name, color, image, price, amount } = curElem;
+  const { id, product_name, thumbnail, price } = curElem.product;
+  const amount = curElem.amount;
+  
+  const imgurl = `http://127.0.0.1:8000/${thumbnail}`;
   const { removeItemCart, setDecrase, setIncrase } = useCartContext();
-
   return (
     <Wrapper>
       <div className="cart_heading grid grid-five-column">
         <div className="cart-image--name">
           <div>
             <figure>
-              <img src={image} alt={id} />
+              <img src={imgurl} alt={id} />
             </figure>
           </div>
           <div>
-            <p>{name}</p>
-            <div className="color-div">
+            <p>{product_name}</p>
+            {/* <div className="color-div">
               <p>color:</p>
               <div
                 className="color-style"
                 style={{ backgroundColor: color, color: color }}
               ></div>
-            </div>
+            </div> */}
           </div>
         </div>
 

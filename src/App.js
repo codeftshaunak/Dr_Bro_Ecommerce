@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+} from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header";
@@ -16,6 +21,8 @@ import TourTotalData from "./components/TourTotalData/TourTotalData";
 import Cart from "./Pages/Cart/Cart";
 import Login from "./Pages/Login/Login";
 import SignUp from "./Pages/SignUp/SignUp";
+import Profile from "./Pages/Profile/Profile";
+import { useSelector } from "react-redux";
 
 const App = () => {
   const theme = {
@@ -43,7 +50,8 @@ const App = () => {
     },
   };
   const [showHeader, setShowHeader] = useState(true);
-
+  const { access_token } = useSelector((state) => state.auth);
+  console.log(access_token);
   return (
     <ThemeProvider theme={theme}>
       <Router>
@@ -73,12 +81,34 @@ const App = () => {
           <Route path="/cart" element={<Cart funNav={setShowHeader} />}></Route>
           <Route path="/blog" element={<Blog funNav={setShowHeader} />}></Route>
           <Route
+            path="/profile"
+            element={
+              access_token ? (
+                <Profile funNav={setShowHeader} />
+              ) : (
+                <Navigate to="/signin" />
+              )
+            }
+          ></Route>
+          <Route
             path="/signin"
-            element={<Login funNav={setShowHeader} />}
+            element={
+              access_token ? (
+                <Navigate to="/profile" />
+              ) : (
+                <Login funNav={setShowHeader} />
+              )
+            }
           ></Route>
           <Route
             path="/signup"
-            element={<SignUp funNav={setShowHeader} />}
+            element={
+              access_token ? (
+                <Navigate to="/profile" />
+              ) : (
+                <SignUp funNav={setShowHeader} />
+              )
+            }
           ></Route>
           <Route
             path="*"
