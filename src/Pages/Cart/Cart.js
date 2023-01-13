@@ -1,13 +1,38 @@
+import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import CartItem from "../../components/CartItem/CartItem";
 import FormatPrice from "../../components/Helpers/FormatPrice";
-import { useCartContext } from "../../context/cartContext";
+// import { useCartContext } from "../../context/cartContext";
+import { getToken } from "../../services/localStorageService";
 import { Button } from "../../styles/Button";
 
 const Cart = (props) => {
   props.funNav(true);
-  const { cart, clearCart, total_price, shipping_fee } = useCartContext();
+  // const { cart, clearCart, total_price, shipping_fee } = useCartContext();
+  const [cartProduct, setCartProduct] = useState([]);
+
+  const { access_token } = getToken();
+  const API = "http://127.0.0.1:8000/cart/something";
+
+  const getCartItem = async (url) => {
+    await axios({
+      method: "GET",
+      url: `${url}`,
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    }).then((res) => {
+      setCartProduct(res.data);
+    });
+  };
+
+  useEffect(() => {
+    getCartItem(API);
+  }, [cartProduct]);
+
   return (
     <Wrapper>
       <div className="container">
@@ -20,7 +45,7 @@ const Cart = (props) => {
         </div>
         <hr />
         <div className="cart-item">
-          {cart?.map((curElem) => {
+          {cartProduct.products?.map((curElem) => {
             return <CartItem key={curElem?.id} {...curElem} />;
           })}
         </div>
@@ -29,9 +54,7 @@ const Cart = (props) => {
           <NavLink to="/shop">
             <Button> Continue Shopping </Button>
           </NavLink>
-          <Button className="btn" onClick={clearCart}>
-            Clear Cart
-          </Button>
+          <Button className="btn">Checkout </Button>
         </div>
 
         {/* order total_amount */}
@@ -40,20 +63,22 @@ const Cart = (props) => {
             <div>
               <p>subtotal:</p>
               <p>
-                <FormatPrice price={total_price} />
+                <FormatPrice price={cartProduct.total} />
               </p>
             </div>
             <div>
-              <p>shipping fee:</p>
+              <p>total tax:</p>
               <p>
-                <FormatPrice price={shipping_fee} />
+                <FormatPrice price={cartProduct.tax_total} />
               </p>
             </div>
             <hr />
             <div>
               <p>order total:</p>
               <p>
-                <FormatPrice price={total_price + shipping_fee} />
+                <FormatPrice
+                  price={cartProduct.total + cartProduct.tax_total}
+                />
               </p>
             </div>
           </div>

@@ -30,7 +30,7 @@ const AppProvider = ({ children }) => {
     }
   };
 
-  //Single product
+  //Single products
   const getSingleProduct = async (url) => {
     dispatch({ type: "SET_SINGLE_LOADING" });
     try {

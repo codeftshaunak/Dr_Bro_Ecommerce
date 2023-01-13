@@ -1,12 +1,7 @@
 const cartReducer = (state, action) => {
   if (action.type === "ADD_TO_CART") {
     // let { id, color, amount, product } = action.payload;
-    let {
-      id,
-      amount,
-      product
-    } = action.payload;
-    console.log(action.payload);
+    let { id, amount, product } = action.payload;
 
     //Handle ducplicate products
     // let existingProduct = state.cart.find((curEle) => curEle.id === id + color);
@@ -61,7 +56,7 @@ const cartReducer = (state, action) => {
       let cartProduct = {
         product,
         amount,
-        id
+        id,
       };
 
       return {
@@ -74,12 +69,14 @@ const cartReducer = (state, action) => {
   //Remove Item From Cart
   if (action.type === "REMOVE_ITEM_CART") {
     const id = action.payload;
-    const updateAddToCart = state.cart.filter((currEle) => currEle.id !== id);
+    // const updateAddToCart = state.cart.filter((currEle) => currEle.id !== id);
 
-    return {
-      ...state,
-      cart: updateAddToCart,
-    };
+    // return {
+    //   ...state,
+    //   cart: updateAddToCart,
+    // };
+
+    console.log(id);
   }
 
   //Clear Items
@@ -110,7 +107,7 @@ const cartReducer = (state, action) => {
     });
     return {
       ...state,
-      cart: updateProductIncrase
+      cart: updateProductIncrase,
     };
   }
 
@@ -134,16 +131,14 @@ const cartReducer = (state, action) => {
     });
     return {
       ...state,
-      cart: updateProductIncrase
+      cart: updateProductIncrase,
     };
   }
 
   //Calculate Total Items
   if (action.type === "CART_TOTAL_ITEM") {
     let updateProductItems = state.cart.reduce((initialItem, curItem) => {
-      let {
-        amount
-      } = curItem;
+      let { amount } = curItem;
       initialItem = initialItem + amount;
       return initialItem;
     }, 0);
@@ -156,8 +151,8 @@ const cartReducer = (state, action) => {
   //Calculate Total Price
   if (action.type === "CART_TOTAL_PRICE") {
     let total_price = state.cart.reduce((initialItem, curItem) => {
-      let amount = curItem.amount
-      let price = curItem.product.price
+      let amount = curItem.amount;
+      let price = curItem.product.price;
       initialItem = initialItem + amount * price;
       return initialItem;
     }, 0);

@@ -9,11 +9,15 @@ const getCartDataLocalStorage = () => {
   return JSON.parse(newCartData);
 };
 
+// const initialState = {
+//   cart: getCartDataLocalStorage() || [],
+//   total_item: "",
+//   total_price: "",
+//   shipping_fee: 5000,
+// };
+
 const initialState = {
-  cart: getCartDataLocalStorage() || [],
-  total_item: "",
-  total_price: "",
-  shipping_fee: 5000,
+  cart: [],
 };
 
 const CartProvider = ({ children }) => {
@@ -23,7 +27,6 @@ const CartProvider = ({ children }) => {
   const addToCart = (id, amount, product) => {
     // dispatch({ type: "ADD_TO_CART", payload: { id, color, amount, product } });
     dispatch({ type: "ADD_TO_CART", payload: { id, amount, product } });
-    console.log(id, amount, product);
   };
 
   //For Remove Cart Item

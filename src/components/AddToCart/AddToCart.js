@@ -8,14 +8,31 @@ import CartAmountToggle from "../CartAmountToggle/CartAmountToggle";
 // import { FaCheck } from "react-icons/fa";
 import Button from "../Button/Button";
 import { getToken } from "../../services/localStorageService";
+import axios from "axios";
 
 const { access_token } = getToken();
-console.log(access_token);
+const API = "http://127.0.0.1:8000/cart/something";
+
 const AddToCart = ({ product }) => {
-  const { addToCart } = useCartContext();
+  // const { addToCart } = useCartContext();
 
   // const { id, stock, colors } = product;
   // const [color, setColor] = useState(colors[0]);
+  const addtoCart = async (id, amount) => {
+    await axios({
+      method: "POST",
+      url: `${API}`,
+      data: {
+        quantity: amount,
+        id: id,
+      },
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    }).then((res) => {
+      console.log(res.data, "ADD TO CART");
+    });
+  };
 
   const [amount, setAmount] = useState(1);
   const { id, availiability } = product;
@@ -75,9 +92,7 @@ const AddToCart = ({ product }) => {
               <NavLink
                 to="/cart"
                 className="ml-5"
-                onClick={() => {
-                  addToCart(id, amount, product);
-                }}
+                onClick={() => addtoCart(id, amount)}
               >
                 <Button data={"ADD TO CART"} />
               </NavLink>
