@@ -3,7 +3,6 @@ import React from "react";
 import { FaTrash } from "react-icons/fa";
 import styled from "styled-components";
 import { useCartContext } from "../../context/cartContext";
-import { getToken } from "../../services/localStorageService";
 import CartAmountToggle from "../CartAmountToggle/CartAmountToggle";
 import FormatPrice from "../Helpers/FormatPrice";
 
@@ -13,7 +12,6 @@ const CartItem = (curElem) => {
 
   // const imgurl = `http://127.0.0.1:8000/${thumbnail}`;
   // const { removeItemCart, setDecrase, setIncrase } = useCartContext();
-  const { access_token } = getToken();
   const API = "http://127.0.0.1:8000/cart/something";
   const removeItemCart = async (id) => {
     await axios({
@@ -24,7 +22,7 @@ const CartItem = (curElem) => {
         id: id,
       },
       headers: {
-        Authorization: `Bearer ${access_token}`,
+        // Authorization: `Bearer ${access_token}`,
       },
     }).then((res) => {
       console.log(res.data, "ADD TO CART");

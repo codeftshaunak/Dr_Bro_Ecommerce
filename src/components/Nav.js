@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 const Nav = () => {
   const [menuIcon, setmenuIcon] = useState();
   const { total_item } = useCartContext();
-  const { access_token } = useSelector((state) => state.auth);
 
   const Nav = styled.nav`
     .navbar-lists {
@@ -207,7 +206,8 @@ const Nav = () => {
             </NavLink>
           </li>
           <div className="cart__login">
-            {access_token ? (
+            
+            {/* {access_token ? (
               <li>
                 <NavLink
                   to="/profile"
@@ -227,7 +227,7 @@ const Nav = () => {
                   <CgProfile className="cart-trolley"></CgProfile>
                 </NavLink>
               </li>
-            )}
+            )} */}
 
             <li>
               <NavLink

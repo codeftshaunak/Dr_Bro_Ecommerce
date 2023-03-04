@@ -13,12 +13,10 @@ import TourSlider from "../TourHomeComponents/TourSlider";
 import DescriptionImage from "./DescriptionImage";
 import SingleProdutDescription from "./SingleProdutDescription";
 
-// const API = "https://api.pujakaitem.com/api/products";
-const API = "http://127.0.0.1:8000/ecommerce/Products/";
+const API = "http://13.234.77.93:8000/ecommerce/Products/";
 
 const SingleProduct = (props) => {
   props.funNav(true);
-
   // const [amount, setAmount] = useState(1);
 
   const {
@@ -29,7 +27,6 @@ const SingleProduct = (props) => {
 
   const { id } = useParams();
   const {
-    id: drbro,
     product_name,
     price,
     description,
@@ -37,7 +34,7 @@ const SingleProduct = (props) => {
     availiability,
   } = singleProduct;
 
-  console.log();
+console.log(singleProduct);
   useEffect(() => {
     getSingleProduct(`${API}${id}`);
   }, [id]);
@@ -65,7 +62,8 @@ const SingleProduct = (props) => {
       <PageNavigation title={product_name} />
       <div className="single__products__front">
         <div className="left__side__single">
-          <SliderProduct imgs={thumbnail} />
+          {/* <SliderProduct imgs={thumbnail} /> */}
+          <img src={`http://13.234.77.93:8000/${thumbnail}`} alt="Product Image" />
         </div>
         <div className="right__side__single">
           <h2>{product_name}</h2>
@@ -76,7 +74,9 @@ const SingleProduct = (props) => {
         </div>
       </div>
       <SingleProdutDescription product={description} />
-      <DescriptionImage imgs={thumbnail} />
+      {/* <DescriptionImage imgs={thumbnail} /> */}
+      <img src={`http://13.234.77.93:8000/${thumbnail}`} alt="Product Image" />
+
       <FeatureProduct />
     </Wrapper>
   );
@@ -85,13 +85,20 @@ const SingleProduct = (props) => {
 const Wrapper = styled.section`
   .single__products__front {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
     width: 90%;
     margin: auto;
 
     .left__side__single {
-      width: 500px;
+      max-width: 500px;
+      margin: 0 10px;
+      img{
+        width: 400px;
+        height: 450px;
+        object-fit: cover;
+      }
     }
 
     .right__side__single {

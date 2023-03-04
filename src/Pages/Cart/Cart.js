@@ -6,7 +6,6 @@ import styled from "styled-components";
 import CartItem from "../../components/CartItem/CartItem";
 import FormatPrice from "../../components/Helpers/FormatPrice";
 // import { useCartContext } from "../../context/cartContext";
-import { getToken } from "../../services/localStorageService";
 import { Button } from "../../styles/Button";
 
 const Cart = (props) => {
@@ -14,7 +13,6 @@ const Cart = (props) => {
   // const { cart, clearCart, total_price, shipping_fee } = useCartContext();
   const [cartProduct, setCartProduct] = useState([]);
 
-  const { access_token } = getToken();
   const API = "http://127.0.0.1:8000/cart/something";
 
   const getCartItem = async (url) => {
@@ -22,7 +20,7 @@ const Cart = (props) => {
       method: "GET",
       url: `${url}`,
       headers: {
-        Authorization: `Bearer ${access_token}`,
+        // Authorization: `Bearer ${access_token}`,
       },
     }).then((res) => {
       setCartProduct(res.data);

@@ -7,11 +7,11 @@ import { useCartContext } from "../../context/cartContext";
 import CartAmountToggle from "../CartAmountToggle/CartAmountToggle";
 // import { FaCheck } from "react-icons/fa";
 import Button from "../Button/Button";
-import { getToken } from "../../services/localStorageService";
+// import { getToken } from "../../services/localStorageService";
 import axios from "axios";
 
-const { access_token } = getToken();
-const API = "http://127.0.0.1:8000/cart/something";
+// const { access_token } = getToken();
+const API = "http://13.234.77.93:8000/cart/something";
 
 const AddToCart = ({ product }) => {
   // const { addToCart } = useCartContext();
@@ -27,7 +27,7 @@ const AddToCart = ({ product }) => {
         id: id,
       },
       headers: {
-        Authorization: `Bearer ${access_token}`,
+        // Authorization: `Bearer ${access_token}`,
       },
     }).then((res) => {
       console.log(res.data, "ADD TO CART");
@@ -88,7 +88,14 @@ const AddToCart = ({ product }) => {
                 addToCart(id, color, amount, product);
               }}
             > */}
-            {access_token ? (
+              <NavLink
+                to="/cart"
+                className="ml-5"
+                onClick={() => addtoCart(id, amount)}
+              >
+                <Button data={"ADD TO CART"} />
+              </NavLink>
+            {/* {access_token ? (
               <NavLink
                 to="/cart"
                 className="ml-5"
@@ -100,7 +107,7 @@ const AddToCart = ({ product }) => {
               <NavLink to="/signin" className="ml-5">
                 <Button data={"ADD TO CART"} />
               </NavLink>
-            )}
+            )} */}
           </>
         ) : (
           <h3>Stock Is Not Available😥</h3>

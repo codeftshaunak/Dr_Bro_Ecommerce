@@ -19,10 +19,11 @@ import Blog from "./Pages/Blog/Blog";
 import Tour from "./Pages/Tour/Tour";
 import TourTotalData from "./components/TourTotalData/TourTotalData";
 import Cart from "./Pages/Cart/Cart";
-import Login from "./Pages/Login/Login";
+import Login from "./Pages/Login/SignIn";
 import SignUp from "./Pages/SignUp/SignUp";
 import Profile from "./Pages/Profile/Profile";
 import { useSelector } from "react-redux";
+import SignIn from "./Pages/Login/SignIn";
 
 const App = () => {
   const theme = {
@@ -50,8 +51,7 @@ const App = () => {
     },
   };
   const [showHeader, setShowHeader] = useState(true);
-  const { access_token } = useSelector((state) => state.auth);
-  console.log(access_token);
+
   return (
     <ThemeProvider theme={theme}>
       <Router>
@@ -80,7 +80,8 @@ const App = () => {
           ></Route>
           <Route path="/cart" element={<Cart funNav={setShowHeader} />}></Route>
           <Route path="/blog" element={<Blog funNav={setShowHeader} />}></Route>
-          <Route
+
+          {/* <Route
             path="/profile"
             element={
               access_token ? (
@@ -89,8 +90,9 @@ const App = () => {
                 <Navigate to="/signin" />
               )
             }
-          ></Route>
-          <Route
+          ></Route> */}
+
+          {/* <Route
             path="/signin"
             element={
               access_token ? (
@@ -99,8 +101,9 @@ const App = () => {
                 <Login funNav={setShowHeader} />
               )
             }
-          ></Route>
-          <Route
+          ></Route> */}
+
+          {/* <Route
             path="/signup"
             element={
               access_token ? (
@@ -109,7 +112,13 @@ const App = () => {
                 <SignUp funNav={setShowHeader} />
               )
             }
-          ></Route>
+          ></Route> */}
+          <Route path="/signup" element={<SignUp funNav={setShowHeader} />}></Route>
+
+
+          <Route path="/signin" element={<SignIn funNav={setShowHeader} />}></Route>
+
+
           <Route
             path="*"
             element={<ErrorPage funNav={setShowHeader} />}

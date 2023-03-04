@@ -1,200 +1,166 @@
-import {
-  TextField,
-  FormControlLabel,
-  Checkbox,
-  Button,
-  Box,
-  Alert,
-  Typography,
-} from "@mui/material";
 import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Titles from "../../components/TourHomeComponents/Titles";
-import { storeToken } from "../../services/localStorageService";
-import { useRegisterUserMutation } from "../../services/userAuthApi";
-// import { storeToken } from '../../services/LocalStorageService';
 
-const SignUp = () => {
-  const [server_error, setServerError] = useState({});
+function SignUp() {
+  const [formData, setFormData] = useState({
+    email: "",
+    mobile_number: "",
+    username: "",
+    password: "",
+    is_active: true,
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const [registerUser, { isLoading }] = useRegisterUserMutation();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const actualData = {
-      username: data.get("username"),
-      email: data.get("email"),
-      password: data.get("password"),
-      Phone_number: data.get("phone"),
-      is_active: data.get("is_active"),
-    };
-    console.log(actualData);
-    const res = await registerUser(actualData);
-    // console.log(actualData);
-    if (res.error) {
-      // console.log(res.error.data);
-      // console.log(typeof (res.error.data.errors))
-      // console.log(res.error.data.errors)
-      setServerError(res.error.data);
-    }
-    if (res.data) {
-      // console.log(typeof res.data);
-      // console.log(res.data);
-      storeToken(res.data.token);
-      navigate("/signin");
+    setLoading(true);
+
+    try {
+      const response = await fetch("http://13.234.77.93:8000/accounts/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("accessToken", data.accessToken);
+        localStorage.setItem("refreshToken", data.refreshToken);
+        setLoading(false);
+        navigate("/signin");
+      } else {
+        console.log(response);
+        throw new Error("Signup failed");
+      }
+    } catch (error) {
+      setError(error.message);
+      setLoading(false);
+      console.log(error.message);
     }
   };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   return (
     <Wrapper>
-      {/* {server_error.non_field_errors
-        ? console.log(server_error.non_field_errors[0])
-        : ""}
-      {server_error.name ? console.log(server_error.name[0]) : ""}
-      {server_error.email ? console.log(server_error.email[0]) : ""}
-      {server_error.password ? console.log(server_error.password[0]) : ""}
-      {server_error.mobile_number ? console.log(server_error.password2[0]) : ""}
-      {server_error.is_active ? console.log(server_error.tc[0]) : ""} */}
-
-      <Titles
-        toursubtitle="Get into your zone"
-        tourtitlestart="Sign"
-        tourspan="Up"
-      />
-      <Box
-        component="form"
-        noValidate
-        sx={{ mt: 1 }}
-        id="registration-form"
-        onSubmit={handleSubmit}
-      >
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          id="username"
-          name="username"
-          label="Username"
-        />
-        {server_error.username ? (
-          <Typography style={{ fontSize: 12, color: "red", paddingLeft: 10 }}>
-            {server_error.username[0]}
-          </Typography>
-        ) : (
-          ""
-        )}
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          id="phone"
-          name="phone"
-          label="Phone"
-        />
-        {server_error.Phone_number ? (
-          <Typography style={{ fontSize: 12, color: "red", paddingLeft: 10 }}>
-            {server_error.Phone_number[0]}
-          </Typography>
-        ) : (
-          ""
-        )}
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          id="email"
-          name="email"
-          label="Email Address"
-        />
-        {server_error.email ? (
-          <Typography style={{ fontSize: 12, color: "red", paddingLeft: 10 }}>
-            {server_error.email[0]}
-          </Typography>
-        ) : (
-          ""
-        )}
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          id="password"
-          name="password"
-          label="Password"
-          type="password"
-        />
-        {server_error.password ? (
-          <Typography style={{ fontSize: 12, color: "red", paddingLeft: 10 }}>
-            {server_error.password[0]}
-          </Typography>
-        ) : (
-          ""
-        )}
-        {/* <TextField
-          margin="normal"
-          required
-          fullWidth
-          id="password2"
-          name="password2"
-          label="Confirm Password"
-          type="password"
-        />
-        {server_error.password2 ? (
-          <Typography style={{ fontSize: 12, color: "red", paddingLeft: 10 }}>
-            {server_error.password2[0]}
-          </Typography>
-        ) : (
-          ""
-        )} */}
-        <FormControlLabel
-          control={
-            <Checkbox
-              value={true}
-              color="primary"
-              name="is_active"
-              id="is_active"
-            />
-          }
-          label="I agree to term and condition."
-        />
-        {server_error.is_active ? (
-          <span style={{ fontSize: 12, color: "red", paddingLeft: 10 }}>
-            {server_error.is_active[0]}
-          </span>
-        ) : (
-          ""
-        )}
-        <Box textAlign="center">
-          <Button type="submit" variant="contained">
-            Join
-          </Button>
-        </Box>
-        {server_error.non_field_errors ? (
-          <Alert severity="error">{server_error.non_field_errors[0]}</Alert>
-        ) : (
-          ""
-        )}
-      </Box>
-      <br />
-      <Box textAlign="center" className="top__border">
-        <Button variant="contained">
-          <NavLink to="/signin">Already Have An Account</NavLink>
-        </Button>
-      </Box>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Email:
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Username:
+          <input
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Password:
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Mobile Number:
+          <input
+            type="text"
+            name="mobile_number"
+            value={formData.mobile_number}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <button type="submit" disabled={loading}>
+          {loading ? "Loading..." : "Sign Up"}
+        </button>
+        {error && <p>{error}</p>}
+      </form>
     </Wrapper>
   );
-};
+}
 
 const Wrapper = styled.section`
-  width: 350px;
-  margin: 50px auto;
-  padding: 10px 20px;
-  border: 1px solid #1976d226;
-  border-radius: 15px;
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 24px;
+  margin: 2rem auto;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
 
-  .top__border {
-    border-top: 1px solid black;
-    padding-top: 10px;
+h1 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.check_inp{
+  display: flex;
+
+  input{
+    width: 13px !important;
+    height: 20px;
+    margin: 0 1rem;
   }
-`;
+}
+
+input {
+  display: block;
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 12px;
+  border: 1px solid #dddfe2;
+  border-radius: 4px;
+  text-transform: none;
+}
+
+button {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px;
+  background-color: #0077ff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0066cc;
+}
+
+label {
+  font-size: 12px;
+  width: 90%;
+}
+`
 
 export default SignUp;

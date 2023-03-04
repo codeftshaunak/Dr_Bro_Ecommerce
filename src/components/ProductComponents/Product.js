@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import AddCartButton from "../AddCartButton/AddCartButton";
 import CartButton from "../CartButton/CartButton";
 import FormatPrice from "../Helpers/FormatPrice";
 import Star from "../Helpers/Star";
@@ -9,10 +8,10 @@ import QuickViewButton from "../QuickViewButton/QuickViewButton";
 import WishListButton from "../WishListButton/WishListButton";
 
 const Product = ({ products }) => {
-  const { id, product_name, thumbnail, price, availiability } = products;
+  const { uuid, product_name, thumbnail, price, availiability } = products;
   return (
     <Wrapper>
-      <NavLink to={`/singleproduct/${id}`}>
+      <NavLink to={`/singleproduct/${uuid}`}>
         <div className="product">
           <div className="product__image__data">
             <div className="buttons">
@@ -23,7 +22,7 @@ const Product = ({ products }) => {
               </div>
             </div>
             <figure>
-              <img src={thumbnail} alt={product_name} />
+            <img src={`http://13.234.77.93:8000/${thumbnail}`} alt="Product Image" />
               <figcaption className="caption"> {product_name} </figcaption>
             </figure>
           </div>
@@ -38,9 +37,6 @@ const Product = ({ products }) => {
                 <Star stars={availiability} />
               </div>
             </div>
-            {/* <div className="add__to__cart">
-              <AddCartButton />
-            </div> */}
           </div>
         </div>
       </NavLink>

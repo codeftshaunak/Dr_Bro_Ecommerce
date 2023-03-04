@@ -7,17 +7,16 @@ import reportWebVitals from "./reportWebVitals";
 import { AppProvider } from "./context/productContext";
 import { FilterContextProvider } from "./context/filterContext";
 import { CartProvider } from "./context/cartContext";
-import { Provider } from "react-redux";
-import { store } from "./app/store";
+import { BrowserRouter } from 'react-router-dom'
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <AppProvider>
     <FilterContextProvider>
       <CartProvider>
-        <Provider store={store}>
+        <BrowserRouter>
           <App />
-        </Provider>
+        </BrowserRouter>
       </CartProvider>
     </FilterContextProvider>
   </AppProvider>
