@@ -4,50 +4,75 @@ import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import CartItem from "../../components/CartItem/CartItem";
+import ProductCart from "../../components/CartItem/ProductCart";
+import TourCart from "../../components/CartItem/TourCart";
 import FormatPrice from "../../components/Helpers/FormatPrice";
-// import { useCartContext } from "../../context/cartContext";
 import { Button } from "../../styles/Button";
 
 const Cart = (props) => {
   props.funNav(true);
-  // const { cart, clearCart, total_price, shipping_fee } = useCartContext();
+  const access_token = localStorage.getItem('access_token');
   const [cartProduct, setCartProduct] = useState([]);
-
-  const API = "http://127.0.0.1:8000/cart/something";
+  const [tours, setTours] = useState([]);
+  const [products, setProducts] = useState([]);
+  const API = "http://13.234.77.93:8000/cart/something";
 
   const getCartItem = async (url) => {
-    await axios({
-      method: "GET",
-      url: `${url}`,
-      headers: {
-        // Authorization: `Bearer ${access_token}`,
-      },
-    }).then((res) => {
-      setCartProduct(res.data);
-    });
+    try {
+      const res = await axios({
+        method: "GET",
+        url: `${url}`,
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      setCartProduct(res.data.cart_items);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
     getCartItem(API);
+  }, []);
+
+  useEffect(() => {
+    // Filter the data and update the products and tours state variables
+    const filteredProducts = [];
+    const filteredTours = [];
+
+    cartProduct?.forEach(item => {
+      if (item.product) {
+        filteredProducts.push(item);
+      } else if (item.tours) {
+        filteredTours.push(item);
+      }
+    });
+
+    setProducts(filteredProducts);
+    setTours(filteredTours);
   }, [cartProduct]);
 
   return (
     <Wrapper>
       <div className="container">
-        <div className="cart_heading grid grid-five-column">
-          <p>Item</p>
-          <p className="cart-hide">Price</p>
-          <p>Quantity</p>
-          <p className="cart-hide">Subtotal</p>
-          <p>Remove</p>
+        <div className="cart-item">
+          <h2>Tours</h2>
+          {
+            tours?.map((currElm) => {
+              return <TourCart key={currElm.id} data={currElm} />
+            })
+          }
         </div>
         <hr />
         <div className="cart-item">
-          {cartProduct.products?.map((curElem) => {
-            return <CartItem key={curElem?.id} {...curElem} />;
-          })}
+          <h2>Products</h2>
+          {
+            products?.map((currElm) => {
+              return <ProductCart key={currElm.id} data={currElm} />
+            })
+          }
         </div>
-        <hr />
         <div className="cart-two-button">
           <NavLink to="/shop">
             <Button> Continue Shopping </Button>

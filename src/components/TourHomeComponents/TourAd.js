@@ -1,7 +1,6 @@
 import React from "react";
 import { FiPhoneCall } from "react-icons/fi";
 import styled from "styled-components";
-import TourAdImg from "../TourAdImgZoom.js/TourAdImg";
 import Titles from "./Titles";
 
 const TourAd = () => {
@@ -40,7 +39,6 @@ const TourAd = () => {
           </div>
         </div>
         <div className="tour__ad__right">
-          <TourAdImg />
         </div>
       </div>
     </Wrapper>

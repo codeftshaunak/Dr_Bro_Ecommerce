@@ -4,7 +4,6 @@ import styled from "styled-components";
 import CartButton from "../CartButton/CartButton";
 import FormatPrice from "../Helpers/FormatPrice";
 import Star from "../Helpers/Star";
-import QuickViewButton from "../QuickViewButton/QuickViewButton";
 import WishListButton from "../WishListButton/WishListButton";
 
 const Product = ({ products }) => {
@@ -18,11 +17,10 @@ const Product = ({ products }) => {
               <div className="product__button__icon">
                 <CartButton />
                 <WishListButton />
-                <QuickViewButton />
               </div>
             </div>
             <figure>
-            <img src={`http://13.234.77.93:8000/${thumbnail}`} alt="Product Image" />
+              <img src={`http://13.234.77.93:8000/${thumbnail}`} alt="Product Image" />
               <figcaption className="caption"> {product_name} </figcaption>
             </figure>
           </div>

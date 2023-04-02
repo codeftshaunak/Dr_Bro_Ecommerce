@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Contact = (props) => {
-  props.funNav(true);
+  // props.funNav(true);
 
   const Wrapper = styled.section`
     padding: 0.5rem 0;

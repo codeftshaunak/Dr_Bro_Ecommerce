@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -10,12 +9,6 @@ import "swiper/css/navigation";
 // import required modules
 import { Pagination } from "swiper";
 import styled from "styled-components";
-
-// {
-//   imgs = [{
-//     url: ""
-//   }]
-// }
 
 const DescriptionImage = (imgs) => {
   const url = `http://127.0.0.1:8000/${imgs.imgs}`;
@@ -32,18 +25,6 @@ const DescriptionImage = (imgs) => {
         modules={[Pagination]}
         className="mySwiper"
       >
-        {/* {imgs?.map((product) => {
-          return (
-            <SwiperSlide>
-              <div className="tour__card py-5 mb-10">
-                <figure class="image-block">
-                  <img src={product.url} alt="" />
-                </figure>
-              </div>
-            </SwiperSlide>
-          );
-        })} */}
-
         <SwiperSlide>
           <div className="tour__card py-5 mb-10">
             <figure class="image-block">

@@ -19,11 +19,10 @@ import Blog from "./Pages/Blog/Blog";
 import Tour from "./Pages/Tour/Tour";
 import TourTotalData from "./components/TourTotalData/TourTotalData";
 import Cart from "./Pages/Cart/Cart";
-import Login from "./Pages/Login/SignIn";
 import SignUp from "./Pages/SignUp/SignUp";
-import Profile from "./Pages/Profile/Profile";
-import { useSelector } from "react-redux";
 import SignIn from "./Pages/Login/SignIn";
+import SingleTour from "./components/SingleProductPage/SingleTour";
+import Admin from "./admin/Admin";
 
 const App = () => {
   const theme = {
@@ -51,7 +50,7 @@ const App = () => {
     },
   };
   const [showHeader, setShowHeader] = useState(true);
-
+  const access_token = localStorage.getItem("access_token")
   return (
     <ThemeProvider theme={theme}>
       <Router>
@@ -75,33 +74,26 @@ const App = () => {
             element={<SingleProduct funNav={setShowHeader} />}
           ></Route>
           <Route
+            path="/singletour/:id"
+            element={<SingleTour funNav={setShowHeader} />}
+          ></Route>
+          <Route
             path="/tour/alltour"
             element={<TourTotalData funNav={setShowHeader} />}
           ></Route>
           <Route path="/cart" element={<Cart funNav={setShowHeader} />}></Route>
           <Route path="/blog" element={<Blog funNav={setShowHeader} />}></Route>
 
-          {/* <Route
-            path="/profile"
+          <Route
+            path="/admin"
             element={
               access_token ? (
-                <Profile funNav={setShowHeader} />
+                <Admin funNav={setShowHeader}/>
               ) : (
-                <Navigate to="/signin" />
+                <SignIn funNav={setShowHeader} />
               )
             }
-          ></Route> */}
-
-          {/* <Route
-            path="/signin"
-            element={
-              access_token ? (
-                <Navigate to="/profile" />
-              ) : (
-                <Login funNav={setShowHeader} />
-              )
-            }
-          ></Route> */}
+          ></Route>
 
           {/* <Route
             path="/signup"
@@ -114,11 +106,7 @@ const App = () => {
             }
           ></Route> */}
           <Route path="/signup" element={<SignUp funNav={setShowHeader} />}></Route>
-
-
           <Route path="/signin" element={<SignIn funNav={setShowHeader} />}></Route>
-
-
           <Route
             path="*"
             element={<ErrorPage funNav={setShowHeader} />}

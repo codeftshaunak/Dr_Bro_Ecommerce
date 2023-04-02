@@ -4,20 +4,15 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useProductContext } from "../../context/productContext";
 import AddToCart from "../AddToCart/AddToCart";
-import FeatureProduct from "../FeatureProduct/FeatureProduct";
 import FormatPrice from "../Helpers/FormatPrice";
 import Loading from "../Loading/Loading";
 import PageNavigation from "../PageNavigations/PageNavigation";
-import SliderProduct from "../SliderProduct/SliderProduct";
-import TourSlider from "../TourHomeComponents/TourSlider";
-import DescriptionImage from "./DescriptionImage";
 import SingleProdutDescription from "./SingleProdutDescription";
 
 const API = "http://13.234.77.93:8000/ecommerce/Products/";
 
 const SingleProduct = (props) => {
   props.funNav(true);
-  // const [amount, setAmount] = useState(1);
 
   const {
     getSingleProduct,
@@ -26,6 +21,7 @@ const SingleProduct = (props) => {
   } = useProductContext();
 
   const { id } = useParams();
+
   const {
     product_name,
     price,
@@ -34,18 +30,10 @@ const SingleProduct = (props) => {
     availiability,
   } = singleProduct;
 
-console.log(singleProduct);
   useEffect(() => {
     getSingleProduct(`${API}${id}`);
   }, [id]);
 
-  // const setDecrase = () => {
-  //   amount > 1 ? setAmount(amount - 1) : setAmount(1);
-  // };
-
-  // const setIncrase = () => {
-  //   amount < stock ? setAmount(amount + 1) : setAmount(stock);
-  // };
 
   if (isSingleLoading) {
     return (
@@ -70,14 +58,12 @@ console.log(singleProduct);
           <h3>
             <FormatPrice price={price} />
           </h3>
-          {availiability > 0 && <AddToCart product={singleProduct} />}
+          {availiability > 0 ? <AddToCart product={singleProduct} /> : <button disabled>Stock Out</button>}
         </div>
       </div>
       <SingleProdutDescription product={description} />
       {/* <DescriptionImage imgs={thumbnail} /> */}
       <img src={`http://13.234.77.93:8000/${thumbnail}`} alt="Product Image" />
-
-      <FeatureProduct />
     </Wrapper>
   );
 };

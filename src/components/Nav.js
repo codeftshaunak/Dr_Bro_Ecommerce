@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { CgMenu, CgClose, CgProfile } from "react-icons/cg";
 import { useCartContext } from "../context/cartContext";
-import { useSelector } from "react-redux";
 
 const Nav = () => {
   const [menuIcon, setmenuIcon] = useState();
@@ -205,30 +204,16 @@ const Nav = () => {
               Contact
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/signin"
+              className="navbar-link"
+              onClick={() => setmenuIcon(false)}
+            >
+              SignIn
+            </NavLink>
+          </li>
           <div className="cart__login">
-            
-            {/* {access_token ? (
-              <li>
-                <NavLink
-                  to="/profile"
-                  className="navbar-link cart-trolley--link"
-                  onClick={() => setmenuIcon(false)}
-                >
-                  <CgProfile className="cart-trolley"></CgProfile>
-                </NavLink>
-              </li>
-            ) : (
-              <li>
-                <NavLink
-                  to="/signin"
-                  className="navbar-link cart-trolley--link"
-                  onClick={() => setmenuIcon(false)}
-                >
-                  <CgProfile className="cart-trolley"></CgProfile>
-                </NavLink>
-              </li>
-            )} */}
-
             <li>
               <NavLink
                 to="/cart"
@@ -242,7 +227,6 @@ const Nav = () => {
           </div>
         </ul>
 
-        {/* Buttons for responsive */}
         <div className="mobile-navbar-btn">
           <CgMenu
             name="menu-outline"

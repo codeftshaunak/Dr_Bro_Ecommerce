@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { GoLocation } from "react-icons/go";
 import Titles from "./Titles";
@@ -14,6 +14,7 @@ import { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 const PopularDestination = () => {
   const popularTourData = [
@@ -53,6 +54,19 @@ const PopularDestination = () => {
         "https://i.picsum.photos/id/84/1280/848.jpg?hmac=YFRYDI4UsfbeTzI8ZakNOR98wVU7a-9a2tGF542539s",
     },
   ];
+
+  const [tour, setTour] = useState([]);
+  const API = "http://13.234.77.93:8000/tours/";
+
+  const getTours = async (api) => {
+    const res = await axios.get(api);
+    const data = res.data.data;
+    setTour(data);
+  }
+
+  useEffect(() => {
+    getTours(API);
+  }, [])
 
   return (
     <Wrapper className="container pb-36">

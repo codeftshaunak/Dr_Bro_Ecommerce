@@ -7,18 +7,18 @@ import reportWebVitals from "./reportWebVitals";
 import { AppProvider } from "./context/productContext";
 import { FilterContextProvider } from "./context/filterContext";
 import { CartProvider } from "./context/cartContext";
-import { BrowserRouter } from 'react-router-dom'
+import { TokenProvider } from './context/tokenContext';
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <AppProvider>
-    <FilterContextProvider>
-      <CartProvider>
-        <BrowserRouter>
+    <TokenProvider>
+      <FilterContextProvider>
+        <CartProvider>
           <App />
-        </BrowserRouter>
-      </CartProvider>
-    </FilterContextProvider>
+        </CartProvider>
+      </FilterContextProvider>
+    </TokenProvider>
   </AppProvider>
 );
 
