@@ -13,7 +13,7 @@ import {
 } from "@heroicons/react/24/solid";
 import Dashboard from "./Dashboard";
 import TourAdmin from "./TourAdmin";
-import Products from "./Product";
+import AdminShop from "./AdminShop";
 
 export default function Sidebar() {
   const data = [
@@ -21,7 +21,7 @@ export default function Sidebar() {
       label: "Dashboard",
       value: "dashboard",
       icon: Square3Stack3DIcon,
-      desc: <Products />
+      desc: <Dashboard />,
     },
     {
       label: "Tour",
@@ -33,7 +33,7 @@ export default function Sidebar() {
       label: "Shop",
       value: "Shop",
       icon: Cog6ToothIcon,
-      desc: <Dashboard />,
+      desc: <AdminShop />
     },
   ];
 
@@ -46,7 +46,6 @@ export default function Sidebar() {
   }
 
   return (
-
     <div className="slidebar" style={widthStyle}>
       <Tabs value="dashboard">
         <TabsHeader>
@@ -61,7 +60,7 @@ export default function Sidebar() {
         </TabsHeader>
         <TabsBody>
           {data.map(({ value, desc }) => (
-            <TabPanel key={value} value={value} style={labelStyle}>
+            <TabPanel key={value} value={value} style={labelStyle} className="flex">
               {desc}
             </TabPanel>
           ))}
