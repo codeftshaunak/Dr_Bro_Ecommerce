@@ -19,7 +19,7 @@
 //     setLoading(true);
 
 //     try {
-//       const response = await fetch("http://13.234.77.93:8000/accounts/register", {
+//       const response = await fetch(`${BASE_URL}/accounts/register`, {
 //         method: "POST",
 //         headers: {
 //           "Content-Type": "application/json",
@@ -186,6 +186,7 @@ import {
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { BASE_URL } from "../../config";
 
 const Wrapper = styled.section`
   margin: 3rem 0;
@@ -208,7 +209,7 @@ export default function SignUn() {
     const password = formData.get("password");
     const username = formData.get("username");
     const mobile_number = formData.get("mobile_number");
-    fetch("http://13.234.77.93:8000/accounts/register", {
+    fetch(`${BASE_URL}/accounts/register`, {
       method: "POST",
       body: JSON.stringify({ username, password, email, mobile_number }),
       headers: {

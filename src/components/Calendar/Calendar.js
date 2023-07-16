@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { NavLink, useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
+import { BASE_URL } from "../../config";
 
 function Calendar({ data }) {
     console.log(data);
@@ -43,7 +44,7 @@ function Calendar({ data }) {
         const numTicketsToSend = Math.min(numTickets, getMaxTickets());
         console.log(numTicketsToSend);
         axios
-            .post("http://13.234.77.93:8000/cart/something", {
+            .post(`${BASE_URL}/cart/something`, {
                 tour_id: uuid,
                 quantity: numTicketsToSend,
             }, {

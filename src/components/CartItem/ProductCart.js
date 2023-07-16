@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
+import { BASE_URL } from '../../config';
 
 const CartContainer = styled.div`
   max-width: 800px;
@@ -61,7 +62,7 @@ const ProductCart = (data) => {
     const tourquantity = data.data.quantity;
     const { product_name, thumbnail, price, uuid } = data.data.product;
     const access_token = localStorage.getItem("access_token");
-    const API = "http://13.234.77.93:8000/cart/something";
+    const API = `${BASE_URL}/cart/something`;
     const removeItemCart = useCallback(() => {
         axios.post(
             API, {

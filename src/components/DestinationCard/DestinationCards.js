@@ -7,10 +7,11 @@ import { Button } from "../../styles/Button";
 import FormatPrice from "../Helpers/FormatPrice";
 import Star from "../Helpers/Star";
 import TourPageNavigation from "../PageNavigations/TourPageNavigation";
+import { BASE_URL } from "../../config";
 
 function DestinationCards() {
   const [tourdata, setTourdata] = useState([]);
-  const API = "http://13.234.77.93:8000/tours/";
+  const API = `${BASE_URL}/tours/`;
 
   //Single products
   const getTours = async (url) => {
@@ -34,7 +35,7 @@ function DestinationCards() {
               {/* Card-1 Start */}
               <div className="card tour__card w-1/4 bg-white text-black shadow-xl">
                 <figure>
-                  <img src={`http://13.234.77.93:8000/${data.thumbnail}`} alt="Tour Image" />
+                  <img src={`${BASE_URL}/${data.thumbnail}`} alt="Tour Image" />
 
                   <div className="button">
                     <NavLink to={`/singletour/${data.uuid}`}>

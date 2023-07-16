@@ -8,6 +8,7 @@ import ProductCart from "../../components/CartItem/ProductCart";
 import TourCart from "../../components/CartItem/TourCart";
 import FormatPrice from "../../components/Helpers/FormatPrice";
 import { Button } from "../../styles/Button";
+import { BASE_URL } from "../../config";
 
 const Cart = (props) => {
   props.funNav(true);
@@ -15,7 +16,7 @@ const Cart = (props) => {
   const [cartProduct, setCartProduct] = useState([]);
   const [tours, setTours] = useState([]);
   const [products, setProducts] = useState([]);
-  const API = "http://13.234.77.93:8000/cart/something";
+  const API = `${BASE_URL}/cart/something`;
 
   const getCartItem = async (url) => {
     try {

@@ -3,10 +3,11 @@ import React, { useCallback, useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import styled from "styled-components";
 import FormatPrice from "../Helpers/FormatPrice";
+import { BASE_URL } from "../../config";
 
 const CartItem = (data) => {
   const access_token = localStorage.getItem("access_token");
-  const API = "http://13.234.77.93:8000/cart/something";
+  const API = `${BASE_URL}/cart/something`;
 
 
 

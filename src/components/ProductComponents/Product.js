@@ -5,6 +5,7 @@ import CartButton from "../CartButton/CartButton";
 import FormatPrice from "../Helpers/FormatPrice";
 import Star from "../Helpers/Star";
 import WishListButton from "../WishListButton/WishListButton";
+import { BASE_URL } from "../../config";
 
 const Product = ({ products }) => {
   const { uuid, product_name, thumbnail, price, availiability } = products;
@@ -20,7 +21,7 @@ const Product = ({ products }) => {
               </div>
             </div>
             <figure>
-              <img src={`http://13.234.77.93:8000/${thumbnail}`} alt="Product Image" />
+              <img src={`${BASE_URL}/${thumbnail}`} alt="Product Image" />
               <figcaption className="caption"> {product_name} </figcaption>
             </figure>
           </div>

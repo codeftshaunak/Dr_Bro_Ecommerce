@@ -1,9 +1,10 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import reducer from "../reducer/productReducer";
 import axios from "axios";
+import { BASE_URL } from "../config";
 
 const AppContext = createContext();
-const API = "http://13.234.77.93:8000/ecommerce/";
+const API = `${BASE_URL}/ecommerce/`;
 
 const initialState = {
   isLoading: false,

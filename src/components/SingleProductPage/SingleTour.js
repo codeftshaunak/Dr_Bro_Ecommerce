@@ -9,11 +9,12 @@ import SingleProdutDescription from './SingleProdutDescription';
 import 'react-datepicker/dist/react-datepicker.css';
 import Calendar from '../Calendar/Calendar';
 import TravelBooking from '../Calendar/TravelBooking';
+import { BASE_URL } from '../../config';
 
 const SingleTour = () => {
     const [tour, setTour] = useState([]);
     const { Tours_name, Tourss, description, price, thumbnail } = tour;
-    const API = "http://13.234.77.93:8000/tours/packages/";
+    const API = `${BASE_URL}/tours/packages/`;
     const { id } = useParams();
 
     const getTourData = async (url) => {
@@ -33,7 +34,7 @@ const SingleTour = () => {
             <PageNavigation title={Tours_name} />
             <div className="single__products__front">
                 <div className="left__side__single">
-                    <img src={`http://13.234.77.93:8000/${thumbnail}`} alt="Product Image" />
+                    <img src={`${BASE_URL}/${thumbnail}`} alt="Product Image" />
                 </div>
                 <div className="right__side__single">
                     <h2>{Tours_name}</h2>
@@ -46,7 +47,7 @@ const SingleTour = () => {
                 </div>
             </div>
             <SingleProdutDescription product={description} />
-            <img src={`http://13.234.77.93:8000/${thumbnail}`} alt="Product Image" />
+            <img src={`${BASE_URL}/${thumbnail}`} alt="Product Image" />
         </Wrapper>
     )
 }

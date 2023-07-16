@@ -6,10 +6,11 @@ import {
     Typography,
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
-import { BASE_URL } from '../config.js';
+import { BASE_URL } from "../config";
 
-export default function Products() {
+export default function Tour() {
     const [product, setProduct] = useState([]);
+    console.log(product);
     useEffect(() => {
         const accessToken = localStorage.getItem("access_token");
         const requestOptions = {
@@ -17,7 +18,7 @@ export default function Products() {
             headers: { "Authorization": `Bearer ${accessToken}` }
         };
 
-        fetch(`${BASE_URL}/admins/ecommerce/products/list`, requestOptions)
+        fetch(`${BASE_URL}/admins/tours/travels/list`, requestOptions)
             .then(response => response.json())
             .then(data => setProduct(data.data))
             .catch(error => console.error(error));
@@ -28,9 +29,6 @@ export default function Products() {
             return <div key={data.id}>
                 <Card className="w-96 m-4">
                     <br />
-                    <CardHeader color="blue" className="relative h-56">
-                        <img src={`${BASE_URL}/${data.thumbnail}`} alt="Product Image" />
-                    </CardHeader>
                     <CardBody className="text-center">
                         <Typography variant="h5" className="mb-2">
                             {data.product_name}                        </Typography>

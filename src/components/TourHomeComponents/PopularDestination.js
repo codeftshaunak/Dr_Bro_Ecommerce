@@ -15,6 +15,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import { BASE_URL } from "../../config";
 
 const PopularDestination = () => {
   const popularTourData = [
@@ -56,7 +57,7 @@ const PopularDestination = () => {
   ];
 
   const [tour, setTour] = useState([]);
-  const API = "http://13.234.77.93:8000/tours/";
+  const API = `${BASE_URL}/tours/`;
 
   const getTours = async (api) => {
     const res = await axios.get(api);

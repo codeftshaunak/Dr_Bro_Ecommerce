@@ -9,9 +9,10 @@ import "swiper/css/navigation";
 // import required modules
 import { Pagination } from "swiper";
 import styled from "styled-components";
+import { BASE_URL } from "../../config";
 
 const DescriptionImage = (imgs) => {
-  const url = `http://127.0.0.1:8000/${imgs.imgs}`;
+  const url = `${BASE_URL}/${imgs.imgs}`;
 
   return (
     <Wrapper>

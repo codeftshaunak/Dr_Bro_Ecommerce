@@ -8,8 +8,9 @@ import FormatPrice from "../Helpers/FormatPrice";
 import Loading from "../Loading/Loading";
 import PageNavigation from "../PageNavigations/PageNavigation";
 import SingleProdutDescription from "./SingleProdutDescription";
+import { BASE_URL } from "../../config";
 
-const API = "http://13.234.77.93:8000/ecommerce/Products/";
+const API = `${BASE_URL}/ecommerce/Products/`;
 
 const SingleProduct = (props) => {
   props.funNav(true);
@@ -51,7 +52,7 @@ const SingleProduct = (props) => {
       <div className="single__products__front">
         <div className="left__side__single">
           {/* <SliderProduct imgs={thumbnail} /> */}
-          <img src={`http://13.234.77.93:8000/${thumbnail}`} alt="Product Image" />
+          <img src={`${BASE_URL}/${thumbnail}`} alt="Product Image" />
         </div>
         <div className="right__side__single">
           <h2>{product_name}</h2>
@@ -63,7 +64,7 @@ const SingleProduct = (props) => {
       </div>
       <SingleProdutDescription product={description} />
       {/* <DescriptionImage imgs={thumbnail} /> */}
-      <img src={`http://13.234.77.93:8000/${thumbnail}`} alt="Product Image" />
+      <img src={`${BASE_URL}/${thumbnail}`} alt="Product Image" />
     </Wrapper>
   );
 };

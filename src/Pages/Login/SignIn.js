@@ -12,7 +12,7 @@
 //   const handleSubmit = (event) => {
 //     event.preventDefault();
 //     const data = { username: email, password: password };
-//     fetch('http://13.234.77.93:8000/accounts/token/login/', {
+//     fetch(`${BASE_URL}/accounts/token/login/`, {
 //       method: 'POST',
 //       headers: {
 //         'Content-Type': 'application/json',
@@ -153,6 +153,7 @@ import {
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { BASE_URL } from "../../config";
 
 const Wrapper = styled.section`
   margin: 3rem 0;
@@ -174,7 +175,7 @@ export default function SignIn(props) {
     const formData = new FormData(event.target);
     const username = formData.get("email");
     const password = formData.get("password");
-    fetch("http://13.234.77.93:8000/accounts/token/login/", {
+    fetch(`${BASE_URL}/accounts/token/login/`, {
       method: "POST",
       body: JSON.stringify({ username, password }),
       headers: {

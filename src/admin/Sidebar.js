@@ -12,7 +12,7 @@ import {
   Cog6ToothIcon,
 } from "@heroicons/react/24/solid";
 import Dashboard from "./Dashboard";
-import TourAdmin from "./TourAdmin";
+import TourAdmin from "./Tour";
 import AdminShop from "./AdminShop";
 
 export default function Sidebar() {

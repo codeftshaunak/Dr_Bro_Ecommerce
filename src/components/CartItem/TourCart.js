@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
+import { BASE_URL } from '../../config';
 
 const CartContainer = styled.div`
   max-width: 800px;
@@ -56,7 +57,6 @@ const DeleteButton = styled.button`
   cursor: pointer;
 `;
 
-
 const TourCart = (data) => {
     console.log(data);
     const tourquantity = data.data.quantity;
@@ -65,7 +65,7 @@ const TourCart = (data) => {
     console.log(uuid);
     const { Tours_name, thumbnail, price } = data.data.tours.tours;
     const access_token = localStorage.getItem("access_token");
-    const API = "http://13.234.77.93:8000/cart/something";
+    const API = `${BASE_URL}/cart/something`;
     const removeItemCart = useCallback(() => {
         axios.post(API, {
             quantity: 0,
@@ -83,7 +83,7 @@ const TourCart = (data) => {
 
     return (
         <CartItem>
-            <CartItemImage src={`http://13.234.77.93:8000/${thumbnail}`} alt="Product Image" />
+            <CartItemImage src={`${BASE_URL}/${thumbnail}`} alt="Product Image" />
             <CartItemDetails>
                 <CartItemName>{Tours_name}</CartItemName>
                 <CartItemQuantity>Date:{date}</CartItemQuantity>

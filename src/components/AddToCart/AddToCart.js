@@ -5,8 +5,9 @@ import styled from "styled-components";
 import CartAmountToggle from "../CartAmountToggle/CartAmountToggle";
 import Button from "../Button/Button";
 import axios from "axios";
+import { BASE_URL } from "../../config";
 
-const API = "http://13.234.77.93:8000/cart/something";
+const API = `${BASE_URL}/cart/something`;
 
 const AddToCart = ({ product }) => {
   const [amount, setAmount] = useState(1);
