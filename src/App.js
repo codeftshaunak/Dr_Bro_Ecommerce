@@ -23,6 +23,7 @@ import SignUp from "./Pages/SignUp/SignUp";
 import SignIn from "./Pages/Login/SignIn";
 import SingleTour from "./components/SingleProductPage/SingleTour";
 import Admin from "./admin/Admin";
+import Passport from "./Pages/Passport/Passport";
 
 const App = () => {
   const theme = {
@@ -88,7 +89,7 @@ const App = () => {
             path="/admin"
             element={
               access_token ? (
-                <Admin funNav={setShowHeader}/>
+                <Admin funNav={setShowHeader} />
               ) : (
                 <SignIn funNav={setShowHeader} />
               )
@@ -107,12 +108,16 @@ const App = () => {
           ></Route> */}
           <Route path="/signup" element={<SignUp funNav={setShowHeader} />}></Route>
           <Route path="/signin" element={<SignIn funNav={setShowHeader} />}></Route>
+          <Route path="/passport" element={<Passport funNav={setShowHeader} />}></Route>
+
           <Route
             path="*"
             element={<ErrorPage funNav={setShowHeader} />}
           ></Route>
         </Routes>
         {showHeader && <Footer />}
+
+
       </Router>
     </ThemeProvider>
   );
