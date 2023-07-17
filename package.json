@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@auth0/auth0-react": "^1.10.2",
+    "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.17",
     "@material-tailwind/react": "^1.4.2",
     "@mui/icons-material": "^5.11.0",

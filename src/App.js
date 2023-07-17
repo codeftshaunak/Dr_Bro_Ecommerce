@@ -24,6 +24,7 @@ import SignIn from "./Pages/Login/SignIn";
 import SingleTour from "./components/SingleProductPage/SingleTour";
 import Admin from "./admin/Admin";
 import Passport from "./Pages/Passport/Passport";
+import PassportSignUp from "./components/PassportAuth/PassportSignUp";
 
 const App = () => {
   const theme = {
@@ -109,7 +110,7 @@ const App = () => {
           <Route path="/signup" element={<SignUp funNav={setShowHeader} />}></Route>
           <Route path="/signin" element={<SignIn funNav={setShowHeader} />}></Route>
           <Route path="/passport" element={<Passport funNav={setShowHeader} />}></Route>
-
+          <Route path="/passportsignup" element={<PassportSignUp funNav={setShowHeader} />}></Route>
           <Route
             path="*"
             element={<ErrorPage funNav={setShowHeader} />}
