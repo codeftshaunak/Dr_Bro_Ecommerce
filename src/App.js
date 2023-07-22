@@ -25,6 +25,9 @@ import SingleTour from "./components/SingleProductPage/SingleTour";
 import Admin from "./admin/Admin";
 import Passport from "./Pages/Passport/Passport";
 import PassportSignUp from "./components/PassportAuth/PassportSignUp";
+import PassportProcess from "./components/PassportComp/PassportProcess";
+import PassportSignIn from "./components/PassportAuth/PassportSignIn";
+import PassportTrack from "./components/PassportComp/PassportTrack";
 
 const App = () => {
   const theme = {
@@ -111,6 +114,10 @@ const App = () => {
           <Route path="/signin" element={<SignIn funNav={setShowHeader} />}></Route>
           <Route path="/passport" element={<Passport funNav={setShowHeader} />}></Route>
           <Route path="/passportsignup" element={<PassportSignUp funNav={setShowHeader} />}></Route>
+          <Route path="/getpassports" element={<PassportProcess funNav={setShowHeader} />}></Route>
+          <Route path="/passportsignin" element={<PassportSignIn funNav={setShowHeader} />}></Route>
+          <Route path="/passporttrack" element={<PassportTrack funNav={setShowHeader} />}></Route>
+
           <Route
             path="*"
             element={<ErrorPage funNav={setShowHeader} />}

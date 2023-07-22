@@ -79,14 +79,6 @@ const Wrapper = styled.section`
 
 const PassportNav = () => {
     const [menuIcon, setmenuIcon] = useState(false);
-    // const [showLogin, setShowLogin] = useState(false);
-    // const handleLoginClick = () => {
-    //     setShowLogin(true);
-    // };
-
-    // const handleLoginClose = () => {
-    //     setShowLogin(false);
-    // };
 
     return (
         <Wrapper>
@@ -106,20 +98,25 @@ const PassportNav = () => {
 
                 <nav className='flex justify-around p-5 fixed w-full top-0 left-0 right-0 border border-black z-10'>
                     <div className="logo w-1/6">
-                        <img src={logo} alt="DR BRO" className="logo w-20" />
+                        <a href="/">
+                            <img src={logo} alt="DR BRO" className="logo w-20" />
+                        </a>
                     </div>
                     <div className="items flex justify-between w-6/12 navbar-lists">
                         <button className='rounded-t-lg bg-orange-600 hover:bg-white hover:text-black hover:border-orange-600 hover:border text-white px-4 py-0 font-semibold ease-in-out duration-500 h-14'>
-                            <a href="#">Track Now</a>
+                            <a href="passport">Home</a>
                         </button>
                         <button className='rounded-t-lg bg-orange-600 hover:bg-white hover:text-black hover:border-orange-600 hover:border text-white px-4 py-0 font-semibold ease-in-out duration-500 h-14'>
-                            <a href="#">Passport</a>
+                            <a href="passporttrack">Track Now</a>
+                        </button>
+                        <button className='rounded-t-lg bg-orange-600 hover:bg-white hover:text-black hover:border-orange-600 hover:border text-white px-4 py-0 font-semibold ease-in-out duration-500 h-14'>
+                            <a href="getpassports">Passport</a>
                         </button>
                         <button className='rounded-t-lg bg-orange-600 hover:bg-white hover:text-black hover:border-orange-600 hover:border text-white px-4 py-0 font-semibold ease-in-out duration-500 h-14'>
                             <a href="passportsignup">SignUp</a>
                         </button>
                         <button className='rounded-t-lg bg-orange-600 hover:bg-white hover:text-black hover:border-orange-600 hover:border text-white px-4 py-0 font-semibold ease-in-out duration-500 h-14'>
-                            <a href="#">SignIn</a>
+                            <a href="passportsignin">SignIn</a>
                         </button>
                     </div>
                     <div className="mobile-navbar-btn">
