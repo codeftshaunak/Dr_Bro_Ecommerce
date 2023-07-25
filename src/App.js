@@ -22,12 +22,13 @@ import Cart from "./Pages/Cart/Cart";
 import SignUp from "./Pages/SignUp/SignUp";
 import SignIn from "./Pages/Login/SignIn";
 import SingleTour from "./components/SingleProductPage/SingleTour";
-import Admin from "./admin/Admin";
 import Passport from "./Pages/Passport/Passport";
 import PassportSignUp from "./components/PassportAuth/PassportSignUp";
 import PassportProcess from "./components/PassportComp/PassportProcess";
 import PassportSignIn from "./components/PassportAuth/PassportSignIn";
 import PassportTrack from "./components/PassportComp/PassportTrack";
+import AdminHome from "./admin/AdminHome";
+import AdminLogin from "./admin/AdminLogin";
 
 const App = () => {
   const theme = {
@@ -89,7 +90,7 @@ const App = () => {
           <Route path="/cart" element={<Cart funNav={setShowHeader} />}></Route>
           <Route path="/blog" element={<Blog funNav={setShowHeader} />}></Route>
 
-          <Route
+          {/* <Route
             path="/admin"
             element={
               access_token ? (
@@ -98,7 +99,11 @@ const App = () => {
                 <SignIn funNav={setShowHeader} />
               )
             }
-          ></Route>
+          ></Route> */}
+
+          <Route path="/admin" element={<AdminHome funNav={setShowHeader} />}></Route>
+          <Route path="/adminlogin" element={<AdminLogin funNav={setShowHeader} />}></Route>
+
 
           {/* <Route
             path="/signup"
