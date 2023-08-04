@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import AdminLayout from './AdminLayout';
+import { BASE_URL } from '../config';
 
 const AdminLogin = (props) => {
     props.funNav(false)
@@ -14,7 +15,7 @@ const AdminLogin = (props) => {
 
         try {
             // Replace the URL with the correct login endpoint
-            const response = await axios.post('http://3.110.195.48:8000/accounts/token/login/', {
+            const response = await axios.post(`${BASE_URL}/accounts/token/login/`, {
                 username,
                 password,
             });
@@ -39,7 +40,7 @@ const AdminLogin = (props) => {
 
                 <form onSubmit={handleLogin} className="space-y-4">
                     <div>
-                        <label htmlFor="username" className="block font-medium mb-1">Username</label>
+                        <label htmlFor="username" className="block font-medium mb-1 text-2xl">Username</label>
                         <input
                             type="email"
                             id="username"
@@ -49,8 +50,8 @@ const AdminLogin = (props) => {
                         />
                     </div>
 
-                    <div>
-                        <label htmlFor="password" className="block font-medium mb-1">Password</label>
+                    <div className='w-96'>
+                        <label htmlFor="password" className="block font-medium mb-1 text-2xl">Password</label>
                         <input
                             type="password"
                             id="password"

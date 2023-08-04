@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import logo from "../../assets/logo/logo.png";
 import Footer from '../Footer/Footer';
 import { CgClose, CgMenu } from 'react-icons/cg';
+import { Link } from 'react-router-dom';
 
 
 const Wrapper = styled.section`
@@ -104,19 +105,22 @@ const PassportNav = () => {
                     </div>
                     <div className="items flex justify-between w-6/12 navbar-lists">
                         <button className='rounded-t-lg bg-orange-600 hover:bg-white hover:text-black hover:border-orange-600 hover:border text-white px-4 py-0 font-semibold ease-in-out duration-500 h-14'>
-                            <a href="passport">Home</a>
+                            <Link to="/passport">Home</Link>
                         </button>
                         <button className='rounded-t-lg bg-orange-600 hover:bg-white hover:text-black hover:border-orange-600 hover:border text-white px-4 py-0 font-semibold ease-in-out duration-500 h-14'>
-                            <a href="passporttrack">Track Now</a>
+                            <Link to="/passporttrack">Track Now</Link>
                         </button>
                         <button className='rounded-t-lg bg-orange-600 hover:bg-white hover:text-black hover:border-orange-600 hover:border text-white px-4 py-0 font-semibold ease-in-out duration-500 h-14'>
-                            <a href="getpassports">Passport</a>
+                            <Link to="/getpassports">Passport</Link>
                         </button>
                         <button className='rounded-t-lg bg-orange-600 hover:bg-white hover:text-black hover:border-orange-600 hover:border text-white px-4 py-0 font-semibold ease-in-out duration-500 h-14'>
-                            <a href="passportsignup">SignUp</a>
+                            <Link to="/passportsignup">SignUp</Link>
                         </button>
                         <button className='rounded-t-lg bg-orange-600 hover:bg-white hover:text-black hover:border-orange-600 hover:border text-white px-4 py-0 font-semibold ease-in-out duration-500 h-14'>
-                            <a href="passportsignin">SignIn</a>
+                            <Link to="/passportsignin">SignIn</Link>
+                        </button>
+                        <button className='rounded-t-lg bg-orange-600 hover:bg-white hover:text-black hover:border-orange-600 hover:border text-white px-4 py-0 font-semibold ease-in-out duration-500 h-14'>
+                            <Link to="/adminlogin">Admin</Link>
                         </button>
                     </div>
                     <div className="mobile-navbar-btn">

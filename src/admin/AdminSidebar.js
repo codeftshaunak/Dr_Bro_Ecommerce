@@ -4,7 +4,7 @@ import { AiFillPieChart } from 'react-icons/ai'
 import { SiFuturelearn } from 'react-icons/si'
 import { SiOpenaccess } from 'react-icons/si'
 import { CgProfile } from 'react-icons/cg'
-import { Link, useNavigation } from 'react-router-dom'
+import { Link, NavLink, useNavigation } from 'react-router-dom'
 import HumburgerButton from './HumburgerMenu/HumburgerButton'
 
 
@@ -14,9 +14,9 @@ const AdminSidebar = () => {
     // const navigation = useNavigation();
 
     const Menus = [
-        { title: 'E-commerce', path: '/adminhome', src: <CgProfile /> },
-        { title: 'Tours & Travels', path: '/appadmins', src: <SiFuturelearn /> },
-        { title: 'Passport', path: '/coustomers', src: <SiFuturelearn /> },
+        { title: 'E-commerce', path: '/adminecom', src: <CgProfile /> },
+        { title: 'Tours & Travels', path: '/tourstravels', src: <SiFuturelearn /> },
+        { title: 'Passport', path: '/adminpassport', src: <SiFuturelearn /> },
         { title: 'Users', path: '/createaccount', src: <SiFuturelearn /> },
     ]
 
@@ -32,7 +32,7 @@ const AdminSidebar = () => {
                     onClick={() => setOpen(!open)}
                 />
                 <br />
-                <Link href='/'>
+                <NavLink href='/'>
                     <div className={`flex ${open && 'gap-x-4'} items-center`}>
                         <img src="" alt='' className='pl-2' />
                         {open && (
@@ -41,11 +41,11 @@ const AdminSidebar = () => {
                             </span>
                         )}
                     </div>
-                </Link>
+                </NavLink>
                 <br />
                 <ul className='flex flex-col gap-y-2'>
                     {Menus.map((menu, index) => (
-                        <Link href={menu.path} key={index}>
+                        <NavLink to={menu.path} key={index}>
                             <li
                                 className={`flex items-center text-2xl gap-x-6 p-3 text-white font-normal rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700`}
                             >
@@ -54,7 +54,7 @@ const AdminSidebar = () => {
                                     {menu.title}
                                 </span>
                             </li>
-                        </Link>
+                        </NavLink>
                     ))}
                 </ul>
             </div>

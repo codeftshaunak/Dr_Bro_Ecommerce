@@ -29,6 +29,8 @@ import PassportSignIn from "./components/PassportAuth/PassportSignIn";
 import PassportTrack from "./components/PassportComp/PassportTrack";
 import AdminHome from "./admin/AdminHome";
 import AdminLogin from "./admin/AdminLogin";
+import AdminEcom from "./admin/AdminEcom";
+import AdminPassport from "./admin/AdminPassport";
 
 const App = () => {
   const theme = {
@@ -103,6 +105,8 @@ const App = () => {
 
           <Route path="/admin" element={<AdminHome funNav={setShowHeader} />}></Route>
           <Route path="/adminlogin" element={<AdminLogin funNav={setShowHeader} />}></Route>
+          <Route path="/adminecom" element={<AdminEcom funNav={setShowHeader} />}></Route>
+          <Route path="/adminpassport" element={<AdminPassport funNav={setShowHeader} />}></Route>
 
 
           {/* <Route
