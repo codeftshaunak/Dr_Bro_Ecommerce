@@ -80,13 +80,13 @@ const EproductItem = ({ data }) => {
 
     return (
         <>
-            <div className="w-[350px] p-10 border mb-3">
+            <div className="w-[350px] p-10 border mb-3 capitalize">
                 <h3 className="product_title">Product Name: {product_name}</h3>
                 <h3 className="availiability">availiability: {availiability}</h3>
                 <h3 className="category">category: {category}</h3>
                 <h3 className="description">description: {description}</h3>
-                <h3 className="price">description: {price}</h3>
-                <h3 className="slug">slug: {slug}</h3>
+                <h3 className="price">Price: {price}</h3>
+                <h3 className="slug">Slug: {slug}</h3>
                 <img className='w-96' src={thumbnail} alt={product_name} />
 
                 <div className="buttons pt-5">

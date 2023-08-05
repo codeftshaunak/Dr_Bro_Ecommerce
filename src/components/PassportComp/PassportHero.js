@@ -1,5 +1,6 @@
 import React from 'react';
 import passport from '../../assets/passport.jpeg';
+import { NavLink } from 'react-router-dom';
 
 
 const PassportHero = () => {
@@ -16,7 +17,7 @@ const PassportHero = () => {
 
                                 <br />
                                 <button className='rounded-lg bg-orange-600 hover:bg-white hover:text-black hover:border-orange-600 hover:border text-white px-4 py-0 font-semibold ease-in-out duration-500 h-14'>
-                                    <a href="#">Get Passport</a>
+                                    <NavLink to="/getpassports">Get Passport</NavLink>
                                 </button>
                             </div>
                         </div>

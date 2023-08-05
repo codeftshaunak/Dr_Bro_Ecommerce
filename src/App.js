@@ -34,6 +34,7 @@ import AdminPassport from "./admin/AdminPassport";
 import { QueryClient, QueryClientProvider } from 'react-query';
 import axios from 'axios';
 import AdminTour from "./admin/AdminTour";
+import AdminBlog from "./admin/AdminBlog";
 
 
 const App = () => {
@@ -133,7 +134,9 @@ const App = () => {
             <Route path="/admin" element={<AdminHome funNav={setShowHeader} />}></Route>
             <Route path="/adminlogin" element={<AdminLogin funNav={setShowHeader} />}></Route>
             <Route path="/adminecom" element={<AdminEcom funNav={setShowHeader} />}></Route>
+            <Route path="/adminecomcatagory" element={<AdminEcom funNav={setShowHeader} />}></Route>
             <Route path="/tourstravels" element={<AdminTour funNav={setShowHeader} />}></Route>
+            <Route path="/adminblog" element={<AdminBlog funNav={setShowHeader} />}></Route>
             <Route path="/adminpassport" element={<AdminPassport funNav={setShowHeader} />}></Route>
 
 
