@@ -31,6 +31,10 @@ import AdminHome from "./admin/AdminHome";
 import AdminLogin from "./admin/AdminLogin";
 import AdminEcom from "./admin/AdminEcom";
 import AdminPassport from "./admin/AdminPassport";
+import { QueryClient, QueryClientProvider } from 'react-query';
+import axios from 'axios';
+import AdminTour from "./admin/AdminTour";
+
 
 const App = () => {
   const theme = {
@@ -59,40 +63,63 @@ const App = () => {
   };
   const [showHeader, setShowHeader] = useState(true);
   const access_token = localStorage.getItem("access_token")
+
+  // Set up a new QueryClient instance
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false, // Disable automatic retries on query failure
+        staleTime: 5 * 60 * 1000, // Time in milliseconds before considering the data stale and refetching
+      },
+    },
+  });
+  // Optionally, set a global axios instance to use with React Query
+  queryClient.setQueryDefaults({
+    axios: axios.create({
+      baseURL: 'https://3.110.195.48:8000', // Replace with your API base URL
+      headers: {
+        // Add any default headers, e.g., 'Authorization', 'Content-Type', etc.
+        // For the 'Authorization' header, you can use the getAuthorizationHeader() function.
+      },
+    }),
+  });
+
   return (
     <ThemeProvider theme={theme}>
-      <Router>
-        <GlobalStyle />
+      <QueryClientProvider client={queryClient}>
 
-        {showHeader && <Header />}
-        <Routes>
-          <Route path="/" element={<Home funNav={setShowHeader} />}></Route>
-          <Route path="/shop" element={<Shop funNav={setShowHeader} />}></Route>
-          <Route
-            path="/about"
-            element={<AboutUs funNav={setShowHeader} />}
-          ></Route>
-          <Route path="/tour" element={<Tour funNav={setShowHeader} />}></Route>
-          <Route
-            path="/contact"
-            element={<Contact funNav={setShowHeader} />}
-          ></Route>
-          <Route
-            path="/singleproduct/:id"
-            element={<SingleProduct funNav={setShowHeader} />}
-          ></Route>
-          <Route
-            path="/singletour/:id"
-            element={<SingleTour funNav={setShowHeader} />}
-          ></Route>
-          <Route
-            path="/tour/alltour"
-            element={<TourTotalData funNav={setShowHeader} />}
-          ></Route>
-          <Route path="/cart" element={<Cart funNav={setShowHeader} />}></Route>
-          <Route path="/blog" element={<Blog funNav={setShowHeader} />}></Route>
+        <Router>
+          <GlobalStyle />
 
-          {/* <Route
+          {showHeader && <Header />}
+          <Routes>
+            <Route path="/" element={<Home funNav={setShowHeader} />}></Route>
+            <Route path="/shop" element={<Shop funNav={setShowHeader} />}></Route>
+            <Route
+              path="/about"
+              element={<AboutUs funNav={setShowHeader} />}
+            ></Route>
+            <Route path="/tour" element={<Tour funNav={setShowHeader} />}></Route>
+            <Route
+              path="/contact"
+              element={<Contact funNav={setShowHeader} />}
+            ></Route>
+            <Route
+              path="/singleproduct/:id"
+              element={<SingleProduct funNav={setShowHeader} />}
+            ></Route>
+            <Route
+              path="/singletour/:id"
+              element={<SingleTour funNav={setShowHeader} />}
+            ></Route>
+            <Route
+              path="/tour/alltour"
+              element={<TourTotalData funNav={setShowHeader} />}
+            ></Route>
+            <Route path="/cart" element={<Cart funNav={setShowHeader} />}></Route>
+            <Route path="/blog" element={<Blog funNav={setShowHeader} />}></Route>
+
+            {/* <Route
             path="/admin"
             element={
               access_token ? (
@@ -103,13 +130,14 @@ const App = () => {
             }
           ></Route> */}
 
-          <Route path="/admin" element={<AdminHome funNav={setShowHeader} />}></Route>
-          <Route path="/adminlogin" element={<AdminLogin funNav={setShowHeader} />}></Route>
-          <Route path="/adminecom" element={<AdminEcom funNav={setShowHeader} />}></Route>
-          <Route path="/adminpassport" element={<AdminPassport funNav={setShowHeader} />}></Route>
+            <Route path="/admin" element={<AdminHome funNav={setShowHeader} />}></Route>
+            <Route path="/adminlogin" element={<AdminLogin funNav={setShowHeader} />}></Route>
+            <Route path="/adminecom" element={<AdminEcom funNav={setShowHeader} />}></Route>
+            <Route path="/tourstravels" element={<AdminTour funNav={setShowHeader} />}></Route>
+            <Route path="/adminpassport" element={<AdminPassport funNav={setShowHeader} />}></Route>
 
 
-          {/* <Route
+            {/* <Route
             path="/signup"
             element={
               access_token ? (
@@ -119,23 +147,24 @@ const App = () => {
               )
             }
           ></Route> */}
-          <Route path="/signup" element={<SignUp funNav={setShowHeader} />}></Route>
-          <Route path="/signin" element={<SignIn funNav={setShowHeader} />}></Route>
-          <Route path="/passport" element={<Passport funNav={setShowHeader} />}></Route>
-          <Route path="/passportsignup" element={<PassportSignUp funNav={setShowHeader} />}></Route>
-          <Route path="/getpassports" element={<PassportProcess funNav={setShowHeader} />}></Route>
-          <Route path="/passportsignin" element={<PassportSignIn funNav={setShowHeader} />}></Route>
-          <Route path="/passporttrack" element={<PassportTrack funNav={setShowHeader} />}></Route>
+            <Route path="/signup" element={<SignUp funNav={setShowHeader} />}></Route>
+            <Route path="/signin" element={<SignIn funNav={setShowHeader} />}></Route>
+            <Route path="/passport" element={<Passport funNav={setShowHeader} />}></Route>
+            <Route path="/passportsignup" element={<PassportSignUp funNav={setShowHeader} />}></Route>
+            <Route path="/getpassports" element={<PassportProcess funNav={setShowHeader} />}></Route>
+            <Route path="/passportsignin" element={<PassportSignIn funNav={setShowHeader} />}></Route>
+            <Route path="/passporttrack" element={<PassportTrack funNav={setShowHeader} />}></Route>
 
-          <Route
-            path="*"
-            element={<ErrorPage funNav={setShowHeader} />}
-          ></Route>
-        </Routes>
-        {showHeader && <Footer />}
+            <Route
+              path="*"
+              element={<ErrorPage funNav={setShowHeader} />}
+            ></Route>
+          </Routes>
+          {showHeader && <Footer />}
 
 
-      </Router>
+        </Router>
+      </QueryClientProvider>
     </ThemeProvider>
   );
 };

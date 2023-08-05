@@ -4,14 +4,14 @@ import { BASE_URL } from '../../config';
 import { getAuthorizationHeader } from '../../auth/adminAuth';
 import EproductItem from './EproductItem';
 import { async } from 'q';
-import { allProductList } from '../../auth/adminapi';
+import {  allToursList } from '../../auth/adminapi';
 
-const PorductList = () => {
+const TourTravelList = () => {
     const [data, setData] = useState([]);
     console.log(data);
     useEffect(() => {
         const fetchData = async () => {
-            const data = await allProductList();
+            const data = await allToursList();
             setData(data.results)
         }
         fetchData();
@@ -32,4 +32,6 @@ const PorductList = () => {
     )
 }
 
-export default PorductList;
+export default TourTravelList;
+
+
