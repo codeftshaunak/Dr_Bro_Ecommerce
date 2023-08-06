@@ -13,3 +13,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.grid {
+  display: grid !important;
+  grid-gap: 10px !important;
+}

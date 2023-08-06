@@ -5,13 +5,27 @@ import { SiFuturelearn } from 'react-icons/si'
 import { SiOpenaccess } from 'react-icons/si'
 import { CgProfile } from 'react-icons/cg'
 import { Link, NavLink, useNavigation } from 'react-router-dom'
-import HumburgerButton from './HumburgerMenu/HumburgerButton'
+import HumburgerButton from './HumburgerMenu/HumburgerButton';
+
 
 
 const AdminSidebar = () => {
     const [open, setOpen] = useState(true);
     const [mobileMenu, setMobileMenu] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(true);
+    const [showDropdownTour, setShowDropdownTour] = useState(false);
     // const navigation = useNavigation();
+
+    const handleShowDropdownTour = () => {
+        setShowDropdown(false);
+        setShowDropdownTour(!showDropdownTour)
+
+    }
+
+    const handleShowDropdown = () => {
+        setShowDropdown(!showDropdown);
+        setShowDropdownTour(false)
+    }
 
     const Menus = [
         { title: 'E-commerce', path: '/adminecom', src: <CgProfile /> },
@@ -46,7 +60,7 @@ const AdminSidebar = () => {
                 </NavLink>
                 <br />
                 <ul className='flex flex-col gap-y-2'>
-                    {Menus.map((menu, index) => (
+                    {/* {Menus.map((menu, index) => (
                         <NavLink to={menu.path} key={index}>
                             <li
                                 className={`flex items-center text-2xl gap-x-6 p-3 text-white font-normal rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700`}
@@ -57,7 +71,58 @@ const AdminSidebar = () => {
                                 </span>
                             </li>
                         </NavLink>
-                    ))}
+                    ))} */}
+
+                    <NavLink to="/adminecom" onClick={() => handleShowDropdown()} className={showDropdown ? "border rounded bg-white text-black font-bold" : "text-white"}>
+                        <li
+                            className={`flex items-center text-2xl gap-x-6 p-3 rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-white`}
+                        >
+                            <span className='text-3xl rounded'>E</span>
+                            <span className='origin-left duration-300 hover:block'>
+                                E-commerce
+                            </span>
+                        </li>
+                    </NavLink>
+                    <NavLink to="/adminecomaddprod" className={showDropdown ? "inline-block" : "hidden"}>
+                        <li
+                            className={`flex items-center text-2xl gap-x-6 p-3 text-white font-normal rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700`}
+                        >
+                            <span className='origin-right duration-300 hover:block text-right ml-5 '>
+                                Add Product
+                            </span>
+                        </li>
+                    </NavLink>
+
+                    <NavLink to="/adminecom" className={showDropdown ? "inline-block" : "hidden"}>
+                        <li
+                            className={`flex items-center text-2xl gap-x-6 p-3 text-white font-normal rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700`}
+                        >
+                            <span className='origin-right duration-300 hover:block text-right ml-5 '>
+                                E-com
+                            </span>
+                        </li>
+                    </NavLink>
+
+                    <NavLink to="/tourstravels" onClick={() => handleShowDropdownTour()} className={showDropdownTour ? "border rounded bg-white text-black font-bold" : "text-white"}>
+                        <li
+                            className={`flex items-center text-2xl gap-x-6 p-3 rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-white`}
+                        >
+                            <span className='text-3xl rounded'>E</span>
+                            <span className='origin-left duration-300 hover:block'>
+                                Tours
+                            </span>
+                        </li>
+                    </NavLink>
+                    <NavLink to="/admintoursadd" className={showDropdownTour ? "inline-block" : "hidden"}>
+                        <li
+                            className={`flex items-center text-2xl gap-x-6 p-3 text-white font-normal rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700`}
+                        >
+                            <span className='origin-right duration-300 hover:block text-right ml-5 '>
+                                Add Product
+                            </span>
+                        </li>
+                    </NavLink>
+
                 </ul>
             </div>
             <div className="pt-3">
@@ -83,6 +148,19 @@ const AdminSidebar = () => {
                             </li>
                         </NavLink>
                     ))}
+
+                    <NavLink to="/adminecom">
+                        <li
+                            className={`flex items-center text-2xl gap-x-6 p-3 text-white font-normal rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700`}
+                            onClick={() => setShowDropdown(true)}
+                        >
+                            <span className='text-2xl'>E</span>
+                            <span className='origin-left duration-300 hover:block'>
+                                E-com
+                            </span>
+                        </li>
+                    </NavLink>
+
                 </div>
             </div>
         </>

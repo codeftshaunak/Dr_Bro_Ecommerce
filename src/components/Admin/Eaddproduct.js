@@ -3,6 +3,7 @@ import { BASE_URL } from '../../config';
 import { getAuthorizationHeader } from '../../auth/adminAuth';
 import { allProductList } from '../../auth/adminapi';
 
+
 const Eaddproduct = ({ onCloseForm }) => {
     const [formData, setFormData] = useState({
         product_name: '',
@@ -12,7 +13,10 @@ const Eaddproduct = ({ onCloseForm }) => {
         price: '',
         published: false,
         slug: '',
+        thumbnail: null,
     });
+
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -22,18 +26,37 @@ const Eaddproduct = ({ onCloseForm }) => {
         }));
     };
 
+
+    const handleImageUpload = (event) => {
+        const file = event.target.files[0];
+        setFormData((prevData) => {
+            return { ...prevData, thumbnail: file }
+        });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            const formDataToSend = new FormData();
+            formDataToSend.append('product_name', formData.product_name);
+            formDataToSend.append('description', formData.description);
+            formDataToSend.append('availiability', formData.availiability);
+            formDataToSend.append('category', formData.category);
+            formDataToSend.append('price', formData.price);
+            formDataToSend.append('published', formData.published);
+            formDataToSend.append('slug', formData.slug);
+        
+            // Append the file data to the FormData object
+            formDataToSend.append('thumbnail', formData.thumbnail);
+
             const response = await fetch(`${BASE_URL}/admins/ecommerce/products/new`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
                     Authorization: getAuthorizationHeader(), // Include authorization header if needed
                 },
-                body: JSON.stringify(formData), // Convert formData to JSON
+                body: formDataToSend, 
             });
-
             if (!response.ok) {
                 throw new Error('Failed to create the product.');
             }
@@ -149,8 +172,20 @@ const Eaddproduct = ({ onCloseForm }) => {
                             required
                         />
                     </div>
+
+                    <div className="mb-4">
+                        <label htmlFor="image" className="block text-2xl mb-1">
+                            Upload Product Image:
+                        </label>
+                        <input
+                            type="file"
+                            name="thumbnail"
+                            onChange={handleImageUpload}
+                            className="border border-gray-300 rounded px-3 py-2 w-full"
+                        />
+                    </div>
                     {/* Add other form fields for category, price, published, and slug */}
-                    <div className="flex justify-end">
+                    <div className="flex justify-end p-5">
                         <button type="button" className="text-2xl text-gray-500 mr-4" onClick={onCloseForm}>
                             Cancel
                         </button>
@@ -161,6 +196,7 @@ const Eaddproduct = ({ onCloseForm }) => {
                 </form>
             </div>
         </div>
+
     );
 };
 
