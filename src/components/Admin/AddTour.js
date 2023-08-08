@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BASE_URL } from '../../config';
 import { getAuthorizationHeader } from '../../auth/adminAuth';
-import { allProductList } from '../../auth/adminapi';
+import { allProductList, allToursList } from '../../auth/adminapi';
 import { PhotoIcon } from '@heroicons/react/24/solid';
 
 const AddTour = ({ onCloseForm }) => {
@@ -52,10 +52,10 @@ const AddTour = ({ onCloseForm }) => {
             const response = await fetch(`${BASE_URL}/admins/tours/travels/new`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
                     Authorization: getAuthorizationHeader(), // Include authorization header if needed
                 },
-                body: formDataToSend, // Convert formData to JSON
+                body: formDataToSend,
             });
 
             if (!response.ok) {
@@ -64,7 +64,7 @@ const AddTour = ({ onCloseForm }) => {
 
             const data = await response.json();
             console.log('New Product:', data);
-            allProductList()
+            allToursList()
             // Reset the form after successful submission
             setFormData({
                 Tours_name: '',
@@ -72,12 +72,11 @@ const AddTour = ({ onCloseForm }) => {
                 category: '',
                 price: '',
                 published: true,
-                slug: '',
             });
+            setImageDataUrl(null)
 
             // Close the form
             onCloseForm();
-            window.location.reload()
         } catch (error) {
             console.error('Error creating product:', error.message);
         }

@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AdminLayout from './AdminLayout';
 import AddTour from '../components/Admin/AddTour';
 
-const AddTours = () => {
-
+const AddTours = (props) => {
+    props.funNav(false);
+    const [showbox, setShowbox] = useState(true)
+    const toggleForm = () => {
+        setShowbox(false);
+    };
 
     return (
         <AdminLayout>
-            <AddTour />
+            <AddTour onCloseForm={toggleForm} />
         </AdminLayout>
     )
 }

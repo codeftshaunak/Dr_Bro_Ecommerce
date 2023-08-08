@@ -1,10 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { BASE_URL } from '../../config';
-import { getAuthorizationHeader } from '../../auth/adminAuth';
-import EproductItem from './EproductItem';
-import { async } from 'q';
-import { allProductList } from '../../auth/adminapi';
+import { allProductList, handleDeleteProduct, } from '../../auth/adminapi';
 import { Card, Typography } from "@material-tailwind/react";
 
 const TABLE_HEAD = ["Product Image", "Product Name", "Availiability", "Category", "Price", "Description", "Action"];
@@ -20,6 +17,10 @@ const PorductList = () => {
         }
         fetchData();
     }, [])
+
+    const handleDeleted = (uuid) => {
+        handleDeleteProduct(uuid);
+    }
 
 
     return (
@@ -37,7 +38,7 @@ const PorductList = () => {
                         <thead>
                             <tr>
                                 {TABLE_HEAD.map((head) => (
-                                    <th key={head} className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
+                                    <th key={head} className="border-b border-blue-gray-100 bg-blue-gray-50 p-4 text-center">
                                         <Typography
                                             variant="small"
                                             color="blue-gray"
@@ -50,14 +51,14 @@ const PorductList = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {data?.map(({ product_name, availiability, category, description, thumbnail, price }, index) => {
+                            {data?.map(({ product_name, availiability, category, description, thumbnail, price, uuid }, index) => {
                                 const isLast = index === data.length - 1;
                                 const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
 
                                 return (
-                                    <tr key={product_name}>
+                                    <tr key={product_name} className='text-center'>
                                         <td className={classes}>
-                                            <img src={thumbnail} alt="" className='w-36' />
+                                            <img src={thumbnail} alt="" className='w-36 m-auto' />
                                         </td>
                                         <td className={classes}>
                                             <Typography variant="small" color="blue-gray" className="text-2xl">
@@ -94,9 +95,12 @@ const PorductList = () => {
                                         {date}
                                     </Typography>
                                 </td> */}
-                                        <td className={classes}>
-                                            <Typography as="a" href="#" variant="small" color="blue" className="text-2xl">
+                                        <td className={`${classes}`}>
+                                            <Typography as="a" href="#" variant="small" color="blue" className="text-2xl p-2 border text-center mb-1">
                                                 Edit
+                                            </Typography>
+                                            <Typography as="a" href="#" variant="small" color="blue" className="text-2xl p-2 border text-center" onClick={() => handleDeleted(uuid)}>
+                                                Delete
                                             </Typography>
                                         </td>
                                     </tr>
@@ -109,7 +113,7 @@ const PorductList = () => {
 
                 {/* <TableList /> */}
             </div>
-        </div>
+        </div >
     )
 }
 

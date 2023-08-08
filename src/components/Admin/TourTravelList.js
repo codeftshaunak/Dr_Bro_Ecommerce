@@ -4,11 +4,11 @@ import { BASE_URL } from '../../config';
 import { getAuthorizationHeader } from '../../auth/adminAuth';
 import EproductItem from './EproductItem';
 import { async } from 'q';
-import { allToursList } from '../../auth/adminapi';
+import { allToursList, handleDeleteTour } from '../../auth/adminapi';
 import TourTravelItem from './TourTravelItem';
 import { Card, Typography } from "@material-tailwind/react";
 
-const TABLE_HEAD = ["Product Image", "Product Name", "Availiability", "Category", "Price", "Description", "Action"];
+const TABLE_HEAD = ["Tour Image", "Tour Name", "Category", "Price", "Description", "Action"];
 
 const TourTravelList = () => {
     const [data, setData] = useState([]);
@@ -21,7 +21,9 @@ const TourTravelList = () => {
         fetchData();
     }, [])
 
-    console.log(data);
+    const handleDeleted = (uuid) => {
+        handleDeleteTour(uuid)
+    }
 
     return (
         <div>
@@ -33,7 +35,7 @@ const TourTravelList = () => {
                         <thead>
                             <tr>
                                 {TABLE_HEAD.map((head) => (
-                                    <th key={head} className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
+                                    <th key={head} className="border-b text-center border-blue-gray-100 bg-blue-gray-50 p-4">
                                         <Typography
                                             variant="small"
                                             color="blue-gray"
@@ -46,23 +48,18 @@ const TourTravelList = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {data?.map(({ Tours_name, availiability, category, description, thumbnail, price }, index) => {
+                            {data?.map(({ Tours_name, category, description, thumbnail, price, uuid }, index) => {
                                 const isLast = index === data.length - 1;
                                 const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
 
                                 return (
-                                    <tr key={Tours_name}>
+                                    <tr key={Tours_name} className="text-center">
                                         <td className={classes}>
-                                            <img src={thumbnail} alt="" className='w-36' />
+                                            <img src={thumbnail} alt="" className='w-36 m-auto' />
                                         </td>
                                         <td className={classes}>
                                             <Typography variant="small" color="blue-gray" className="text-2xl">
                                                 {Tours_name}
-                                            </Typography>
-                                        </td>
-                                        <td className={classes}>
-                                            <Typography variant="small" color="blue-gray" className="text-2xl">
-                                                {availiability}
                                             </Typography>
                                         </td>
                                         <td className={classes}>
@@ -80,19 +77,12 @@ const TourTravelList = () => {
                                                 {description.length > 13 ? description.slice(0, 13) + "..." : description}
                                             </Typography>
                                         </td>
-                                        {/* <td className={classes}>
-                                <Typography variant="small" color="blue-gray" className="text-2xl">
-                                    {job}
-                                </Typography>
-                            </td>
-                            <td className={classes}>
-                                <Typography variant="small" color="blue-gray" className="text-2xl">
-                                    {date}
-                                </Typography>
-                            </td> */}
-                                        <td className={classes}>
-                                            <Typography as="a" href="#" variant="small" color="blue" className="text-2xl">
+                                        <td className={`${classes}`}>
+                                            <Typography as="a" href="#" variant="small" color="blue" className="text-2xl p-2 border text-center mb-1">
                                                 Edit
+                                            </Typography>
+                                            <Typography as="a" href="#" variant="small" color="blue" className="text-2xl p-2 border text-center" onClick={() => handleDeleted(uuid)}>
+                                                Delete
                                             </Typography>
                                         </td>
                                     </tr>
@@ -105,7 +95,7 @@ const TourTravelList = () => {
 
                 {/* <TableList /> */}
             </div>
-        </div>
+        </div >
     )
 }
 

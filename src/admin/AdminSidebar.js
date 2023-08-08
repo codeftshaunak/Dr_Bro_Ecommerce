@@ -13,18 +13,19 @@ const AdminSidebar = () => {
     const [open, setOpen] = useState(true);
     const [mobileMenu, setMobileMenu] = useState(false);
     const [showDropdown, setShowDropdown] = useState(true);
-    const [showDropdownTour, setShowDropdownTour] = useState(false);
+    const [showDropdownTour, setShowDropdownTour] = useState(true);
+    const [showBlog, setShowBlog] = useState(true);
     // const navigation = useNavigation();
 
     const handleShowDropdownTour = () => {
-        setShowDropdown(false);
-        setShowDropdownTour(!showDropdownTour)
+        // setShowDropdown(false);
+        // setShowDropdownTour(!showDropdownTour)
 
     }
 
     const handleShowDropdown = () => {
-        setShowDropdown(!showDropdown);
-        setShowDropdownTour(false)
+        // setShowDropdown(!showDropdown);
+        // setShowDropdownTour(false)
     }
 
     const Menus = [
@@ -107,7 +108,7 @@ const AdminSidebar = () => {
                         <li
                             className={`flex items-center text-2xl gap-x-6 p-3 rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-white`}
                         >
-                            <span className='text-3xl rounded'>E</span>
+                            <span className='text-3xl rounded'>T</span>
                             <span className='origin-left duration-300 hover:block'>
                                 Tours
                             </span>
@@ -118,7 +119,27 @@ const AdminSidebar = () => {
                             className={`flex items-center text-2xl gap-x-6 p-3 text-white font-normal rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700`}
                         >
                             <span className='origin-right duration-300 hover:block text-right ml-5 '>
-                                Add Product
+                                Add Tours
+                            </span>
+                        </li>
+                    </NavLink>
+
+                    <NavLink to="/adminblog" onClick={() => handleShowDropdownTour()} className={showDropdownTour ? "border rounded bg-white text-black font-bold" : "text-white"}>
+                        <li
+                            className={`flex items-center text-2xl gap-x-6 p-3 rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-white`}
+                        >
+                            <span className='text-3xl rounded'>B</span>
+                            <span className='origin-left duration-300 hover:block'>
+                                Blogs
+                            </span>
+                        </li>
+                    </NavLink>
+                    <NavLink to="/adminblogadd" className={showDropdownTour ? "inline-block" : "hidden"}>
+                        <li
+                            className={`flex items-center text-2xl gap-x-6 p-3 text-white font-normal rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700`}
+                        >
+                            <span className='origin-right duration-300 hover:block text-right ml-5 '>
+                                Add Blog
                             </span>
                         </li>
                     </NavLink>

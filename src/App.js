@@ -37,6 +37,7 @@ import AdminTour from "./admin/AdminTour";
 import AdminBlog from "./admin/AdminBlog";
 import AddProduct from "./admin/AddProduct";
 import AddTours from "./admin/AddTours";
+import AddBlogs from "./admin/AddBlogs";
 
 
 const App = () => {
@@ -143,6 +144,7 @@ const App = () => {
             <Route path="/admintoursadd" element={<AddTours funNav={setShowHeader} />}></Route>
 
             <Route path="/adminblog" element={<AdminBlog funNav={setShowHeader} />}></Route>
+            <Route path="/adminblogadd" element={<AddBlogs funNav={setShowHeader} />}></Route>
             <Route path="/adminpassport" element={<AdminPassport funNav={setShowHeader} />}></Route>
 
 
