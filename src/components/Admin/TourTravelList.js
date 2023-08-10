@@ -1,28 +1,28 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { BASE_URL } from '../../config';
-import { getAuthorizationHeader } from '../../auth/adminAuth';
-import EproductItem from './EproductItem';
-import { async } from 'q';
 import { allToursList, handleDeleteTour } from '../../auth/adminapi';
-import TourTravelItem from './TourTravelItem';
 import { Card, Typography } from "@material-tailwind/react";
+import { useNavigate } from 'react-router-dom';
 
 const TABLE_HEAD = ["Tour Image", "Tour Name", "Category", "Price", "Description", "Action"];
 
 const TourTravelList = () => {
     const [data, setData] = useState([]);
-    console.log(data);
+    const nevigate = useNavigate();
+
     useEffect(() => {
         const fetchData = async () => {
             const data = await allToursList();
             setData(data.results)
         }
         fetchData();
-    }, [])
+    }, []);
 
     const handleDeleted = (uuid) => {
         handleDeleteTour(uuid)
+    }
+
+    const handleEdit = (uuid) => {
+        nevigate(`/admintouredit/${uuid}`)
     }
 
     return (
@@ -78,7 +78,7 @@ const TourTravelList = () => {
                                             </Typography>
                                         </td>
                                         <td className={`${classes}`}>
-                                            <Typography as="a" href="#" variant="small" color="blue" className="text-2xl p-2 border text-center mb-1">
+                                            <Typography as="a" href="#" variant="small" color="blue" className="text-2xl p-2 border text-center mb-1" onClick={() => handleEdit(uuid)}>
                                                 Edit
                                             </Typography>
                                             <Typography as="a" href="#" variant="small" color="blue" className="text-2xl p-2 border text-center" onClick={() => handleDeleted(uuid)}>

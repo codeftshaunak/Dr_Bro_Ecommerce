@@ -3,13 +3,32 @@ import React, { useEffect, useState } from 'react'
 import { BASE_URL } from '../../config';
 import { allProductList, handleDeleteProduct, } from '../../auth/adminapi';
 import { Card, Typography } from "@material-tailwind/react";
+import { getAuthorizationHeader } from '../../auth/adminAuth';
+import { useNavigate } from 'react-router-dom';
+
 
 const TABLE_HEAD = ["Product Image", "Product Name", "Availiability", "Category", "Price", "Description", "Action"];
 
 
 const PorductList = () => {
     const [data, setData] = useState([]);
-    console.log(data);
+    const [showUpdateBox, setShowUpdateBox] = useState(false);
+    const nevigate = useNavigate();
+
+    const [uidData, setUidData] = useState({
+        product_name: "",
+        availiability: "",
+        category: "",
+        description: "",
+        price: "",
+        slug: "",
+    });
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setUidData({ ...uidData, [name]: value });
+    }
+
     useEffect(() => {
         const fetchData = async () => {
             const data = await allProductList();
@@ -23,6 +42,11 @@ const PorductList = () => {
     }
 
 
+    const handleEdit = (uuid) => {
+        nevigate(`/adminecomaddprod/${uuid}`)
+    }
+
+
     return (
         <div>
             <h3 className='font-bold'>All Our Products</h3>
@@ -32,7 +56,6 @@ const PorductList = () => {
                         return <TableList data={prod} key={prod.id} />
                     })
                 } */}
-
                 <Card className="w-full h-full overflow-scroll">
                     <table className="w-full min-w-max table-auto text-left">
                         <thead>
@@ -96,7 +119,7 @@ const PorductList = () => {
                                     </Typography>
                                 </td> */}
                                         <td className={`${classes}`}>
-                                            <Typography as="a" href="#" variant="small" color="blue" className="text-2xl p-2 border text-center mb-1">
+                                            <Typography as="a" href="#" variant="small" color="blue" className="text-2xl p-2 border text-center mb-1" onClick={() => handleEdit(uuid)}>
                                                 Edit
                                             </Typography>
                                             <Typography as="a" href="#" variant="small" color="blue" className="text-2xl p-2 border text-center" onClick={() => handleDeleted(uuid)}>
@@ -109,9 +132,6 @@ const PorductList = () => {
                         </tbody>
                     </table>
                 </Card>
-
-
-                {/* <TableList /> */}
             </div>
         </div >
     )

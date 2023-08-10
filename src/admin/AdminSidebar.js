@@ -144,6 +144,27 @@ const AdminSidebar = () => {
                         </li>
                     </NavLink>
 
+                    <NavLink to="/adminlocation" onClick={() => handleShowDropdownTour()} className={showDropdownTour ? "border rounded bg-white text-black font-bold" : "text-white"}>
+                        <li
+                            className={`flex items-center text-2xl gap-x-6 p-3 rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-white`}
+                        >
+                            <span className='text-3xl rounded'>B</span>
+                            <span className='origin-left duration-300 hover:block'>
+                                Location 
+                            </span>
+                        </li>
+                    </NavLink>
+                    <NavLink to="/adminaddlocation" className={showDropdownTour ? "inline-block" : "hidden"}>
+                        <li
+                            className={`flex items-center text-2xl gap-x-6 p-3 text-white font-normal rounded-lg cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700`}
+                        >
+                            <span className='origin-right duration-300 hover:block text-right ml-5 '>
+                                Add Location
+                            </span>
+                        </li>
+                    </NavLink>
+
+
                 </ul>
             </div>
             <div className="pt-3">

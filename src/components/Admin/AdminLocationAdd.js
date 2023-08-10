@@ -5,10 +5,10 @@ import { getAuthorizationHeader } from '../../auth/adminAuth';
 import { allProductList } from '../../auth/adminapi';
 
 
-const AddBlogAdmin = ({ onCloseForm }) => {
+const AdminLocationAdd = ({ onCloseForm }) => {
     const [formData, setFormData] = useState({
         title: '',
-        link: '',
+        location: '',
         thumbnail: null,
     });
     const [imageDataUrl, setImageDataUrl] = useState(null);
@@ -47,11 +47,11 @@ const AddBlogAdmin = ({ onCloseForm }) => {
         try {
             const formDataToSend = new FormData();
             formDataToSend.append('title', formData.title);
-            formDataToSend.append('link', formData.link);
+            formDataToSend.append('location', formData.location);
             // Append the file data to the FormData object
             formDataToSend.append('thumbnail', formData.thumbnail);
 
-            const response = await fetch(`${BASE_URL}/admins/blogs/`, {
+            const response = await fetch(`${BASE_URL}/admins/places/`, {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -69,7 +69,7 @@ const AddBlogAdmin = ({ onCloseForm }) => {
             // Reset the form after successful submission
             setFormData({
                 title: '',
-                link: '',
+                location: '',
             });
             setImageDataUrl(null)
 
@@ -85,16 +85,16 @@ const AddBlogAdmin = ({ onCloseForm }) => {
     return (
         <div>
             <form className='bg-white pt-10 pl-10' onSubmit={handleSubmit}>
-                <h2 className="text-5xl font-bold leading-7 text-gray-900">Add Your Blog</h2>
+                <h2 className="text-5xl font-bold leading-7 text-gray-900">Add Your Location</h2>
                 <p className="mt-1 text-2xl leading-6 text-gray-600">
-                    Add your blog details here.
+                    Add your location's details here.
                 </p>
 
                 <div className="border-b border-gray-900/10 pb-12">
                     <div className="mt-10 gap-0 grid grid-cols-1 sm:grid-cols-6 sm:gap-0">
                         <div className="sm:col-span-3">
                             <label htmlFor="product_name" className="block text-2xl font-medium leading-6 text-gray-900">
-                                Blog Title
+                                Location Name
                             </label>
                             <div className="mt-2">
                                 <input
@@ -111,15 +111,15 @@ const AddBlogAdmin = ({ onCloseForm }) => {
 
                         <div className="sm:col-span-3">
                             <label htmlFor="last-name" className="block text-2xl font-medium leading-6 text-gray-900">
-                                Blog Video Link
+                                Location 
                             </label>
                             <div className="mt-2">
                                 <input
                                     type="text"
-                                    name="link"
+                                    name="location"
                                     id="availiability"
                                     autoComplete="availiability"
-                                    value={formData.link}
+                                    value={formData.location}
                                     onChange={handleChange}
                                     className="block w-full normal-case rounded-md border-0 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-2xl sm:leading-6"
                                 />
@@ -128,7 +128,7 @@ const AddBlogAdmin = ({ onCloseForm }) => {
 
                         <div className="col-span-full">
                             <label htmlFor="cover-photo" className="block text-2xl font-medium leading-6 text-gray-900">
-                                Blog Image
+                                Location Image
                             </label>
                             <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-20 relative">
 
@@ -172,4 +172,4 @@ const AddBlogAdmin = ({ onCloseForm }) => {
     )
 }
 
-export default AddBlogAdmin;
+export default AdminLocationAdd;

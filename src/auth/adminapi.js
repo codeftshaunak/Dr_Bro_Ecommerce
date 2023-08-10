@@ -41,52 +41,97 @@ export const allBlogList = async () => {
     }
 }
 
-
-    //Handle Delete
-    export const handleDeleteProduct = async (id) => {
-        try {
-            const resp = await fetch(`${BASE_URL}/admins/ecommerce/products/${id}/delete/`, {
-                method: 'DELETE',
-                headers: getAuthorizationHeader(), // Include authorization header if needed
-
-            })
-            console.log(resp);
-            alert("Confirm Delete This Item?")
-            window.location.reload()
-
-        } catch (error) {
-            console.error('Error fetching data:', error.message);
-        }
+export const allLocationList = async () => {
+    try {
+        const resp = await fetch(`${BASE_URL}/admins/places/`, {
+            headers: getAuthorizationHeader()
+        });
+        const data = await resp.json();
+        return data;
+    } catch (error) {
+        console.log(error);
     }
+}
 
-    export const handleDeleteTour = async (id) => {
-        try {
-            const resp = await fetch(`${BASE_URL}/admins/tours/${id}/delete/`, {
-                method: 'DELETE',
-                headers: getAuthorizationHeader(), // Include authorization header if needed
 
-            })
-            console.log(resp);
-            alert("Confirm Delete This Item?")
-            window.location.reload()
+//Handle Delete
+export const handleDeleteProduct = async (id) => {
+    try {
+        const resp = await fetch(`${BASE_URL}/admins/ecommerce/products/${id}/delete/`, {
+            method: 'DELETE',
+            headers: getAuthorizationHeader(), // Include authorization header if needed
 
-        } catch (error) {
-            console.error('Error fetching data:', error.message);
-        }
+        })
+        console.log(resp);
+        alert("Confirm Delete This Item?")
+        window.location.reload()
+
+    } catch (error) {
+        console.error('Error fetching data:', error.message);
     }
+}
 
-    export const handleDeleteBlog = async (id) => {
-        try {
-            const resp = await fetch(`${BASE_URL}/admins/blogs/${id}/`, {
-                method: 'DELETE',
-                headers: getAuthorizationHeader(), // Include authorization header if needed
+export const handleDeleteTour = async (id) => {
+    try {
+        const resp = await fetch(`${BASE_URL}/admins/tours/${id}/delete/`, {
+            method: 'DELETE',
+            headers: getAuthorizationHeader(), // Include authorization header if needed
 
-            })
-            console.log(resp);
-            alert("Confirm Delete This Item?")
-            window.location.reload()
+        })
+        console.log(resp);
+        alert("Confirm Delete This Item?")
+        window.location.reload()
 
-        } catch (error) {
-            console.error('Error fetching data:', error.message);
-        }
+    } catch (error) {
+        console.error('Error fetching data:', error.message);
     }
+}
+
+export const handleDeleteBlog = async (id) => {
+    try {
+        const resp = await fetch(`${BASE_URL}/admins/blogs/${id}/`, {
+            method: 'DELETE',
+            headers: getAuthorizationHeader(), // Include authorization header if needed
+
+        })
+        console.log(resp);
+        alert("Confirm Delete This Item?")
+        window.location.reload()
+
+    } catch (error) {
+        console.error('Error fetching data:', error.message);
+    }
+}
+
+export const handleDeleteLocation = async (id) => {
+    try {
+        const resp = await fetch(`${BASE_URL}/admins/places/${id}/`, {
+            method: 'DELETE',
+            headers: getAuthorizationHeader(), // Include authorization header if needed
+
+        })
+        console.log(resp);
+        alert("Confirm Delete This Item?")
+        window.location.reload()
+
+    } catch (error) {
+        console.error('Error fetching data:', error.message);
+    }
+}
+
+// Get Item By Uid
+export const singleProductList = async (uuid) => {
+    try {
+        const resp = await fetch(`${BASE_URL}/admins/ecommerce/products/${uuid}/`, {
+            headers: getAuthorizationHeader(),
+        });
+        if (!resp.ok) {
+            throw new Error('Failed to fetch data');
+        }
+        const data = await resp.json();
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error.message);
+    }
+}

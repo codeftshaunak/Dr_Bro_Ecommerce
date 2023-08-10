@@ -38,6 +38,9 @@ import AdminBlog from "./admin/AdminBlog";
 import AddProduct from "./admin/AddProduct";
 import AddTours from "./admin/AddTours";
 import AddBlogs from "./admin/AddBlogs";
+import EditProduct from "./admin/AdminEditProduct";
+import AdminLocation from "./admin/AdminLocation";
+import AddLocation from "./admin/AddLocation";
 
 
 const App = () => {
@@ -123,28 +126,37 @@ const App = () => {
             <Route path="/cart" element={<Cart funNav={setShowHeader} />}></Route>
             <Route path="/blog" element={<Blog funNav={setShowHeader} />}></Route>
 
-            {/* <Route
-            path="/admin"
-            element={
-              access_token ? (
-                <Admin funNav={setShowHeader} />
-              ) : (
-                <SignIn funNav={setShowHeader} />
-              )
-            }
-          ></Route> */}
+            <Route
+              path="/admin"
+              element={
+                access_token ? (
+                  <AdminHome funNav={setShowHeader} />
+                ) : (
+                  <SignIn funNav={setShowHeader} />
+                )
+              }
+            ></Route>
 
             <Route path="/admin" element={<AdminHome funNav={setShowHeader} />}></Route>
             <Route path="/adminlogin" element={<AdminLogin funNav={setShowHeader} />}></Route>
+
             <Route path="/adminecom" element={<AdminEcom funNav={setShowHeader} />}></Route>
             <Route path="/adminecomaddprod" element={<AddProduct funNav={setShowHeader} />}></Route>
+            <Route path="/adminecomaddprod" element={<AddProduct funNav={setShowHeader} />}></Route>
+            <Route path="/adminecomaddprod/:id" element={<EditProduct funNav={setShowHeader} />}></Route>
+
             <Route path="/adminecomcatagory" element={<AdminEcom funNav={setShowHeader} />}></Route>
-            
+
             <Route path="/tourstravels" element={<AdminTour funNav={setShowHeader} />}></Route>
             <Route path="/admintoursadd" element={<AddTours funNav={setShowHeader} />}></Route>
+            <Route path="/admintouredit/:id" element={<EditProduct funNav={setShowHeader} />}></Route>
+
+            <Route path="/adminlocation" element={<AdminLocation funNav={setShowHeader} />}></Route>
+            <Route path="/adminaddlocation" element={<AddLocation funNav={setShowHeader} />}></Route>
 
             <Route path="/adminblog" element={<AdminBlog funNav={setShowHeader} />}></Route>
             <Route path="/adminblogadd" element={<AddBlogs funNav={setShowHeader} />}></Route>
+
             <Route path="/adminpassport" element={<AdminPassport funNav={setShowHeader} />}></Route>
 
 

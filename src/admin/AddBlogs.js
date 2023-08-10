@@ -2,7 +2,8 @@ import React from 'react'
 import AdminLayout from './AdminLayout'
 import AddBlogAdmin from '../components/Admin/AddBlogAdmin'
 
-const AddBlogs = () => {
+const AddBlogs = (props) => {
+    props.funNav(false)
     return (
         <AdminLayout>
             <AddBlogAdmin />

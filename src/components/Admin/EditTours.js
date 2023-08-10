@@ -1,16 +1,30 @@
-import React, { useState } from 'react';
-import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
+import React, { useEffect, useState } from 'react'
+import { allProductList, singleProductList } from '../../auth/adminapi';
+import { useParams } from 'react-router-dom';
 import { BASE_URL } from '../../config';
 import { getAuthorizationHeader } from '../../auth/adminAuth';
-import { allProductList } from '../../auth/adminapi';
+import { PhotoIcon } from '@heroicons/react/24/solid';
 
-
-const AddBlogAdmin = ({ onCloseForm }) => {
+const EditTours = () => {
+    const { id } = useParams();
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await singleProductList(id);
+            console.log(data);
+            setData(data)
+        }
+        fetchData()
+    }, [])
     const [formData, setFormData] = useState({
-        title: '',
-        link: '',
-        thumbnail: null,
+        product_name: data.product_name || '',
+        description: data.description || '',
+        availiability: data.availiability || '',
+        category: data.category || '',
+        price: data.price || '',
+        thumbnail: data.thumbnail || null,
     });
+
     const [imageDataUrl, setImageDataUrl] = useState(null);
 
     const handleChange = (e) => {
@@ -20,13 +34,6 @@ const AddBlogAdmin = ({ onCloseForm }) => {
             [name]: value,
         }));
     };
-
-    // const handleImageUpload = (event) => {
-    //     const file = event.target.files[0];
-    //     setFormData((prevData) => {
-    //         return { ...prevData, thumbnail: file }
-    //     });
-    // };
 
     const handleImageUpload = (event) => {
         const file = event.target.files[0];
@@ -42,17 +49,31 @@ const AddBlogAdmin = ({ onCloseForm }) => {
         });
     };
 
+    useEffect(() => {
+        setFormData({
+            product_name: data.product_name,
+            description: data.description,
+            availiability: data.availiability,
+            category: data.category,
+            price: data.price,
+        })
+    }, [data])
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const formDataToSend = new FormData();
-            formDataToSend.append('title', formData.title);
-            formDataToSend.append('link', formData.link);
-            // Append the file data to the FormData object
+            formDataToSend.append('product_name', formData.product_name);
+            formDataToSend.append('description', formData.description);
+            formDataToSend.append('availiability', formData.availiability);
+            formDataToSend.append('category', formData.category);
+            formDataToSend.append('price', formData.price);
+            formDataToSend.append('published', true);
             formDataToSend.append('thumbnail', formData.thumbnail);
 
-            const response = await fetch(`${BASE_URL}/admins/blogs/`, {
-                method: 'POST',
+            console.log(formDataToSend);
+            const response = await fetch(`${BASE_URL}/admins/ecommerce/products/${id}/`, {
+                method: 'PUT',
                 headers: {
                     Accept: 'application/json',
                     Authorization: getAuthorizationHeader(), // Include authorization header if needed
@@ -65,19 +86,21 @@ const AddBlogAdmin = ({ onCloseForm }) => {
 
             const data = await response.json();
             console.log('New Product:', data);
-            allProductList()
-            // Reset the form after successful submission
-            setFormData({
-                title: '',
-                link: '',
-            });
-            setImageDataUrl(null)
 
-            // Close the form
-            onCloseForm();
-            window.location.reload()
+            // Reset the form after successful submission
+            // setFormData({
+            //     product_name: '',
+            //     description: '',
+            //     availiability: '',
+            //     category: '',
+            //     price: '',
+            //     published: null
+            // });
+
+
+            // window.location.reload()
         } catch (error) {
-            console.error(error);
+            console.error('Error update product:', error);
         }
 
     };
@@ -85,24 +108,24 @@ const AddBlogAdmin = ({ onCloseForm }) => {
     return (
         <div>
             <form className='bg-white pt-10 pl-10' onSubmit={handleSubmit}>
-                <h2 className="text-5xl font-bold leading-7 text-gray-900">Add Your Blog</h2>
+                <h2 className="text-5xl font-bold leading-7 text-gray-900">Add Product</h2>
                 <p className="mt-1 text-2xl leading-6 text-gray-600">
-                    Add your blog details here.
+                    Add you product details
                 </p>
 
                 <div className="border-b border-gray-900/10 pb-12">
                     <div className="mt-10 gap-0 grid grid-cols-1 sm:grid-cols-6 sm:gap-0">
                         <div className="sm:col-span-3">
                             <label htmlFor="product_name" className="block text-2xl font-medium leading-6 text-gray-900">
-                                Blog Title
+                                Product Name
                             </label>
                             <div className="mt-2">
                                 <input
                                     type="text"
-                                    name="title"
-                                    id="title"
+                                    name="product_name"
+                                    id="product_name"
                                     autoComplete="given-name"
-                                    value={formData.title}
+                                    defaultValue={formData.product_name}
                                     onChange={handleChange}
                                     className="block w-full normal-case rounded-md border-0 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-2xl sm:leading-6"
                                 />
@@ -111,15 +134,47 @@ const AddBlogAdmin = ({ onCloseForm }) => {
 
                         <div className="sm:col-span-3">
                             <label htmlFor="last-name" className="block text-2xl font-medium leading-6 text-gray-900">
-                                Blog Video Link
+                                Availiability
+                            </label>
+                            <div className="mt-2">
+                                <input
+                                    type="number"
+                                    name="availiability"
+                                    id="availiability"
+                                    autoComplete="availiability"
+                                    defaultValue={formData.availiability}
+                                    onChange={handleChange}
+                                    className="block w-full normal-case rounded-md border-0 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-2xl sm:leading-6"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="sm:col-span-3">
+                            <label htmlFor="last-name" className="block text-2xl font-medium leading-6 text-gray-900">
+                                Category
                             </label>
                             <div className="mt-2">
                                 <input
                                     type="text"
-                                    name="link"
-                                    id="availiability"
+                                    name="category"
+                                    defaultValue={formData.category}
+                                    onChange={handleChange}
+                                    className="block w-full normal-case rounded-md border-0 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-2xl sm:leading-6"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="sm:col-span-3">
+                            <label htmlFor="last-name" className="block text-2xl font-medium leading-6 text-gray-900">
+                                Price
+                            </label>
+                            <div className="mt-2">
+                                <input
+                                    type="text"
+                                    name="price"
+                                    id="price"
                                     autoComplete="availiability"
-                                    value={formData.link}
+                                    defaultValue={formData.price}
                                     onChange={handleChange}
                                     className="block w-full normal-case rounded-md border-0 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-2xl sm:leading-6"
                                 />
@@ -127,14 +182,33 @@ const AddBlogAdmin = ({ onCloseForm }) => {
                         </div>
 
                         <div className="col-span-full">
+                            <label htmlFor="about" className="block text-2xl font-medium text-gray-900">
+                                Description
+                            </label>
+                            <div className="mt-5">
+                                <textarea
+                                    id="about"
+                                    name="description"
+                                    defaultValue={formData.description}
+                                    onChange={handleChange}
+                                    rows={6}
+                                    className="block w-full p-4 rounded-md border-0 normal-case text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-2xl"
+                                    defaultdefaultValue={''}
+                                />
+                            </div>
+                            <p className="mt-3 text-2xl leading-6 text-gray-600">Write a few sentences about your product.</p>
+                        </div>
+
+                        <div className="col-span-full">
                             <label htmlFor="cover-photo" className="block text-2xl font-medium leading-6 text-gray-900">
-                                Blog Image
+                                Product Image
                             </label>
                             <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-20 relative">
 
-                                {imageDataUrl && (
+                                {imageDataUrl ? (
                                     <img src={imageDataUrl} alt="Uploaded Cover" className="mx-auto h-full flex justify-center w-full absolute object-cover left-0 top-0" />
-                                )}
+                                ) : <img src={data.thumbnail} alt="Uploaded Cover" className="mx-auto h-full flex justify-center w-full absolute object-cover left-0 top-0" />
+                                }
                                 <div className="text-center h-[190px] flex flex-col justify-center">
 
                                     <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
@@ -164,7 +238,7 @@ const AddBlogAdmin = ({ onCloseForm }) => {
                         type="submit"
                         className="rounded-md bg-indigo-600 px-3 py-2 text-2xl font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
-                        Save
+                        Update
                     </button>
                 </div>
             </form>
@@ -172,4 +246,4 @@ const AddBlogAdmin = ({ onCloseForm }) => {
     )
 }
 
-export default AddBlogAdmin;
+export default EditTours;
