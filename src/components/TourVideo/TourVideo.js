@@ -4,7 +4,7 @@ import styled from "styled-components";
 const TourVideo = () => {
   return (
     <Wrapper>
-      <div className="tourvideo mb-36">
+      <div className="tourvideo">
         <video
           src="https://css-tricks-post-videos.s3.us-east-1.amazonaws.com/708209935.mp4"
           autoPlay

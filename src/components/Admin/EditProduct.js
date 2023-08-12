@@ -76,13 +76,15 @@ const EditProduct = () => {
             if (imageDataUrl) {
                 formDataToSend.append('thumbnail', formData.thumbnail);
             }
+            const ACCESS_TOKEN = localStorage.getItem("access_token");
 
-            console.log(formDataToSend);
+
             const response = await fetch(`${BASE_URL}/admins/ecommerce/products/${id}/`, {
                 method: 'PUT',
                 headers: {
                     Accept: 'application/json',
-                    Authorization: getAuthorizationHeader(), // Include authorization header if needed
+                    // Authorization: getAuthorizationHeader(), // Include authorization header if needed
+                    Authorization: `Bearer ${ACCESS_TOKEN}`,
                 },
                 body: formDataToSend,
             });

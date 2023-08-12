@@ -58,41 +58,42 @@ const DeleteButton = styled.button`
 `;
 
 
-const ProductCart = (data) => {
-    const tourquantity = data.data.quantity;
-    const { product_name, thumbnail, price, uuid } = data.data.product;
-    const access_token = localStorage.getItem("access_token");
-    const API = `${BASE_URL}/cart/something`;
-    const removeItemCart = useCallback(() => {
-        axios.post(
-            API, {
-            quantity: 0,
-            product_id: uuid
-        }, {
-            headers: {
-                Authorization: `Bearer ${access_token}`,
-            },
-        }).then(() => {
-            window.location.reload();
-        }).catch((error) => {
-            console.log(error);
-        });
-    }, [access_token, uuid]);
+const ProductCart = ({ data }) => {
+  console.log(data);
+  const tourquantity = data.quantity;
+  const { product_name, thumbnail, price, uuid } = data.product;
+  const access_token = localStorage.getItem("access_token");
+  const API = `${BASE_URL}/cart/something`;
+  const removeItemCart = useCallback(() => {
+    axios.post(
+      API, {
+      quantity: 0,
+      product_id: uuid
+    }, {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    }).then(() => {
+      window.location.reload();
+    }).catch((error) => {
+      console.log(error);
+    });
+  }, [access_token, uuid]);
 
-    return (
-        <CartItem>
-            <CartItemImage src={`${thumbnail}`} alt="Product Image" />
-            <CartItemDetails>
-                <CartItemName>{product_name}</CartItemName>
-                <CartItemQuantity>Quantity:{tourquantity}</CartItemQuantity>
-                <CartItemPrice>Par Ticket Price: {price}/=</CartItemPrice>
-                <CartItemPrice>Total Price: {tourquantity * price}/=</CartItemPrice>
-            </CartItemDetails>
-            <DeleteButton onClick={removeItemCart}>
-                Delete
-            </DeleteButton>
-        </CartItem>
-    );
+  return (
+    <CartItem>
+      <CartItemImage src={`${thumbnail}`} alt="Product Image" />
+      <CartItemDetails>
+        <CartItemName>{product_name}</CartItemName>
+        <CartItemQuantity>Quantity:{tourquantity}</CartItemQuantity>
+        <CartItemPrice>Par Ticket Price: {price}/=</CartItemPrice>
+        <CartItemPrice>Total Price: {tourquantity * price}/=</CartItemPrice>
+      </CartItemDetails>
+      <DeleteButton onClick={removeItemCart}>
+        Delete
+      </DeleteButton>
+    </CartItem>
+  );
 };
 
 export default ProductCart;

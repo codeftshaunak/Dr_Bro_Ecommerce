@@ -14,14 +14,16 @@ const LocationEdit = () => {
     const { id } = useParams()
     const [formData, setFormData] = useState({
         title: data.title || '',
-        location: data.location || '',
+        lat: data.lat || '',
+        long: data.long || '',
         thumbnail: data.thumbnail || null,
     });
 
     useEffect(() => {
         setFormData({
             title: data.title,
-            location: data.location,
+            lat: data.lat,
+            long: data.long,
             thumbnail: data.thumbnail
         })
     }, [data])
@@ -64,7 +66,8 @@ const LocationEdit = () => {
         try {
             const formDataToSend = new FormData();
             formDataToSend.append('title', formData.title);
-            formDataToSend.append('location', formData.location);
+            formDataToSend.append('lat', formData.lat);
+            formDataToSend.append('long', formData.long);
             if (imageDataUrl) {
                 formDataToSend.append('thumbnail', formData.thumbnail);
             }
@@ -115,8 +118,13 @@ const LocationEdit = () => {
                         className='normal-case text-2xl p-4 w-full m-auto' />
                     <br />
                     <br />
-                    <label htmlFor="#" className='text-2xl font-bold'>Location </label>
-                    <input type="text" name="location" defaultValue={data.location} onChange={handleChange}
+                    <label htmlFor="#" className='text-2xl font-bold'>Lat. </label>
+                    <input type="text" name="location" defaultValue={data.lat} onChange={handleChange}
+                        className='normal-case text-2xl p-4 w-full m-auto' />
+                    <br />
+                    <br />
+                    <label htmlFor="#" className='text-2xl font-bold'>Lon. </label>
+                    <input type="text" name="location" defaultValue={data.long} onChange={handleChange}
                         className='normal-case text-2xl p-4 w-full m-auto' />
                     <br />
                     <br />

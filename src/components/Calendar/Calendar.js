@@ -4,17 +4,17 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
 import { BASE_URL } from "../../config";
 
-function Calendar({ data }) {
-    console.log(data);
+function Calendar({ Tourss, uuid }) {
     const [selectedDate, setSelectedDate] = useState("");
     const [numTickets, setNumTickets] = useState(1);
     const [availability, setAvailability] = useState({});
-    const access_token = localStorage.getItem('access_token')
+    const access_token = localStorage.getItem('access_token');
+    console.log(access_token);
     const navigate = useNavigate();
 
     function handleDateSelection(event) {
         setSelectedDate(event.target.value);
-        const dateData = data?.find((d) => d.date === event.target.value);
+        const dateData = Tourss?.find((d) => d.date === event.target.value);
         if (dateData) {
             setAvailability({ ...availability, [event.target.value]: dateData.Availability });
         }
@@ -29,14 +29,13 @@ function Calendar({ data }) {
         return availability[selectedDate] || 1;
     }
 
-    function handleSubmit(event) {
-        event.preventDefault();
-        const dateData = data?.find((d) => d.date === selectedDate);
+    function handleSubmit(uuid) {
+        const dateData = Tourss?.find((d) => d.date === selectedDate);
         if (!dateData) {
             console.log("Invalid date");
             return;
         }
-        const uuid = dateData.uuid;
+        console.log(uuid);
         const numTicketsToSend = Math.min(numTickets, getMaxTickets());
         console.log(numTicketsToSend);
         axios
@@ -64,13 +63,13 @@ function Calendar({ data }) {
             <br />
             <select value={selectedDate} onChange={handleDateSelection} className="text-2xl">
                 <option value="" className="text-2xl">Please select a date</option>
-                {data?.map((dateData) => (
+                {Tourss?.map((dateData) => (
                     <option key={dateData.date} value={dateData.date} className="text-2xl ml-2">
                         {dateData.date}
                     </option>
                 ))}
             </select>
-            
+
             <input
                 type="number"
                 min="1"
@@ -84,7 +83,7 @@ function Calendar({ data }) {
                 <NavLink
                     to="/cart"
                     className="ml-5"
-                    onClick={handleSubmit}
+                    onClick={() => handleSubmit(uuid)}
                 >
                     <Button data={"Book Now"} />
                 </NavLink>

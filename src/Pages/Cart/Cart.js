@@ -27,6 +27,7 @@ const Cart = (props) => {
           Authorization: `Bearer ${access_token}`,
         },
       });
+      console.log(res.data);
       setCartProduct(res.data.cart_items);
     } catch (error) {
       console.log(error);
@@ -70,6 +71,7 @@ const Cart = (props) => {
           <h2>Products</h2>
           {
             products?.map((currElm) => {
+              console.log(currElm);
               return <ProductCart key={currElm.id} data={currElm} />
             })
           }

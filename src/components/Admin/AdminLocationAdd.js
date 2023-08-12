@@ -8,7 +8,8 @@ import { allProductList } from '../../auth/adminapi';
 const AdminLocationAdd = ({ onCloseForm }) => {
     const [formData, setFormData] = useState({
         title: '',
-        location: '',
+        long: '',
+        lat: '',
         thumbnail: null,
     });
     const [imageDataUrl, setImageDataUrl] = useState(null);
@@ -47,7 +48,8 @@ const AdminLocationAdd = ({ onCloseForm }) => {
         try {
             const formDataToSend = new FormData();
             formDataToSend.append('title', formData.title);
-            formDataToSend.append('location', formData.location);
+            formDataToSend.append('lat', formData.lat);
+            formDataToSend.append('long', formData.long);
             // Append the file data to the FormData object
             formDataToSend.append('thumbnail', formData.thumbnail);
 
@@ -69,7 +71,8 @@ const AdminLocationAdd = ({ onCloseForm }) => {
             // Reset the form after successful submission
             setFormData({
                 title: '',
-                location: '',
+                lat: '',
+                long: '',
             });
             setImageDataUrl(null)
 
@@ -111,15 +114,31 @@ const AdminLocationAdd = ({ onCloseForm }) => {
 
                         <div className="sm:col-span-3">
                             <label htmlFor="last-name" className="block text-2xl font-medium leading-6 text-gray-900">
-                                Location 
+                                Lat. 
                             </label>
                             <div className="mt-2">
                                 <input
                                     type="text"
-                                    name="location"
+                                    name="lat"
                                     id="availiability"
                                     autoComplete="availiability"
-                                    value={formData.location}
+                                    value={formData.lat}
+                                    onChange={handleChange}
+                                    className="block w-full normal-case rounded-md border-0 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-2xl sm:leading-6"
+                                />
+                            </div>
+                        </div>
+                        <div className="sm:col-span-3">
+                            <label htmlFor="last-name" className="block text-2xl font-medium leading-6 text-gray-900">
+                                Lon.
+                            </label>
+                            <div className="mt-2">
+                                <input
+                                    type="text"
+                                    name="long"
+                                    id="availiability"
+                                    autoComplete="availiability"
+                                    value={formData.long}
                                     onChange={handleChange}
                                     className="block w-full normal-case rounded-md border-0 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-2xl sm:leading-6"
                                 />

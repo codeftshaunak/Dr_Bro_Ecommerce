@@ -89,7 +89,7 @@ const ShopNav = () => {
             <form onSubmit={(e) => e.preventDefault()}>
               <label
                 for="default-search"
-                class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+                class="mb-2 text-2xl font-medium sr-only dark:text-white"
               >
                 Search
               </label>
@@ -116,7 +116,7 @@ const ShopNav = () => {
                   name="text"
                   value={text}
                   onChange={updateFilterValue}
-                  class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  class="block w-[150px] rounded p-4 pl-10 text-xl bg-white normal-case"
                   placeholder="Search..."
                   required
                 />

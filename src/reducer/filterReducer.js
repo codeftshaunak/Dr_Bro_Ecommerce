@@ -99,8 +99,8 @@ const filterReducer = (state, action) => {
       const {
         text,
         category,
-        company,
-        color,
+        // company,
+        // color,
         price
       } = state.filters;
       console.log(state);
@@ -117,17 +117,17 @@ const filterReducer = (state, action) => {
         })
       }
 
-      if (company.toLowerCase() !== "all") {
-        tempFilterProduct = tempFilterProduct.filter((currEle) => {
-          return currEle.company === company;
-        })
-      }
+      // if (company.toLowerCase() !== "all") {
+      //   tempFilterProduct = tempFilterProduct.filter((currEle) => {
+      //     return currEle.company === company;
+      //   })
+      // }
 
-      if (color.toLowerCase() !== "all") {
-        tempFilterProduct = tempFilterProduct.filter((currEle) => {
-          return currEle.colors.includes(color);
-        })
-      }
+      // if (color.toLowerCase() !== "all") {
+      //   tempFilterProduct = tempFilterProduct.filter((currEle) => {
+      //     return currEle.colors.includes(color);
+      //   })
+      // }
 
 
       if (price) {
@@ -146,8 +146,8 @@ const filterReducer = (state, action) => {
           ...state.filters,
           text: "",
           category: "all",
-          company: "all",
-          color: "all",
+          // company: "all",
+          // color: "all",
           price: 0,
         }
       }

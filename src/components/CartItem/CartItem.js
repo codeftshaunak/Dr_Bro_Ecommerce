@@ -10,9 +10,6 @@ const CartItem = (data) => {
   const API = `${BASE_URL}/cart/something`;
 
 
-
-
-
   // const removeItemCart = useCallback(() => {
   //   axios
   //     .post(

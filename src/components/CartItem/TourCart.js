@@ -58,12 +58,10 @@ const DeleteButton = styled.button`
 `;
 
 const TourCart = (data) => {
-    console.log(data);
     const tourquantity = data.data.quantity;
     const date = data.data.tours.date;
     const uuid = data.data.tours.uuid;
-    console.log(uuid);
-    const { Tours_name, thumbnail, price } = data.data.tours.tours;
+    const { Tours_name, thumbnail, price } = data.data.tours;
     const access_token = localStorage.getItem("access_token");
     const API = `${BASE_URL}/cart/something`;
     const removeItemCart = useCallback(() => {
@@ -83,7 +81,7 @@ const TourCart = (data) => {
 
     return (
         <CartItem>
-            <CartItemImage src={`${BASE_URL}/${thumbnail}`} alt="Product Image" />
+            <CartItemImage src={`${thumbnail}`} alt="Product Image" />
             <CartItemDetails>
                 <CartItemName>{Tours_name}</CartItemName>
                 <CartItemQuantity>Date:{date}</CartItemQuantity>

@@ -2,16 +2,16 @@ import React from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import styled from "styled-components";
 
-const CartAmountToggle = ({ amount, setDecrase, setIncrase }) => {
+const CartAmountToggle = ({ amount, setDecrease, setIncrease }) => {
   return (
     <Wrapper>
       <div className="cart-button">
         <div className="amount-toggle">
-          <button onClick={() => setDecrase()}>
+          <button onClick={() => setDecrease()}>
             <FaMinus />
           </button>
           <div className="amount-style">{amount}</div>
-          <button onClick={() => setIncrase()}>
+          <button onClick={() => setIncrease()}>
             <FaPlus />
           </button>
         </div>

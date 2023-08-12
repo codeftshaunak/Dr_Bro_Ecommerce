@@ -12,7 +12,7 @@ const FilterSection = () => {
     clearFilters,
     all_products,
     // filters: { color, category, price, minPrice, maxPrice, company },
-    filters: { color, price, minPrice, maxPrice, company, category },
+    filters: { price, minPrice, maxPrice, category },
   } = useFilterContext();
 
   //get unique data for everyone
@@ -25,7 +25,7 @@ const FilterSection = () => {
 
   //unique data category
   const categoryData = getUniqueData(all_products, "category");
-  const companyData = getUniqueData(all_products, "company");
+  // const companyData = getUniqueData(all_products, "company");
   const colorsData = getUniqueData(all_products, "colors");
   let union = colorsData.flat(2);
   const newColorsData = [...new Set(union)];
@@ -68,7 +68,7 @@ const FilterSection = () => {
           </div>
         </div>
 
-        <div className="company__filter style__middle">
+        {/* <div className="company__filter style__middle">
           <h3 onClick={() => setExpendCompany(!expendCompany)}>
             Company <FcExpand />
           </h3>
@@ -97,9 +97,9 @@ const FilterSection = () => {
               );
             })}
           </div>
-        </div>
+        </div> */}
 
-        <div className="colors__filters style__middle">
+        {/* <div className="colors__filters style__middle">
           <h3 onClick={() => setExpendColor(!expendColor)}>
             Colors <FcExpand />
           </h3>
@@ -147,8 +147,9 @@ const FilterSection = () => {
                 }
               })}
             </div>
+
           </div>
-        </div>
+        </div> */}
 
         <div className="price__fiters style__middle">
           <h3 onClick={() => setExpendPrice(!expendPrice)}>
