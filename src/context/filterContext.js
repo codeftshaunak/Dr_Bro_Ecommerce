@@ -11,7 +11,7 @@ const initialState = {
   sorting_value: "a-z",
   filters: {
     text: "",
-    // category: "all",
+    category: "all",
     company: "all",
     color: "all",
     minPrice: 0,
@@ -23,7 +23,7 @@ const initialState = {
 export const FilterContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { products } = useProductContext();
-console.log(products);
+
   //to set grid view
   const setGridView = () => {
     return dispatch({ type: "SET_GRIDVIEW" });
@@ -46,7 +46,6 @@ console.log(products);
     let value = event.target.value;
 
     // console.log(name, value);
-
     return dispatch({ type: "UPDATE_FILTER_VALUE", payload: { name, value } });
   };
 

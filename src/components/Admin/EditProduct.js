@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { allProductList, singleProductList } from '../../auth/adminapi';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { BASE_URL } from '../../config';
 import { getAuthorizationHeader } from '../../auth/adminAuth';
 import { PhotoIcon } from '@heroicons/react/24/solid';
@@ -8,6 +8,7 @@ import { PhotoIcon } from '@heroicons/react/24/solid';
 const EditProduct = () => {
     const { id } = useParams();
     const [data, setData] = useState([]);
+    const nevigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -58,6 +59,7 @@ const EditProduct = () => {
             availiability: data.availiability,
             category: data.category,
             price: data.price,
+            thumbnail: data.thumbnail
         })
     }, [data])
 
@@ -71,7 +73,9 @@ const EditProduct = () => {
             formDataToSend.append('category', formData.category);
             formDataToSend.append('price', formData.price);
             formDataToSend.append('published', true);
-            formDataToSend.append('thumbnail', formData.thumbnail);
+            if (imageDataUrl) {
+                formDataToSend.append('thumbnail', formData.thumbnail);
+            }
 
             console.log(formDataToSend);
             const response = await fetch(`${BASE_URL}/admins/ecommerce/products/${id}/`, {
@@ -88,7 +92,7 @@ const EditProduct = () => {
 
             const data = await response.json();
             console.log('New Product:', data);
-
+            nevigate("/adminecom")
             // Reset the form after successful submission
             // setFormData({
             //     product_name: '',

@@ -135,3 +135,51 @@ export const singleProductList = async (uuid) => {
         console.error('Error fetching data:', error.message);
     }
 }
+
+export const singleTourList = async (uuid) => {
+    try {
+        const resp = await fetch(`${BASE_URL}/admins/tours/travels/${uuid}/`, {
+            headers: getAuthorizationHeader(),
+        });
+        if (!resp.ok) {
+            throw new Error('Failed to fetch data');
+        }
+        const data = await resp.json();
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error.message);
+    }
+}
+
+export const singleBlogList = async (id) => {
+    try {
+        const resp = await fetch(`${BASE_URL}/admins/blogs/${id}/`, {
+            headers: getAuthorizationHeader(),
+        });
+        if (!resp.ok) {
+            throw new Error('Failed to fetch data');
+        }
+        const data = await resp.json();
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error.message);
+    }
+}
+
+export const singleLocationList = async (id) => {
+    try {
+        const resp = await fetch(`${BASE_URL}/admins/places/${id}/`, {
+            headers: getAuthorizationHeader(),
+        });
+        if (!resp.ok) {
+            throw new Error('Failed to fetch data');
+        }
+        const data = await resp.json();
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error.message);
+    }
+}

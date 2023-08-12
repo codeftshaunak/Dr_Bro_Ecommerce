@@ -21,7 +21,7 @@ const Product = ({ products }) => {
               </div>
             </div>
             <figure>
-              <img src={`${BASE_URL}/${thumbnail}`} alt="Product Image" />
+              <img src={`${thumbnail}`} alt="Product Image" />
               <figcaption className="caption"> {product_name} </figcaption>
             </figure>
           </div>

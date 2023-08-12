@@ -11,10 +11,6 @@ function Calendar({ data }) {
     const [availability, setAvailability] = useState({});
     const access_token = localStorage.getItem('access_token')
     const navigate = useNavigate();
-    // const data = [
-    //     { date: "2023-04-12", Maximum: 10, Availability: 5, uuid: 3232323 },
-    //     { date: "2023-04-13", Maximum: 10, Availability: 8, uuid: 43564545 },
-    // ];
 
     function handleDateSelection(event) {
         setSelectedDate(event.target.value);
@@ -64,18 +60,21 @@ function Calendar({ data }) {
 
     return (
         <div>
-            <h3>Select your travel date & ticket:</h3>
-            <select value={selectedDate} onChange={handleDateSelection}>
-                <option value="">Please select a date</option>
+            <h3 className="">Select your travel date & ticket:</h3>
+            <br />
+            <select value={selectedDate} onChange={handleDateSelection} className="text-2xl">
+                <option value="" className="text-2xl">Please select a date</option>
                 {data?.map((dateData) => (
-                    <option key={dateData.date} value={dateData.date}>
+                    <option key={dateData.date} value={dateData.date} className="text-2xl ml-2">
                         {dateData.date}
                     </option>
                 ))}
             </select>
+            
             <input
                 type="number"
                 min="1"
+                className="text-2xl ml-2"
                 max={getMaxTickets()}
                 defaultValue={numTickets}
                 onChange={handleNumTicketsChange}

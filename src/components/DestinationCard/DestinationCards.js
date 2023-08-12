@@ -16,7 +16,7 @@ function DestinationCards() {
   //Single products
   const getTours = async (url) => {
     const res = await axios.get(url);
-    const singleProduct = await res.data.data;
+    const singleProduct = await res.data.results;
     setTourdata(singleProduct)
   };
 
@@ -35,7 +35,7 @@ function DestinationCards() {
               {/* Card-1 Start */}
               <div className="card tour__card w-1/4 bg-white text-black shadow-xl">
                 <figure>
-                  <img src={`${BASE_URL}/${data.thumbnail}`} alt="Tour Image" />
+                  <img src={`${data.thumbnail}`} alt="Tour Image" />
 
                   <div className="button">
                     <NavLink to={`/singletour/${data.uuid}`}>

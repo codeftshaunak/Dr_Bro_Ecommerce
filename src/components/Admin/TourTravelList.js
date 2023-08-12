@@ -1,4 +1,6 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { BASE_URL } from '../../config';
 import { allToursList, handleDeleteTour } from '../../auth/adminapi';
 import { Card, Typography } from "@material-tailwind/react";
 import { useNavigate } from 'react-router-dom';
@@ -7,6 +9,7 @@ const TABLE_HEAD = ["Tour Image", "Tour Name", "Category", "Price", "Description
 
 const TourTravelList = () => {
     const [data, setData] = useState([]);
+    console.log({ "tours data": data });
     const nevigate = useNavigate();
 
     useEffect(() => {

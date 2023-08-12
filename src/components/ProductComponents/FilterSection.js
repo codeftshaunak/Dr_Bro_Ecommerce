@@ -12,7 +12,7 @@ const FilterSection = () => {
     clearFilters,
     all_products,
     // filters: { color, category, price, minPrice, maxPrice, company },
-    filters: { color, price, minPrice, maxPrice, company },
+    filters: { color, price, minPrice, maxPrice, company, category },
   } = useFilterContext();
 
   //get unique data for everyone
@@ -24,7 +24,7 @@ const FilterSection = () => {
   };
 
   //unique data category
-  // const categoryData = getUniqueData(all_products, "category");
+  const categoryData = getUniqueData(all_products, "category");
   const companyData = getUniqueData(all_products, "company");
   const colorsData = getUniqueData(all_products, "colors");
   let union = colorsData.flat(2);
@@ -48,7 +48,7 @@ const FilterSection = () => {
               expend ? "expend__filter__items__active" : "expend__filter__items"
             }
           >
-            {/* {categoryData.map((currEle, index) => {
+            {categoryData.map((currEle, index) => {
               return (
                 <>
                   <button
@@ -64,7 +64,7 @@ const FilterSection = () => {
                   <br />
                 </>
               );
-            })} */}
+            })}
           </div>
         </div>
 

@@ -4,17 +4,19 @@ import { GiBackwardTime } from "react-icons/gi";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { GoLocation } from "react-icons/go";
 import { Button } from "../../styles/Button";
+import { useNavigate } from "react-router-dom";
 const TourHomeCard = ({ data }) => {
+  const nevigate = useNavigate();
   return (
     <Wrapper className="flex flex-wrap justify-evenly">
-      {data?.map((product) => {
+      {data?.map((tour) => {
         return (
           <div className="tour__card py-5">
             <figure class="image-block">
-              <span className="price__tag ">{product.package_price}</span>
-              <img src={product.Package_thumble} alt="" />
+              <span className="price__tag ">{tour.price}</span>
+              <img src={tour.thumbnail} alt="" />
               <figcaption>
-                <h3 className="text-5xl">{product.package_titile}</h3>
+                <h3 className="text-5xl">{tour.package_titile}</h3>
                 <hr />
                 <div className="tour__icons flex">
                   <div className="recent">
@@ -30,7 +32,7 @@ const TourHomeCard = ({ data }) => {
                     <span>Maldives</span>
                   </div>
                 </div>
-                <Button>Book Now</Button>
+                <Button onClick={() => nevigate(`/singletour/${tour.uuid}`)}>Book Now</Button>
               </figcaption>
             </figure>
           </div>

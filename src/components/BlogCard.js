@@ -1,77 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Button } from "../styles/Button";
 import blog1 from "../assets/blog/blog-1.jpg";
+import { BASE_URL } from "../config";
+import axios from "axios";
 
 const BlogCard = () => {
+  const [blog, setBlog] = useState([]);
+  console.log(blog);
+  const API = `${BASE_URL}/blogs/`;
+  const getBlogs = async (api) => {
+    const res = await axios.get(api);
+    const data = res.data.results;
+    setBlog(data);
+  }
+
+  useEffect(() => {
+    getBlogs(API);
+  }, [])
+
   return (
     <Wrapper>
       <div className="container mx-auto pb-36">
         <div className="intro-data text-center">Check Now!</div>
         <div className="common-heading text-center">Our New Blogs</div>
         <div className="blog">
-          <div className="blog__1">
-            <div className="blog__body">
-              <div className="blog__image">
-                <img src={blog1} alt="blog" />
-              </div>
-              <div className="blog__title text-left">
-                <h3>Is this world have a place like haven?</h3>
-                <span className="blog__date">22 Spet 2022</span>
-              </div>
-              <div className="blog__desc">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Excepturi accusantium, quasi asperiores porro beatae nobis?
-                  Eaque distinctio at sint tempora hic quae architecto quas,
-                  commodi dicta adipisci repudiandae repellendus repellat
-                  delectus cupiditate impedit.
-                </p>
-              </div>
-            </div>
-          </div>
 
-          <div className="blog__1">
-            <div className="blog__body">
-              <div className="blog__image">
-                <img src={blog1} alt="blog" />
-              </div>
-              <div className="blog__title text-left">
-                <h3>Is this world have a place like haven?</h3>
-                <span className="blog__date">22 Spet 2022</span>
-              </div>
-              <div className="blog__desc">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Excepturi accusantium, quasi asperiores porro beatae nobis?
-                  Eaque distinctio at sint tempora hic quae architecto quas,
-                  commodi dicta adipisci repudiandae repellendus repellat
-                  delectus cupiditate impedit.
-                </p>
-              </div>
-            </div>
-          </div>
+          {
+            blog.map((blog) => {
+              return <div key={blog.id}>
+                <div className="blog__1 border">
+                  <div className="blog__body">
+                    <div className="blog__image">
+                      <a href={blog.link} target="_blank">
+                        <img src={blog.thumbnail} alt="blog" className="w-[300px]" />
+                      </a>
+                    </div>
+                    <div className="blog__title text-left pt-3 capitalize">
+                      <h3 className="text-2xl font-bold">{blog.title}</h3>
 
-          <div className="blog__1">
-            <div className="blog__body">
-              <div className="blog__image">
-                <img src={blog1} alt="blog" />
+                      <span className="blog__date text-xl">22 Spet 2022</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="blog__title text-left">
-                <h3>Is this world have a place like haven?</h3>
-                <span className="blog__date">22 Spet 2022</span>
-              </div>
-              <div className="blog__desc">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Excepturi accusantium, quasi asperiores porro beatae nobis?
-                  Eaque distinctio at sint tempora hic quae architecto quas,
-                  commodi dicta adipisci repudiandae repellendus repellat
-                  delectus cupiditate impedit.
-                </p>
-              </div>
-            </div>
-          </div>
+            })
+          }
         </div>
       </div>
     </Wrapper>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { allProductList, singleProductList } from '../../auth/adminapi';
-import { useParams } from 'react-router-dom';
+import { allProductList, singleProductList, singleTourList } from '../../auth/adminapi';
+import { useNavigate, useParams } from 'react-router-dom';
 import { BASE_URL } from '../../config';
 import { getAuthorizationHeader } from '../../auth/adminAuth';
 import { PhotoIcon } from '@heroicons/react/24/solid';
@@ -8,24 +8,27 @@ import { PhotoIcon } from '@heroicons/react/24/solid';
 const EditTours = () => {
     const { id } = useParams();
     const [data, setData] = useState([]);
+    const [imageDataUrl, setImageDataUrl] = useState(null);
+
+    const nevigate = useNavigate();
+
     useEffect(() => {
         const fetchData = async () => {
-            const data = await singleProductList(id);
+            const data = await singleTourList(id);
             console.log(data);
             setData(data)
         }
         fetchData()
     }, [])
+
     const [formData, setFormData] = useState({
-        product_name: data.product_name || '',
+        Tours_name: data.Tours_name || '',
         description: data.description || '',
-        availiability: data.availiability || '',
         category: data.category || '',
         price: data.price || '',
         thumbnail: data.thumbnail || null,
     });
 
-    const [imageDataUrl, setImageDataUrl] = useState(null);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -51,28 +54,32 @@ const EditTours = () => {
 
     useEffect(() => {
         setFormData({
-            product_name: data.product_name,
+            Tours_name: data.Tours_name,
             description: data.description,
-            availiability: data.availiability,
             category: data.category,
             price: data.price,
+            thumbnail: data.thumbnail
         })
     }, [data])
+
+    console.log(getAuthorizationHeader())
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const formDataToSend = new FormData();
-            formDataToSend.append('product_name', formData.product_name);
+            formDataToSend.append('Tours_name', formData.Tours_name);
             formDataToSend.append('description', formData.description);
-            formDataToSend.append('availiability', formData.availiability);
+            // formDataToSend.append('availiability', formData.availiability);
             formDataToSend.append('category', formData.category);
             formDataToSend.append('price', formData.price);
             formDataToSend.append('published', true);
-            formDataToSend.append('thumbnail', formData.thumbnail);
+            if (imageDataUrl) {
+                formDataToSend.append('thumbnail', formData.thumbnail);
+            }
 
             console.log(formDataToSend);
-            const response = await fetch(`${BASE_URL}/admins/ecommerce/products/${id}/`, {
+            const response = await fetch(`${BASE_URL}/admins/tours/travels/${id}/`, {
                 method: 'PUT',
                 headers: {
                     Accept: 'application/json',
@@ -86,7 +93,7 @@ const EditTours = () => {
 
             const data = await response.json();
             console.log('New Product:', data);
-
+            nevigate("/tourstravels")
             // Reset the form after successful submission
             // setFormData({
             //     product_name: '',
@@ -108,16 +115,16 @@ const EditTours = () => {
     return (
         <div>
             <form className='bg-white pt-10 pl-10' onSubmit={handleSubmit}>
-                <h2 className="text-5xl font-bold leading-7 text-gray-900">Add Product</h2>
+                <h2 className="text-5xl font-bold leading-7 text-gray-900">Edit Your Tour</h2>
                 <p className="mt-1 text-2xl leading-6 text-gray-600">
-                    Add you product details
+                    Add you tours details
                 </p>
 
                 <div className="border-b border-gray-900/10 pb-12">
                     <div className="mt-10 gap-0 grid grid-cols-1 sm:grid-cols-6 sm:gap-0">
                         <div className="sm:col-span-3">
                             <label htmlFor="product_name" className="block text-2xl font-medium leading-6 text-gray-900">
-                                Product Name
+                                Tours Name
                             </label>
                             <div className="mt-2">
                                 <input
@@ -125,29 +132,13 @@ const EditTours = () => {
                                     name="product_name"
                                     id="product_name"
                                     autoComplete="given-name"
-                                    defaultValue={formData.product_name}
+                                    defaultValue={formData.Tours_name}
                                     onChange={handleChange}
                                     className="block w-full normal-case rounded-md border-0 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-2xl sm:leading-6"
                                 />
                             </div>
                         </div>
 
-                        <div className="sm:col-span-3">
-                            <label htmlFor="last-name" className="block text-2xl font-medium leading-6 text-gray-900">
-                                Availiability
-                            </label>
-                            <div className="mt-2">
-                                <input
-                                    type="number"
-                                    name="availiability"
-                                    id="availiability"
-                                    autoComplete="availiability"
-                                    defaultValue={formData.availiability}
-                                    onChange={handleChange}
-                                    className="block w-full normal-case rounded-md border-0 p-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-2xl sm:leading-6"
-                                />
-                            </div>
-                        </div>
 
                         <div className="sm:col-span-3">
                             <label htmlFor="last-name" className="block text-2xl font-medium leading-6 text-gray-900">
@@ -181,7 +172,7 @@ const EditTours = () => {
                             </div>
                         </div>
 
-                        <div className="col-span-full">
+                        <div className="col-span-3">
                             <label htmlFor="about" className="block text-2xl font-medium text-gray-900">
                                 Description
                             </label>

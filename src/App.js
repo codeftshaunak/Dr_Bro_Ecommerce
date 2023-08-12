@@ -41,6 +41,13 @@ import AddBlogs from "./admin/AddBlogs";
 import EditProduct from "./admin/AdminEditProduct";
 import AdminLocation from "./admin/AdminLocation";
 import AddLocation from "./admin/AddLocation";
+import AdminEditProduct from "./admin/AdminEditProduct";
+import AdminEditTours from "./admin/AdminEditTours";
+import { ToastContainer, toast } from 'react-toastify';
+import BlogEdit from "./components/Admin/BlogEdit";
+import AdminBlogEdit from "./admin/AdminBlogEdit";
+import AdminLocationEdit from "./admin/AdminLocationEdit";
+
 
 
 const App = () => {
@@ -142,20 +149,21 @@ const App = () => {
 
             <Route path="/adminecom" element={<AdminEcom funNav={setShowHeader} />}></Route>
             <Route path="/adminecomaddprod" element={<AddProduct funNav={setShowHeader} />}></Route>
-            <Route path="/adminecomaddprod" element={<AddProduct funNav={setShowHeader} />}></Route>
-            <Route path="/adminecomaddprod/:id" element={<EditProduct funNav={setShowHeader} />}></Route>
+            <Route path="/adminecomaddprod/:id" element={<AdminEditProduct funNav={setShowHeader} />}></Route>
 
             <Route path="/adminecomcatagory" element={<AdminEcom funNav={setShowHeader} />}></Route>
 
             <Route path="/tourstravels" element={<AdminTour funNav={setShowHeader} />}></Route>
             <Route path="/admintoursadd" element={<AddTours funNav={setShowHeader} />}></Route>
-            <Route path="/admintouredit/:id" element={<EditProduct funNav={setShowHeader} />}></Route>
+            <Route path="/admintouredit/:id" element={<AdminEditTours funNav={setShowHeader} />}></Route>
 
             <Route path="/adminlocation" element={<AdminLocation funNav={setShowHeader} />}></Route>
             <Route path="/adminaddlocation" element={<AddLocation funNav={setShowHeader} />}></Route>
+            <Route path="/adminlocationedit/:id" element={<AdminLocationEdit funNav={setShowHeader} />}></Route>
 
             <Route path="/adminblog" element={<AdminBlog funNav={setShowHeader} />}></Route>
             <Route path="/adminblogadd" element={<AddBlogs funNav={setShowHeader} />}></Route>
+            <Route path="/adminblogedit/:id" element={<AdminBlogEdit funNav={setShowHeader} />}></Route>
 
             <Route path="/adminpassport" element={<AdminPassport funNav={setShowHeader} />}></Route>
 
@@ -187,6 +195,8 @@ const App = () => {
 
 
         </Router>
+        <ToastContainer />
+
       </QueryClientProvider>
     </ThemeProvider>
   );

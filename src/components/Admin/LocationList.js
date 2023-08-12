@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { allLocationList, handleDeleteBlog, handleDeleteLocation } from '../../auth/adminapi';
 import { Button, Card } from "@material-tailwind/react";
+import { useNavigate } from 'react-router-dom';
 
 const LocationList = () => {
     const [data, setData] = useState([]);
-    console.log(data);
+    const nevigate = useNavigate();
+
     useEffect(() => {
         const fetchData = async () => {
             const data = await allLocationList();
@@ -18,7 +20,8 @@ const LocationList = () => {
     }
 
     const handleEdit = (id) => {
-        console.log(id);
+        nevigate(`/adminlocationedit/${id}`)
+
     }
 
 

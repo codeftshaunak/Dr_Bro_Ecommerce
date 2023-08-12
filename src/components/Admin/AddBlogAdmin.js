@@ -73,9 +73,6 @@ const AddBlogAdmin = ({ onCloseForm }) => {
             });
             setImageDataUrl(null)
 
-            // Close the form
-            onCloseForm();
-            window.location.reload()
         } catch (error) {
             console.error(error);
         }

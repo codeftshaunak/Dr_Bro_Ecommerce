@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { GoLocation } from "react-icons/go";
+import { GoAlert, GoContainer, GoLocation } from "react-icons/go";
 import Titles from "./Titles";
 import Button from "../Button/Button";
 
@@ -16,52 +16,16 @@ import "swiper/css/pagination";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../../config";
+import { AiFillDollarCircle } from "react-icons/ai";
 
 const PopularDestination = () => {
-  const popularTourData = [
-    {
-      id: 1,
-      package_titile: "Dubai",
-      package_num: "8 Tours",
-      Package_thumble:
-        "https://webredox.net/demo/wp/travol/wp-content/uploads/2022/08/dubai1.jpg",
-    },
-    {
-      id: 1,
-      package_titile: "Grecee",
-      package_num: "8 Tours",
-      Package_thumble:
-        "https://webredox.net/demo/wp/travol/wp-content/uploads/2022/08/greece1.jpg",
-    },
-    {
-      id: 3,
-      package_titile: "France",
-      package_num: "8 Tours",
-      Package_thumble:
-        "https://i.picsum.photos/id/57/2448/3264.jpg?hmac=ewraXYesC6HuSEAJsg3Q80bXd1GyJTxekI05Xt9YjfQ",
-    },
-    {
-      id: 4,
-      package_titile: "Italy",
-      package_num: "7 Tours",
-      Package_thumble:
-        "https://i.picsum.photos/id/74/4288/2848.jpg?hmac=q02MzzHG23nkhJYRXR-_RgKTr6fpfwRgcXgE0EKvNB8",
-    },
-    {
-      id: 5,
-      package_titile: "Maldivs",
-      package_num: "6 Tours",
-      Package_thumble:
-        "https://i.picsum.photos/id/84/1280/848.jpg?hmac=YFRYDI4UsfbeTzI8ZakNOR98wVU7a-9a2tGF542539s",
-    },
-  ];
-
   const [tour, setTour] = useState([]);
+  console.log(tour);
   const API = `${BASE_URL}/tours/`;
-
   const getTours = async (api) => {
     const res = await axios.get(api);
-    const data = res.data.data;
+    const data = res.data.results    ;
+    // console.log(data);
     setTour(data);
   }
 
@@ -96,27 +60,26 @@ const PopularDestination = () => {
         modules={[Pagination]}
         className="mySwiper"
       >
-        {popularTourData?.map((product) => {
+        {tour?.map((tour) => {
           return (
             <SwiperSlide>
               <div className="tour__card py-5 mb-10">
                 <figure class="image-block">
-                  <span className="tour__num">{product.package_num}</span>
-
-                  <img src={product.Package_thumble} alt="" />
+                  <span className="tour__num">{tour.Tours_name}</span>
+                  <img src={`${tour.thumbnail}`} alt="" />
                   <figcaption>
-                    <div className="flex content-center">
-                      <GoLocation className="text-5xl" />
-                      <h3 className="text-5xl bold">
-                        {product.package_titile}
+                    <div className="flex items-center bg-white py-5 px-3 rounded">
+                      <AiFillDollarCircle className="text-4xl text-black font-bold" />
+                      <h3 className="text-3xl text-black font-bold">
+                        {tour.price}/=
                       </h3>
                     </div>
-                    <hr />
-                    <span className="text-3xl">
-                      {product.package_num} Package
+                    <br />
+                    <span className="text-3xl text font-bold text-gray-600">
+                      {tour.category} Package
                     </span>
-                    <NavLink to="alltour">
-                      <Button data={"explore"} />
+                    <NavLink to="/tour/alltour">
+                      <Button data={"View More"} />
                     </NavLink>
                   </figcaption>
                 </figure>
@@ -151,7 +114,6 @@ const Wrapper = styled.section`
   }
 
   .swiper-slide {
-    text-align: center;
     font-size: 18px;
     background: #fff;
 
@@ -193,7 +155,7 @@ const Wrapper = styled.section`
     align-items: center;
     justify-content: center;
     width: 350px;
-    height: 467px;
+    height: 500px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     overflow: hidden;
@@ -202,6 +164,7 @@ const Wrapper = styled.section`
         0 10px 10px rgba(0, 0, 0, 0.22);
       img {
         transform: scale(1.25);
+        filter: blur(3px);
       }
       figcaption {
         bottom: 0;
@@ -238,7 +201,6 @@ const Wrapper = styled.section`
       line-height: 1;
       transition: 0.25s;
       h3 {
-        margin: 0 0 20px;
         padding: 0;
       }
       p {

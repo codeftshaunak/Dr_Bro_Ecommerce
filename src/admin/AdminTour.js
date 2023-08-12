@@ -14,8 +14,6 @@ const AdminTour = (props) => {
 
     return (
         <AdminLayout>
-            <Button className='text-2xl' onClick={() => setShowbox(true)}> Add Tour </Button>
-
             <TourTravelList />
             {
                 showbox && (

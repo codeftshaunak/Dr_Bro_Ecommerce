@@ -16,10 +16,12 @@ const SingleTour = () => {
     const { Tours_name, Tourss, description, price, thumbnail } = tour;
     const API = `${BASE_URL}/tours/packages/`;
     const { id } = useParams();
-
+    console.log(id);
+    console.log(tour);
     const getTourData = async (url) => {
         const res = await axios.get(url);
-        const singleProduct = await res.data.data[0];
+        console.log(res);
+        const singleProduct = await res.data;
         setTour(singleProduct);
     }
 

@@ -5,8 +5,8 @@ import styled from "styled-components";
 const Button = ({ data }) => {
   return (
     <Wrapper>
-      <button className="button">
-        {data} <FaArrowRight className="ml-2" />
+      <button className="button text-3xl">
+        <p className="text-3xl font-bold">{data}</p>  <FaArrowRight className="ml-2" />
       </button>
     </Wrapper>
   );

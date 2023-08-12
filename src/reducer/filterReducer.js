@@ -13,13 +13,13 @@ const filterReducer = (state, action) => {
 
         ...state,
         filter_products: [...action.payload],
-          all_products: [...action.payload],
-          filters: {
-            ...state.filters,
-            maxPrice,
-            minPrice,
-            price: maxPrice
-          }
+        all_products: [...action.payload],
+        filters: {
+          ...state.filters,
+          maxPrice,
+          minPrice,
+          price: maxPrice
+        }
       };
 
     case "SET_GRIDVIEW":
@@ -90,69 +90,70 @@ const filterReducer = (state, action) => {
         }
       }
 
-      case "FILTERS_PRODUCTS":
-        let {
-          all_products
-        } = state;
-        let tempFilterProduct = [...all_products];
+    case "FILTERS_PRODUCTS":
+      let {
+        all_products
+      } = state;
+      let tempFilterProduct = [...all_products];
 
-        const {
-          text,
-          // category,
-          company,
-          color,
-          price
-        } = state.filters;
+      const {
+        text,
+        category,
+        company,
+        color,
+        price
+      } = state.filters;
+      console.log(state);
 
-        if (text) {
-          tempFilterProduct = tempFilterProduct.filter((currEle) => {
-            return currEle.name.toLowerCase().includes(text);
-          })
+      if (text) {
+        tempFilterProduct = tempFilterProduct.filter((currEle) => {
+          return currEle.product_name.toLowerCase().includes(text);
+        })
+      }
+
+      if (category.toLowerCase() !== "all") {
+        tempFilterProduct = tempFilterProduct.filter((currEle) => {
+          return currEle.category === category;
+        })
+      }
+
+      if (company.toLowerCase() !== "all") {
+        tempFilterProduct = tempFilterProduct.filter((currEle) => {
+          return currEle.company === company;
+        })
+      }
+
+      if (color.toLowerCase() !== "all") {
+        tempFilterProduct = tempFilterProduct.filter((currEle) => {
+          return currEle.colors.includes(color);
+        })
+      }
+
+
+      if (price) {
+        tempFilterProduct = tempFilterProduct.filter((currEle) => currEle.price <= price)
+      }
+
+      return {
+        ...state,
+        filter_products: tempFilterProduct
+      }
+
+    case "CLEAR_FILTERS":
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          text: "",
+          category: "all",
+          company: "all",
+          color: "all",
+          price: 0,
         }
+      }
 
-        // if (category.toLowerCase() !== "all") {
-        //   tempFilterProduct = tempFilterProduct.filter((currEle) => {
-        //     return currEle.category === category;
-        //   })
-        // }
-
-        if (company.toLowerCase() !== "all") {
-          tempFilterProduct = tempFilterProduct.filter((currEle) => {
-            return currEle.company === company;
-          })
-        }
-
-        if (color.toLowerCase() !== "all") {
-          tempFilterProduct = tempFilterProduct.filter((currEle) => {
-            return currEle.colors.includes(color);
-          })
-        }
-
-
-        if (price) {
-          tempFilterProduct = tempFilterProduct.filter((currEle) => currEle.price <= price)
-        }
-
-        return {
-          ...state,
-          filter_products: tempFilterProduct
-        }
-
-        case "CLEAR_FILTERS":
-          return {
-            ...state,
-            filters: {
-              ...state.filters,
-              text: "",
-              category: "all",
-              company: "all",
-              color: "all",
-              price: 0,
-            }
-          }
-
-          default:
-            return state;
+    default:
+      return state;
   }
 };
 
