@@ -15,7 +15,7 @@ const Home = (props) => {
       <HeroSection />
       <PopularDestination />
       <ShopSample />
-      <DiscountBanner />
+      {/* <DiscountBanner /> */}
       <BlogCard />
       <TravelBanner />
 

@@ -9,6 +9,8 @@ import Loading from "../Loading/Loading";
 import PageNavigation from "../PageNavigations/PageNavigation";
 import SingleProdutDescription from "./SingleProdutDescription";
 import { BASE_URL } from "../../config";
+import CarosalImage from "./CarosalImage";
+
 
 const API = `${BASE_URL}/ecommerce/Products/`;
 
@@ -28,6 +30,7 @@ const SingleProduct = (props) => {
     price,
     description,
     thumbnail,
+    discount,
     availiability,
   } = singleProduct;
 
@@ -45,31 +48,51 @@ const SingleProduct = (props) => {
       </>
     );
   }
-
+  const discountPrice = price - (price * discount / 100);
   return (
     <Wrapper>
       <PageNavigation title={product_name} />
       <div className="single__products__front">
         <div className="left__side__single">
-          {/* <SliderProduct imgs={thumbnail} /> */}
           <img src={`${BASE_URL}/${thumbnail}`} alt="Product Image" />
         </div>
         <div className="right__side__single">
           <h2>{product_name}</h2>
+          <br />
           <h3>
-            <FormatPrice price={price} />
+            {
+              discount ?
+                <>
+                  <p className="p-2 bg-orange-500 w-[150px] text-white rounded">Get {discount}% Discount</p>
+                  <p className="card-data--price">
+                    Original Price:<strike> {price} </strike>
+                  </p>
+                  <p className="card-data--price">
+                    {/* Discount Price: <strong>{<FormatPrice price={discountPrice} />}</strong> */}
+                    Discount Price: <strong>{discountPrice}</strong>
+                  </p>
+                </>
+                : <p className="card-data--price">
+                  Original Price: {<FormatPrice price={price} />}
+                </p>
+            }
           </h3>
+          <br />
           {availiability > 0 ? <AddToCart product={singleProduct} /> : <button disabled>Stock Out</button>}
         </div>
       </div>
       <SingleProdutDescription product={description} />
-      {/* <DescriptionImage imgs={thumbnail} /> */}
-      <img src={`${BASE_URL}/${thumbnail}`} alt="Product Image" />
+      <div className="w-full">
+        {
+          singleProduct.Products && <CarosalImage images={singleProduct.Products} />
+        }
+      </div>
     </Wrapper>
-  );
-};
+  )
+}
 
 const Wrapper = styled.section`
+
   .single__products__front {
     display: flex;
     flex-wrap: wrap;
@@ -79,10 +102,10 @@ const Wrapper = styled.section`
     margin: auto;
 
     .left__side__single {
-      max-width: 500px;
+      width: 50%;
       margin: 0 10px;
       img{
-        width: 400px;
+        width: 100%;
         height: 450px;
         object-fit: cover;
       }
@@ -98,6 +121,14 @@ const Wrapper = styled.section`
         font-weight: 600;
       }
       width: 200px;
+    }
+  }
+
+  @media only screen and (max-width: 760px) {
+    .single__products__front {
+      .left__side__single{
+        width: 100%;
+      }
     }
   }
 `;

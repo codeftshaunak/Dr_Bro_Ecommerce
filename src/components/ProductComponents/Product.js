@@ -8,7 +8,8 @@ import WishListButton from "../WishListButton/WishListButton";
 import { BASE_URL } from "../../config";
 
 const Product = ({ products }) => {
-  const { uuid, product_name, thumbnail, price, availiability } = products;
+  const { uuid, product_name, thumbnail, price, availiability, category, discount } = products;
+  console.log(discount);
   return (
     <Wrapper>
       <NavLink to={`/singleproduct/${uuid}`}>
@@ -22,16 +23,30 @@ const Product = ({ products }) => {
             </div>
             <figure>
               <img src={`${thumbnail}`} alt="Product Image" />
-              <figcaption className="caption"> {product_name} </figcaption>
+              <figcaption className="caption"> {category} </figcaption>
             </figure>
           </div>
 
-          <div className="product__text__details">
+          <div className="product__text__details capitalize">
             <div className="card-data-flex">
               <h3>{product_name}</h3>
-              <p className="card-data--price">
-                {<FormatPrice price={price} />}
-              </p>
+              {
+                discount ?
+                  <>
+                    <p className="p-2 bg-orange-500 w-[150px] text-white rounded">Get {discount}% Discount</p>
+                    <p className="card-data--price">
+                      Original Price:<strike> {<FormatPrice price={price} />}</strike>
+                    </p>
+                    <p className="card-data--price">
+                      Discount Price: <strong>{<FormatPrice price={price} />}</strong>
+                    </p>
+                  </>
+                  : <p className="card-data--price">
+                    Original Price: {<FormatPrice price={price} />}
+                  </p>
+              }
+
+
               <div className="star">
                 <Star stars={availiability} />
               </div>
@@ -39,7 +54,7 @@ const Product = ({ products }) => {
           </div>
         </div>
       </NavLink>
-    </Wrapper>
+    </Wrapper >
   );
 };
 

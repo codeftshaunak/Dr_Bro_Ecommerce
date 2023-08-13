@@ -14,7 +14,7 @@ const TourHomeCard = ({ data }) => {
           <div className="tour__card py-5">
             <figure class="image-block">
               <span className="price__tag ">{tour.price}</span>
-              <img src={tour.thumbnail} alt="" />
+              <img src={tour.thumbnail} alt="" className="w-[300px]" />
               <figcaption>
                 <h3 className="text-5xl">{tour.package_titile}</h3>
                 <hr />

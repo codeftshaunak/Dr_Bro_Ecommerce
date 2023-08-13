@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PassportNav from '../PassportNav/PassportNav';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const PassportSignUp = (props) => {
     props.funNav(false);
@@ -402,7 +402,7 @@ const PassportSignUp = (props) => {
                         </div>
 
                         <div>
-                            <label htmlFor="last-name" className=" text-2xl font-medium leading-6 text-gray-900 flex">
+                            <label htmlFor="last-name" className=" text-2xl font-medium leading-6 text-gray-900 flex justify-center items-center">
                                 <input
                                     id="whatsapp-checkbox"
                                     name="whatsapp_checkbox"
@@ -416,7 +416,6 @@ const PassportSignUp = (props) => {
                             </label>
                         </div>
 
-
                         <div>
                             <button
                                 type="submit"
@@ -425,6 +424,10 @@ const PassportSignUp = (props) => {
                                 Sign Up
                             </button>
                         </div>
+                      <h6 className='text-center'>Or</h6> 
+                        <br />
+                        <NavLink to="/passportsignin" className='text-black font-bold text-xl text-center w-full m-auto'>Already Have An Account?</NavLink>
+
                     </form>
 
 

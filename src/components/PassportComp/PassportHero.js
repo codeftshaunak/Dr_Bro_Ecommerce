@@ -17,7 +17,7 @@ const PassportHero = () => {
 
                                 <br />
                                 <button className='rounded-lg bg-orange-600 hover:bg-white hover:text-black hover:border-orange-600 hover:border text-white px-4 py-0 font-semibold ease-in-out duration-500 h-14'>
-                                    <NavLink to="/getpassports">Get Passport</NavLink>
+                                    <NavLink to="/passportsignup">Get Passport</NavLink>
                                 </button>
                             </div>
                         </div>
